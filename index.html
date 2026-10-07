@@ -56,18 +56,10 @@ header::before{
 .header-inner{max-width:1280px;margin:0 auto;position:relative;}
 .header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
 .selo{display:inline-block;background:rgba(255,255,255,.15);border:2px solid var(--dourado-claro);color:var(--dourado-claro);font-size:12px;letter-spacing:3px;font-weight:700;padding:5px 16px;border-radius:999px;margin-bottom:14px;text-transform:uppercase;}
-.toggle-emoji{
-  display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.15);
-  border:2px solid var(--dourado-claro);border-radius:999px;padding:8px 16px;
-  cursor:pointer;user-select:none;transition:.2s;font-weight:700;font-size:13px;color:#fff;
-}
+.toggle-emoji{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.15);border:2px solid var(--dourado-claro);border-radius:999px;padding:8px 16px;cursor:pointer;user-select:none;transition:.2s;font-weight:700;font-size:13px;color:#fff;}
 .toggle-emoji:hover{background:rgba(255,255,255,.28);transform:translateY(-2px);}
-.toggle-emoji .switch{
-  width:38px;height:20px;background:rgba(0,0,0,.35);border-radius:999px;position:relative;transition:.25s;
-}
-.toggle-emoji .switch::after{
-  content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:.25s;
-}
+.toggle-emoji .switch{width:38px;height:20px;background:rgba(0,0,0,.35);border-radius:999px;position:relative;transition:.25s;}
+.toggle-emoji .switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:.25s;}
 .toggle-emoji.on .switch{background:var(--matcha);}
 .toggle-emoji.on .switch::after{transform:translateX(18px);}
 h1{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.1;text-shadow:0 3px 0 rgba(0,0,0,.25), 0 0 26px rgba(217,165,33,.45);letter-spacing:.5px;}
@@ -133,11 +125,25 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
 .mini-tag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--papel);color:var(--tinta-suave);border:1.5px solid rgba(217,165,33,.35);}
 .card-meta{display:flex;gap:12px;font-size:12px;font-weight:700;color:var(--tinta-suave);margin-top:auto;}
-.marcador{margin-top:12px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--tinta-suave);padding:8px 11px;border-radius:12px;background:var(--papel);transition:.2s;border:2px solid transparent;}
+
+/* NOVO: linha de ações no card (video + feito) */
+.card-acoes{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.marcador{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--tinta-suave);padding:8px 11px;border-radius:12px;background:var(--papel);transition:.2s;border:2px solid transparent;}
 .marcador:hover{background:#F5E4C8;}
 .marcador.on{background:linear-gradient(135deg,#E8F5E2,#D3EBC8);color:var(--matcha-esc);border-color:var(--matcha);}
 .marcador .box{width:19px;height:19px;border-radius:6px;border:2.5px solid rgba(107,158,79,.5);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:.2s;flex-shrink:0;}
 .marcador.on .box{background:var(--matcha);border-color:var(--matcha-esc);}
+.btn-video-card{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:9px 12px;border-radius:12px;border:2px solid transparent;
+  background:var(--papel);color:var(--tinta-suave);
+  font-family:inherit;font-size:12.5px;font-weight:800;cursor:pointer;
+  transition:.22s;width:100%;
+}
+.btn-video-card:hover{background:#FFE6E6;color:var(--vermelho-esc);transform:translateY(-2px);}
+.btn-video-card.tem-video{background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;border-color:#7A0A1C;box-shadow:0 4px 12px rgba(200,16,46,.35);}
+.btn-video-card.tem-video:hover{background:linear-gradient(135deg,#C8102E,#7A0A1C);color:#fff;}
+
 .vazio{text-align:center;padding:70px 20px;color:var(--tinta-suave);grid-column:1/-1;}
 .vazio .ic{font-size:62px;display:block;margin-bottom:14px;opacity:.55;}
 .vazio h3{font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:8px;color:var(--tinta);}
@@ -162,6 +168,7 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .btn-hero{padding:0 15px;height:42px;border-radius:999px;border:none;background:rgba(255,255,255,.94);cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--vermelho-esc);display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:.2s;}
 .btn-hero:hover{transform:translateY(-2px) scale(1.04);background:#fff;}
 .btn-hero.video{background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;}
+.btn-hero.video:hover{background:linear-gradient(135deg,#C8102E,#7A0A1C);}
 .modal-corpo{padding:26px 28px 34px;}
 .modal-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
 .modal-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
@@ -184,10 +191,27 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .bloco.video h3{color:#C8102E;}
 .video-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.25);}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
-.video-fallback{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px;background:var(--papel);border-radius:14px;text-align:center;}
-.btn-yt{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;border:none;padding:13px 24px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:.22s;box-shadow:0 6px 18px rgba(200,16,46,.4);text-decoration:none;}
-.btn-yt:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(200,16,46,.55);}
-.btn-yt svg{width:20px;height:20px;}
+.video-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000;}
+
+/* NOVO: caixa "adicionar vídeo" dentro do modal */
+.video-vazio{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  padding:26px 20px;background:linear-gradient(135deg,#FFF3F0,#FFE6E6);
+  border-radius:14px;text-align:center;border:2px dashed #E0432F;
+}
+.video-vazio .icone{font-size:44px;filter:drop-shadow(0 3px 8px rgba(200,16,46,.3));}
+.video-vazio h4{font-family:'Shippori Mincho',serif;font-size:16px;color:#7A0A1C;font-weight:800;margin-bottom:2px;}
+.video-vazio p{font-size:13px;color:var(--tinta-suave);line-height:1.5;max-width:420px;}
+.btn-add-video{
+  display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;
+  border:none;padding:13px 26px;border-radius:999px;
+  font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;
+  box-shadow:0 6px 18px rgba(200,16,46,.4);transition:.22s;
+  margin-top:4px;
+}
+.btn-add-video:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 28px rgba(200,16,46,.55);}
+.btn-add-video svg{width:20px;height:20px;}
 
 ul.ing{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;}
 ul.ing li{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:11px;background:var(--papel);font-size:14px;line-height:1.45;cursor:pointer;transition:.2s;border:2px solid transparent;}
@@ -231,8 +255,6 @@ ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
 .btn-buscar{padding:0 22px;border-radius:12px;border:2.5px solid var(--dourado);background:linear-gradient(135deg,var(--dourado),var(--dourado-claro));color:#fff;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:7px;}
 .btn-buscar:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 18px rgba(217,165,33,.4);}
 .btn-buscar:disabled{opacity:.6;cursor:wait;}
-.btn-secundario{padding:10px 16px;border-radius:11px;border:2.5px solid var(--matcha);background:#fff;color:var(--matcha-esc);font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px;align-self:flex-start;}
-.btn-secundario:hover{background:#E8F5E2;transform:translateY(-2px);}
 
 .preview-bloco{background:#fff;border:2.5px dashed rgba(107,158,79,.5);border-radius:16px;padding:18px;margin-bottom:18px;}
 .preview-bloco h4{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--matcha-esc);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
@@ -249,6 +271,11 @@ ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
 .foto-preview{width:100%;max-height:200px;object-fit:cover;border-radius:12px;background:#000;display:block;}
 .foto-atual{font-size:12px;color:var(--tinta-suave);font-style:italic;text-align:center;}
 .video-hint{font-size:11.5px;color:var(--tinta-suave);font-style:italic;}
+.video-preview-box{
+  padding:14px;background:linear-gradient(135deg,#FFF3F0,#FFE6E6);
+  border-radius:12px;text-align:center;font-size:13px;font-weight:700;color:#7A0A1C;
+  border:2px dashed #E0432F;
+}
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,140%);background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));color:#fff;padding:15px 30px;border-radius:999px;font-weight:800;font-size:14.5px;z-index:200;box-shadow:0 12px 34px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.34,1.5,.64,1);border:2.5px solid var(--dourado-claro);white-space:nowrap;max-width:90%;}
 #toast.show{transform:translate(-50%,0);}
@@ -290,7 +317,7 @@ footer strong{color:var(--vermelho-esc);}
         <h1>Meu Livro de Receitas Fantásticas
           <span class="jp">おいしい レシピ</span>
         </h1>
-        <p class="sub">Receitas do mundo inteiro com vídeos, fotos e passo a passo. Cole um link e a receita se preenche sozinha. 🌸</p>
+        <p class="sub">Receitas do mundo inteiro com vídeos, fotos e passo a passo. Adicione vídeos a qualquer receita a qualquer momento. 🌸</p>
       </div>
       <div class="toggle-emoji" id="toggleEmoji" title="Mostrar / esconder emojis dos cards">
         <span id="toggleEmojiLabel">Esconder emojis</span>
@@ -320,7 +347,7 @@ footer strong{color:var(--vermelho-esc);}
 
 <footer>
   Feito com <strong>arroz, curry e amor</strong> 🌸 · Meu Livro de Receitas Fantásticas<br>
-  <span style="font-size:12px;opacity:.75">Favoritas, receitas testadas, fotos personalizadas, vídeos e preferência de emojis ficam salvas no navegador.</span>
+  <span style="font-size:12px;opacity:.75">Clique em <strong>🎬</strong> em qualquer card ou receita para adicionar/trocar vídeos. Tudo fica salvo no navegador.</span>
 </footer>
 
 <div class="overlay" id="overlayReceita" onclick="if(event.target===this)fecharReceita()">
@@ -367,12 +394,15 @@ footer strong{color:var(--vermelho-esc);}
     </div>
     <div class="modal-corpo">
       <div class="aviso info">
-        💡 Cole uma URL do <strong>YouTube</strong>, <strong>Vimeo</strong> ou link direto de vídeo (.mp4). Vou embutir automaticamente.
+        💡 Cole uma URL do <strong>YouTube</strong>, <strong>Vimeo</strong> ou link direto de vídeo (.mp4, .webm). Vou embutir automaticamente.
       </div>
       <div class="campo" style="margin-bottom:14px;">
         <label>🔗 URL do vídeo</label>
-        <input type="url" id="videoURL" placeholder="https://www.youtube.com/watch?v=...">
-        <span class="video-hint">Formatos suportados: YouTube, Vimeo, .mp4, .webm</span>
+        <input type="url" id="videoURL" placeholder="https://www.youtube.com/watch?v=..." oninput="atualizarPreviewVideo()">
+        <span class="video-hint">Formatos: YouTube, Vimeo, .mp4, .webm, .mov</span>
+      </div>
+      <div id="videoPreviewArea" style="margin-bottom:14px;display:none;">
+        <div class="video-preview-box" id="videoPreviewBox">🎬 Vídeo válido detectado!</div>
       </div>
       <div class="modal-acoes" style="margin-top:20px;margin-bottom:0;">
         <button type="button" class="btn-acao" onclick="removerVideoAtual()">🗑️ Remover vídeo</button>
@@ -393,7 +423,7 @@ footer strong{color:var(--vermelho-esc);}
     </div>
     <div class="modal-corpo">
       <div class="aviso info">
-        💡 Cole o link, clique em <strong>Buscar</strong> e eu extraio nome, foto, ingredientes, passos, tempo e porções. Você confirma o <strong>país, dificuldade e categorias</strong>. Se o link for do YouTube, eu já capturo o vídeo.
+        💡 Cole o link, clique em <strong>Buscar</strong> e eu extraio nome, foto, ingredientes, passos, tempo e porções. Você confirma o <strong>país, dificuldade e categorias</strong>. Se o link for do YouTube, capturo o vídeo também.
       </div>
       <form id="formReceita" onsubmit="salvarNovaReceita(event)">
         <div class="form-grid">
@@ -406,9 +436,7 @@ footer strong{color:var(--vermelho-esc);}
               </button>
             </div>
           </div>
-
           <div class="campo full" id="statusBusca"></div>
-
           <div class="campo full" id="previewWrap" style="display:none;">
             <div class="preview-bloco">
               <h4>✨ Dados extraídos do link</h4>
@@ -423,12 +451,10 @@ footer strong{color:var(--vermelho-esc);}
               </div>
             </div>
           </div>
-
           <div class="campo full">
             <label>🍽️ Nome da receita <span class="auto">AUTO</span></label>
             <input type="text" id="fNome" placeholder="Preenchido ao buscar o link" required>
           </div>
-
           <div class="campo">
             <label>🌏 País / Cozinha <span class="obg">VOCÊ ESCOLHE</span></label>
             <input type="text" id="fPais" list="listaPaises" placeholder="Ex: Brasil" required>
@@ -441,12 +467,10 @@ footer strong{color:var(--vermelho-esc);}
               <option>Difícil</option><option>Chef</option>
             </select>
           </div>
-
           <div class="campo full">
             <label>🏷️ Categorias <span class="obg">VOCÊ ESCOLHE</span></label>
             <div class="cats-check" id="fCats"></div>
           </div>
-
           <div class="campo">
             <label>😀 Emoji <span class="auto">AUTO</span></label>
             <input type="text" id="fEmoji" placeholder="🍲" maxlength="4" value="🍽️">
@@ -470,18 +494,15 @@ footer strong{color:var(--vermelho-esc);}
               <option value="#2E5C8A,#5B9BD5">Azul Oceano</option>
             </select>
           </div>
-
           <div class="campo full">
             <label>🖼️ Foto da receita <span class="auto">AUTO</span></label>
             <input type="url" id="fFoto" placeholder="Deixe em branco para usar a foto do link">
           </div>
-
           <div class="campo full">
             <label>🎬 Vídeo da receita <span class="opc">OPCIONAL</span></label>
-            <input type="url" id="fVideo" placeholder="YouTube, Vimeo ou .mp4 (preenchido automaticamente se o link for do YouTube)">
-            <span class="video-hint">Você pode adicionar depois clicando no botão 🎬 no card</span>
+            <input type="url" id="fVideo" placeholder="YouTube, Vimeo ou .mp4">
+            <span class="video-hint">Preenchido automaticamente se o link for do YouTube</span>
           </div>
-
           <div class="campo full">
             <label>🧂 Ingredientes (um por linha) <span class="auto">AUTO</span></label>
             <textarea id="fIng" placeholder="Preenchido ao buscar o link"></textarea>
@@ -610,19 +631,14 @@ function getVideo(r){
 function embedVideo(url){
   if(!url) return null;
   url = url.trim();
-  // YouTube
   const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
   if(yt) return `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${yt[1]}" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`;
-  // Vimeo
   const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if(vm) return `<div class="video-wrap"><iframe src="https://player.vimeo.com/video/${vm[1]}" allowfullscreen></iframe></div>`;
-  // Arquivo direto
-  if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) return `<div class="video-wrap"><video src="${escapar(url)}" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;"></video></div>`;
+  if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) return `<div class="video-wrap"><video src="${escapar(url)}" controls></video></div>`;
   return null;
 }
-function ehYouTube(url){
-  return /youtube\.com|youtu\.be/.test(url||'');
-}
+function ehYouTube(url){ return /youtube\.com|youtu\.be/.test(url||''); }
 
 /* ==================== UTILITÁRIOS ==================== */
 function toast(msg){
@@ -657,15 +673,15 @@ function alternarEmojis(){
 function detectarPais(texto){
   const t = (texto||'').toLowerCase();
   const mapa = {
-    'Brasil': ['brasil','brazilian','feijoada','brigadeiro','tropeiro','moqueca','coxinha','pão de queijo','pao de queijo','acarajé','acaraje','vatapá','vatapa','farofa','caipirinha','pudim'],
-    'Japão': ['japão','japao','japanese','japonesa','ramen','sushi','nigiri','okonomiyaki','tempurá','tempura','miso','teriyaki','yakitori','katsu','onigiri'],
-    'Itália': ['itália','italia','italian','italiana','pasta','pizza','risotto','lasagna','tiramisù','tiramisu','carbonara','spaghetti','gnocchi','ravioli','focaccia'],
-    'México': ['méxico','mexico','mexican','mexicana','taco','guacamole','enchilada','burrito','quesadilla','pozole','nachos','fajita','tortilla'],
-    'Índia': ['índia','india','indian','indiana','curry indiano','masala','biryani','samosa','tandoori','naan','dal','paneer','tikka'],
-    'China': ['china','chinese','chinês','chines','chinesa','dim sum','wok','yakisoba','dumpling','peking','chow mein','mapo','szechuan'],
-    'França': ['frança','franca','french','francesa','croissant','baguette','ratatouille','bourguignon','crème','creme brulee','coq au vin','quiche','macaron'],
-    'Tailândia': ['tailândia','tailandia','thai','pad thai','tom yum','curry verde','green curry','mango sticky'],
-    'Coreia do Sul': ['coreia','korean','coreana','kimchi','bibimbap','bulgogi','tteokbokki','japchae','gochujang']
+    'Brasil':['brasil','brazilian','feijoada','brigadeiro','tropeiro','moqueca','coxinha','pão de queijo','pao de queijo','acarajé','acaraje','vatapá','farofa','caipirinha','pudim'],
+    'Japão':['japão','japao','japanese','japonesa','ramen','sushi','nigiri','okonomiyaki','tempurá','tempura','miso','teriyaki','yakitori','katsu','onigiri'],
+    'Itália':['itália','italia','italian','italiana','pasta','pizza','risotto','lasagna','tiramisù','tiramisu','carbonara','spaghetti','gnocchi','ravioli','focaccia'],
+    'México':['méxico','mexico','mexican','mexicana','taco','guacamole','enchilada','burrito','quesadilla','pozole','nachos','fajita','tortilla'],
+    'Índia':['índia','india','indian','indiana','masala','biryani','samosa','tandoori','naan','dal','paneer','tikka'],
+    'China':['china','chinese','chinês','chines','chinesa','dim sum','wok','yakisoba','dumpling','peking','chow mein','mapo','szechuan'],
+    'França':['frança','franca','french','francesa','croissant','baguette','ratatouille','bourguignon','crème','creme brulee','coq au vin','quiche','macaron'],
+    'Tailândia':['tailândia','tailandia','thai','pad thai','tom yum','curry verde','green curry','mango sticky'],
+    'Coreia do Sul':['coreia','korean','coreana','kimchi','bibimbap','bulgogi','tteokbokki','japchae','gochujang']
   };
   for(const [pais, kws] of Object.entries(mapa)){
     for(const k of kws){ if(t.includes(k)) return pais; }
@@ -699,22 +715,22 @@ function detectarCategorias(texto){
 function detectarEmoji(texto){
   const t = (texto||'').toLowerCase();
   const mapa = [
-    [/(pizza)/, '🍕'], [/(pasta|spaghetti|macarr|noodle|lámen|lamen|ramen|yakisoba|pad thai|japchae)/, '🍜'],
-    [/(sushi|sashimi|nigiri|maki)/, '🍣'], [/(curry|caril)/, '🍛'], [/(sopa|soup|caldo|ramen|pozole|tom yum)/, '🍲'],
-    [/(bolo|cake|torta)/, '🍰'], [/(cookie|biscoito)/, '🍪'], [/(chocolate|brigadeiro|trufa)/, '🍫'],
-    [/(sorvete|gelato|ice cream)/, '🍦'], [/(pudim|flan|creme brulee)/, '🍮'], [/(panqueca|pancake|crepe|dorayaki)/, '🥞'],
-    [/(taco|burrito|enchilada)/, '🌮'], [/(dumpling|gyoza|dim sum|har gow|samosa|pastel)/, '🥟'],
-    [/(salada|salad)/, '🥗'], [/(frango|chicken)/, '🍗'], [/(carne|beef|steak|boeuf|bulgogi|bife)/, '🥩'],
-    [/(peixe|fish|salmão|salmon)/, '🐟'], [/(camarão|shrimp|acarajé)/, '🦐'], [/(pão|bread|baguette|croissant)/, '🥐'],
-    [/(arroz|rice|risoto|risotto|biryani|bibimbap)/, '🍚'], [/(queijo|cheese)/, '🧀'], [/(ovo|egg)/, '🥚'],
-    [/(batata|potato)/, '🥔'], [/(tomate|tomato)/, '🍅'], [/(milho|corn)/, '🌽'], [/(abacate|avocado)/, '🥑'],
-    [/(morango|strawberry)/, '🍓'], [/(manga|mango)/, '🥭'], [/(limão|lemon)/, '🍋'], [/(pimenta|pepper|chili)/, '🌶️']
+    [/(pizza)/,'🍕'], [/(pasta|spaghetti|macarr|noodle|ramen|yakisoba|pad thai|japchae)/,'🍜'],
+    [/(sushi|sashimi|nigiri|maki)/,'🍣'], [/(curry|caril)/,'🍛'], [/(sopa|soup|caldo|pozole|tom yum)/,'🍲'],
+    [/(bolo|cake|torta)/,'🍰'], [/(cookie|biscoito)/,'🍪'], [/(chocolate|brigadeiro|trufa)/,'🍫'],
+    [/(sorvete|gelato|ice cream)/,'🍦'], [/(pudim|flan|creme brulee)/,'🍮'], [/(panqueca|pancake|crepe|dorayaki)/,'🥞'],
+    [/(taco|burrito|enchilada)/,'🌮'], [/(dumpling|gyoza|dim sum|har gow|samosa|pastel)/,'🥟'],
+    [/(salada|salad)/,'🥗'], [/(frango|chicken)/,'🍗'], [/(carne|beef|steak|boeuf|bulgogi|bife)/,'🥩'],
+    [/(peixe|fish|salmão|salmon)/,'🐟'], [/(camarão|shrimp|acarajé)/,'🦐'], [/(pão|bread|baguette|croissant)/,'🥐'],
+    [/(arroz|rice|risoto|risotto|biryani|bibimbap)/,'🍚'], [/(queijo|cheese)/,'🧀'], [/(ovo|egg)/,'🥚'],
+    [/(batata|potato)/,'🥔'], [/(tomate|tomato)/,'🍅'], [/(milho|corn)/,'🌽'], [/(abacate|avocado)/,'🥑'],
+    [/(morango|strawberry)/,'🍓'], [/(manga|mango)/,'🥭'], [/(limão|lemon)/,'🍋'], [/(pimenta|pepper|chili)/,'🌶️']
   ];
   for(const [re, emoji] of mapa){ if(re.test(t)) return emoji; }
   return '🍽️';
 }
 
-/* ==================== PARSING DO LINK ==================== */
+/* ==================== PARSING ==================== */
 function parseDuracaoISO(iso){
   if(!iso) return null;
   const m = String(iso).match(/P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?/);
@@ -777,7 +793,7 @@ async function fetchComProxy(url){
         const text = await resp.text();
         if(text && text.length > 500) return text;
       }
-    }catch(e){ console.warn('Proxy falhou:', p); }
+    }catch(e){}
   }
   return null;
 }
@@ -799,7 +815,6 @@ async function extrairReceitaDoHTML(html, urlOriginal){
           const tempo = parseDuracaoISO(recipe.totalTime || recipe.cookTime || recipe.prepTime);
           const porcoes = recipe.recipeYield ? String(recipe.recipeYield).replace(/[^\d]/g,'').slice(0,3) : null;
           const categoria = [recipe.recipeCategory, recipe.recipeCuisine, recipe.keywords].flat().filter(Boolean).join(' ');
-          // Tenta achar vídeo no JSON-LD
           let videoURL = null;
           if(recipe.video){
             const v = Array.isArray(recipe.video) ? recipe.video[0] : recipe.video;
@@ -831,14 +846,10 @@ async function buscarDadosLink(){
   const statusEl = document.getElementById('statusBusca');
   btn.disabled = true;
   btnTxt.innerHTML = '<span class="spinner"></span> Buscando...';
-  statusEl.innerHTML = '<div class="aviso info">🔎 Extraindo dados do link, aguarde...</div>';
+  statusEl.innerHTML = '<div class="aviso info">🔎 Extraindo dados do link...</div>';
 
   try{
-    // Se o link em si for um vídeo do YouTube, já preenche o campo de vídeo
-    if(ehYouTube(link)){
-      document.getElementById('fVideo').value = link;
-    }
-
+    if(ehYouTube(link)) document.getElementById('fVideo').value = link;
     const html = await fetchComProxy(link);
     let dados = null;
     if(html) dados = await extrairReceitaDoHTML(html, link);
@@ -859,7 +870,7 @@ async function buscarDadosLink(){
             url: link
           };
         }
-      }catch(e){ console.warn('Microlink falhou'); }
+      }catch(e){}
     }
 
     if(!dados || !dados.nome){
@@ -879,14 +890,11 @@ async function buscarDadosLink(){
     if(dados.tempo) document.getElementById('fTempo').value = dados.tempo;
     if(dados.porcoes) document.getElementById('fPorcoes').value = parseInt(dados.porcoes) || 4;
     if(dados.video) document.getElementById('fVideo').value = dados.video;
-
-    const emoji = detectarEmoji(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria);
-    document.getElementById('fEmoji').value = emoji;
+    document.getElementById('fEmoji').value = detectarEmoji(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria);
 
     autoDetectarCampos(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria + ' ' + link, dados.tempo);
 
-    const prevWrap = document.getElementById('previewWrap');
-    prevWrap.style.display = 'block';
+    document.getElementById('previewWrap').style.display = 'block';
     document.getElementById('prevNome').textContent = dados.nome || '—';
     document.getElementById('prevTempo').textContent = dados.tempo ? dados.tempo + ' min' : '—';
     document.getElementById('prevPorcoes').textContent = dados.porcoes ? dados.porcoes + ' porções' : '—';
@@ -904,7 +912,6 @@ async function buscarDadosLink(){
     statusEl.innerHTML = `<div class="aviso ok">✅ Dados extraídos! ${dados.ingredientes.length ? `${dados.ingredientes.length} ingredientes e ${dados.passos.length} passos.` : 'Preencha os ingredientes manualmente.'}${detectado ? ` País detectado: <strong>${detectado}</strong>.` : ''}${dados.video ? ' 🎬 Vídeo encontrado!' : ''}</div>`;
     toast('✨ Dados extraídos!');
   }catch(err){
-    console.error(err);
     statusEl.innerHTML = `<div class="aviso erro">❌ Erro ao buscar. Tente novamente.</div>`;
   }finally{
     btn.disabled = false;
@@ -924,14 +931,16 @@ function autoDetectarCampos(texto, tempo){
 function contarPorCategoria(cat){ return todasReceitas().filter(r=>r.cats.includes(cat)).length; }
 function contarPaises(){ return new Set(todasReceitas().map(r=>r.pais)).size; }
 function contarComVideo(){ return todasReceitas().filter(r=>getVideo(r)).length; }
+function contarSemVideo(){ return todasReceitas().filter(r=>!getVideo(r)).length; }
 
 function renderKPIs(){
   const total = todasReceitas().length;
   const kpis = [
-    {ic:'📖', val:total, lbl:'Total de Receitas', cor:'#C8102E', acao:()=>{estado={modo:'todas',categoria:null,pais:null,busca:''};document.getElementById('busca').value='';render();}},
-    {ic:'🎬', val:contarComVideo(), lbl:'Com Vídeo', cor:'#E0432F', acao:()=>{estado={modo:'videos',categoria:null,pais:null,busca:''};render();}},
-    {ic:'❤️', val:favoritas.length, lbl:'Favoritas', cor:'#F49AB4', acao:()=>{estado={modo:'favoritas',categoria:null,pais:null,busca:''};render();}},
-    {ic:'✅', val:testadas.length, lbl:'Já Testadas', cor:'#6B9E4F', acao:()=>{estado={modo:'testadas',categoria:null,pais:null,busca:''};render();}},
+    {ic:'📖', val:total, lbl:'Total', cor:'#C8102E', modo:'todas', acao:()=>{estado={modo:'todas',categoria:null,pais:null,busca:''};document.getElementById('busca').value='';render();}},
+    {ic:'🎬', val:contarComVideo(), lbl:'Com Vídeo', cor:'#E0432F', modo:'videos', acao:()=>{estado={modo:'videos',categoria:null,pais:null,busca:''};render();}},
+    {ic:'➕', val:contarSemVideo(), lbl:'Sem Vídeo (adicionar)', cor:'#D9A521', modo:'sem-video', acao:()=>{estado={modo:'sem-video',categoria:null,pais:null,busca:''};render();}},
+    {ic:'❤️', val:favoritas.length, lbl:'Favoritas', cor:'#F49AB4', modo:'favoritas', acao:()=>{estado={modo:'favoritas',categoria:null,pais:null,busca:''};render();}},
+    {ic:'✅', val:testadas.length, lbl:'Testadas', cor:'#6B9E4F', modo:'testadas', acao:()=>{estado={modo:'testadas',categoria:null,pais:null,busca:''};render();}},
     {ic:'🌏', val:contarPaises(), lbl:'Países', cor:'#D9A521', acao:()=>{document.getElementById('chipsPais').scrollIntoView({behavior:'smooth'});}},
     {ic:'🍛', val:contarPorCategoria('salgadas'), lbl:'Salgadas', cor:'#C8102E', acao:()=>{estado={modo:'categoria',categoria:'salgadas',pais:null,busca:''};render();}},
     {ic:'🍰', val:contarPorCategoria('doces'), lbl:'Doces', cor:'#F49AB4', acao:()=>{estado={modo:'categoria',categoria:'doces',pais:null,busca:''};render();}},
@@ -1026,6 +1035,7 @@ function filtrar(){
   if(estado.modo==='favoritas') lista = lista.filter(r=>favoritas.includes(r.id));
   else if(estado.modo==='testadas') lista = lista.filter(r=>testadas.includes(r.id));
   else if(estado.modo==='videos') lista = lista.filter(r=>!!getVideo(r));
+  else if(estado.modo==='sem-video') lista = lista.filter(r=>!getVideo(r));
   else if(estado.modo==='categoria' && estado.categoria) lista = lista.filter(r=>r.cats.includes(estado.categoria));
   else if(estado.modo==='pais' && estado.pais) lista = lista.filter(r=>r.pais===estado.pais);
   if(estado.busca){
@@ -1048,6 +1058,7 @@ function renderGrid(){
   if(estado.modo==='favoritas') titulo.textContent = '❤️ Receitas Favoritas';
   else if(estado.modo==='testadas') titulo.textContent = '✅ Receitas Testadas';
   else if(estado.modo==='videos') titulo.textContent = '🎬 Receitas com Vídeo';
+  else if(estado.modo==='sem-video') titulo.textContent = '➕ Receitas sem Vídeo (clique em 🎬 ou no botão para adicionar)';
   else if(estado.modo==='categoria' && estado.categoria) titulo.textContent = `${CATEGORIAS[estado.categoria].emoji} ${CATEGORIAS[estado.categoria].nome}`;
   else if(estado.modo==='pais' && estado.pais) titulo.textContent = `🌏 Cozinha ${estado.pais}`;
   else if(estado.busca) titulo.textContent = `🔍 Resultados para "${estado.busca}"`;
@@ -1070,7 +1081,6 @@ function renderGrid(){
         <span class="badge-pais">${r.bandeira} ${escapar(r.pais)}</span>
         ${video ? '<span class="badge-video">🎬 Vídeo</span>' : ''}
         <div class="card-top-actions">
-          <button class="btn-icon" data-video="${r.id}" title="${video?'Trocar vídeo':'Adicionar vídeo'}">🎬</button>
           <button class="btn-icon" data-foto="${r.id}" title="Trocar foto">📷</button>
           <button class="btn-icon ${fav?'on':''}" data-fav="${r.id}" title="Favoritar">${fav?'❤️':'🤍'}</button>
         </div>
@@ -1085,9 +1095,14 @@ function renderGrid(){
           <span>🍽 ${r.porcoes}</span>
           <span>📊 ${r.dificuldade}</span>
         </div>
-        <div class="marcador ${feita?'on':''}" data-feito="${r.id}">
-          <span class="box">${feita?'✓':''}</span>
-          <span>${feita?'Já testei esta!':'Marcar como testada'}</span>
+        <div class="card-acoes">
+          <button class="btn-video-card ${video?'tem-video':''}" data-video="${r.id}">
+            ${video ? '🎬 Trocar vídeo' : '🎬 Adicionar vídeo'}
+          </button>
+          <div class="marcador ${feita?'on':''}" data-feito="${r.id}">
+            <span class="box">${feita?'✓':''}</span>
+            <span>${feita?'Já testei esta!':'Marcar como testada'}</span>
+          </div>
         </div>
       </div>
     </div>`;
@@ -1136,9 +1151,28 @@ function abrirReceita(id){
   const linkReceita = r.link ? `<div class="bloco link"><h3>🔗 Link original</h3><a href="${escapar(r.link)}" target="_blank" rel="noopener">${escapar(r.link)}</a></div>` : '';
   const videoURL = getVideo(r);
   const videoEmbed = embedVideo(videoURL);
+
+  // Bloco de vídeo: com player OU com CTA para adicionar
   const blocoVideo = videoEmbed
-    ? `<div class="bloco video"><h3>🎬 Vídeo da receita</h3>${videoEmbed}</div>`
-    : '';
+    ? `<div class="bloco video">
+        <h3>🎬 Vídeo da receita</h3>
+        ${videoEmbed}
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-acao" style="flex:1;min-width:140px;border-color:#E0432F;color:#C8102E;" onclick="abrirVideo('${r.id}')">🔄 Trocar vídeo</button>
+        </div>
+      </div>`
+    : `<div class="bloco video">
+        <h3>🎬 Vídeo da receita</h3>
+        <div class="video-vazio">
+          <span class="icone">🎬</span>
+          <h4>Esta receita ainda não tem vídeo</h4>
+          <p>Adicione um link do YouTube, Vimeo ou arquivo .mp4 para assistir ao preparo passo a passo.</p>
+          <button class="btn-add-video" onclick="abrirVideo('${r.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Adicionar vídeo
+          </button>
+        </div>
+      </div>`;
 
   document.getElementById('modalReceita').innerHTML = `
     <div class="modal-hero">
@@ -1161,33 +1195,27 @@ function abrirReceita(id){
         <span class="meta-pill">📊 ${r.dificuldade}</span>
         ${r.cats.map(c=>`<span class="meta-pill">${CATEGORIAS[c].emoji} ${CATEGORIAS[c].nome}</span>`).join('')}
       </div>
-
       <div class="modal-acoes">
         <button class="btn-acao ${fav?'on':''}" id="btnFavModal">${fav?'❤️ Favoritada':'🤍 Favoritar'}</button>
         <button class="btn-acao feito ${feita?'on':''}" id="btnFeitoModal">${feita?'✅ Já testei':'☐ Marcar como testada'}</button>
       </div>
-
       ${blocoVideo}
-
       <div class="bloco iniciante">
         <h3>🌸 Explicação para iniciantes</h3>
         <p>${escapar(r.iniciante || r.desc)}</p>
       </div>
-
       <div class="bloco">
         <h3>🧂 Ingredientes (${r.ingredientes.length})</h3>
         <ul class="ing">
           ${r.ingredientes.map((ing,i)=>`<li data-ing="${i}"><span class="pt">•</span> ${escapar(ing)}</li>`).join('')}
         </ul>
       </div>
-
       <div class="bloco">
         <h3>👨‍🍳 Modo de preparo (${r.passos.length} passos)</h3>
         <ol class="preparo">
           ${r.passos.map((p,i)=>`<li data-passo="${i}">${escapar(p)}</li>`).join('')}
         </ol>
       </div>
-
       ${r.dicas && r.dicas.length ? `
       <div class="bloco dicas">
         <h3>💡 Dicas do Chef</h3>
@@ -1195,7 +1223,6 @@ function abrirReceita(id){
           ${r.dicas.map(d=>`<li><span>✓</span> ${escapar(d)}</li>`).join('')}
         </ul>
       </div>` : ''}
-
       ${linkReceita}
     </div>`;
 
@@ -1308,6 +1335,26 @@ function abrirVideo(id){
   document.getElementById('videoURL').value = urlAtual || '';
   document.getElementById('overlayVideo').classList.add('aberto');
   document.body.style.overflow = 'hidden';
+  atualizarPreviewVideo();
+}
+function atualizarPreviewVideo(){
+  const url = document.getElementById('videoURL').value.trim();
+  const area = document.getElementById('videoPreviewArea');
+  const box = document.getElementById('videoPreviewBox');
+  if(!url){ area.style.display = 'none'; return; }
+  if(embedVideo(url) || ehYouTube(url)){
+    box.innerHTML = '✅ Vídeo válido detectado!';
+    box.style.background = 'linear-gradient(135deg,#E8F5E2,#D3EBC8)';
+    box.style.borderColor = 'var(--matcha)';
+    box.style.color = 'var(--matcha-esc)';
+    area.style.display = 'block';
+  } else {
+    box.innerHTML = '⚠️ Formato não reconhecido. Use YouTube, Vimeo ou .mp4/.webm';
+    box.style.background = 'linear-gradient(135deg,#FFF3D6,#FFE6E6)';
+    box.style.borderColor = 'var(--vermelho)';
+    box.style.color = '#7A0A1C';
+    area.style.display = 'block';
+  }
 }
 function salvarVideo(){
   if(!videoReceitaIdAtual) return;
@@ -1317,23 +1364,18 @@ function salvarVideo(){
     return;
   }
   if(!embedVideo(url) && !ehYouTube(url)){
-    toast('⚠️ Formato não reconhecido. Use YouTube, Vimeo ou link direto de vídeo.');
+    toast('⚠️ Formato não reconhecido.');
     return;
   }
   videosCustom[videoReceitaIdAtual] = url;
   salvar();
   fecharVideo();
   render();
-  toast('🎬 Vídeo salvo!');
+  toast('🎬 Vídeo salvo na receita!');
 }
 function removerVideoAtual(){
   if(!videoReceitaIdAtual) return;
-  const r = todasReceitas().find(x=>x.id===videoReceitaIdAtual);
-  if(r && r.video && !videosCustom[videoReceitaIdAtual]){
-    videosCustom[videoReceitaIdAtual] = '';
-  } else {
-    delete videosCustom[videoReceitaIdAtual];
-  }
+  videosCustom[videoReceitaIdAtual] = '';
   salvar();
   fecharVideo();
   render();
@@ -1343,6 +1385,7 @@ function fecharVideo(){
   document.getElementById('overlayVideo').classList.remove('aberto');
   document.body.style.overflow = '';
   videoReceitaIdAtual = null;
+  document.getElementById('videoPreviewArea').style.display = 'none';
 }
 
 /* ==================== FORMULÁRIO ==================== */
@@ -1363,7 +1406,6 @@ function fecharFormulario(){
   document.getElementById('statusBusca').innerHTML = '';
   document.getElementById('previewWrap').style.display = 'none';
 }
-
 function salvarNovaReceita(e){
   e.preventDefault();
   const nome = document.getElementById('fNome').value.trim();
@@ -1390,7 +1432,6 @@ function salvarNovaReceita(e){
     'Portugal':'🇵🇹','Alemanha':'🇩🇪','Grécia':'🇬🇷','Argentina':'🇦🇷','Peru':'🇵🇪','Vietnã':'🇻🇳'
   };
   const bandeira = mapaBandeiras[pais] || '🌏';
-
   const paisesExistentes = new Set(todasReceitas().map(r=>r.pais));
   if(!paisesExistentes.has(pais)) toast(`🌏 Novo país: ${pais}!`);
 
