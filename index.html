@@ -56,6 +56,7 @@ header::before{
 .header-inner{max-width:1280px;margin:0 auto;position:relative;}
 .header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
 .selo{display:inline-block;background:rgba(255,255,255,.15);border:2px solid var(--dourado-claro);color:var(--dourado-claro);font-size:12px;letter-spacing:3px;font-weight:700;padding:5px 16px;border-radius:999px;margin-bottom:14px;text-transform:uppercase;}
+.header-controles{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
 .toggle-emoji{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.15);border:2px solid var(--dourado-claro);border-radius:999px;padding:8px 16px;cursor:pointer;user-select:none;transition:.2s;font-weight:700;font-size:13px;color:#fff;}
 .toggle-emoji:hover{background:rgba(255,255,255,.28);transform:translateY(-2px);}
 .toggle-emoji .switch{width:38px;height:20px;background:rgba(0,0,0,.35);border-radius:999px;position:relative;transition:.25s;}
@@ -116,10 +117,11 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .card-img .emoji-fallback{position:relative;z-index:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.28));}
 .badge-pais{position:absolute;top:10px;left:10px;z-index:3;background:rgba(43,27,18,.82);color:#fff;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.25);}
 .badge-video{position:absolute;bottom:10px;left:10px;z-index:3;background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px;display:flex;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(200,16,46,.5);}
-.card-top-actions{position:absolute;top:9px;right:9px;z-index:3;display:flex;gap:6px;}
-.btn-icon{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.92);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.22s;box-shadow:0 3px 10px rgba(0,0,0,.22);}
-.btn-icon:hover{transform:scale(1.18) rotate(-8deg);}
+.card-top-actions{position:absolute;top:9px;right:9px;z-index:3;display:flex;gap:5px;}
+.btn-icon{width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.92);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.22s;box-shadow:0 3px 10px rgba(0,0,0,.22);}
+.btn-icon:hover{transform:scale(1.15) rotate(-8deg);}
 .btn-icon.on{background:var(--sakura);}
+.btn-icon.excluir:hover{background:#FFE6E6;}
 .card-body{padding:14px 15px 16px;display:flex;flex-direction:column;flex:1;}
 .card-body h3{font-family:'Shippori Mincho',serif;font-size:16.5px;font-weight:800;color:var(--tinta);line-height:1.28;margin-bottom:8px;}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
@@ -163,11 +165,15 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .modal-hero .titulo-hero .pais{font-size:14px;font-weight:700;color:var(--dourado-claro);margin-top:5px;}
 .btn-fechar{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.94);cursor:pointer;font-size:20px;font-weight:800;color:var(--vermelho-esc);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:.2s;}
 .btn-fechar:hover{transform:rotate(90deg) scale(1.1);}
-.hero-actions{position:absolute;top:14px;left:14px;z-index:5;display:flex;gap:8px;flex-wrap:wrap;}
+.hero-actions{position:absolute;top:14px;left:14px;z-index:5;display:flex;gap:8px;flex-wrap:wrap;max-width:75%;}
 .btn-hero{padding:0 15px;height:42px;border-radius:999px;border:none;background:rgba(255,255,255,.94);cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--vermelho-esc);display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:.2s;}
 .btn-hero:hover{transform:translateY(-2px) scale(1.04);background:#fff;}
 .btn-hero.video{background:linear-gradient(135deg,#E0432F,#C8102E);color:#fff;}
 .btn-hero.video:hover{background:linear-gradient(135deg,#C8102E,#7A0A1C);}
+.btn-hero.editar{background:linear-gradient(135deg,var(--dourado),var(--dourado-claro));color:#3d2a00;}
+.btn-hero.editar:hover{background:linear-gradient(135deg,#c9971a,#e0bc55);}
+.btn-hero.excluir{background:linear-gradient(135deg,#7A0A1C,#2B1B12);color:#fff;}
+.btn-hero.excluir:hover{background:linear-gradient(135deg,#5a0714,#1a0f08);}
 .modal-corpo{padding:26px 28px 34px;}
 .modal-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
 .modal-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
@@ -176,6 +182,8 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .btn-acao.on{background:linear-gradient(135deg,var(--vermelho),#E0432F);color:#fff;border-color:var(--dourado);}
 .btn-acao.feito{border-color:var(--matcha);color:var(--matcha-esc);}
 .btn-acao.feito.on{background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));color:#fff;border-color:var(--matcha);}
+.btn-acao.perigo{border-color:#7A0A1C;color:#7A0A1C;background:#FFE6E6;}
+.btn-acao.perigo:hover{background:#7A0A1C;color:#fff;transform:translateY(-2px);}
 
 .bloco{background:#fff;border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:0 3px 14px rgba(90,45,20,.08);border-left:6px solid var(--dourado);}
 .bloco h3{font-family:'Shippori Mincho',serif;font-size:18px;color:var(--vermelho-esc);margin-bottom:14px;display:flex;align-items:center;gap:9px;}
@@ -228,6 +236,24 @@ ul.dicas-lista{list-style:none;display:flex;flex-direction:column;gap:9px;}
 ul.dicas-lista li{display:flex;gap:10px;font-size:14.3px;line-height:1.6;}
 ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
 
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.edit-campo{display:flex;flex-direction:column;gap:6px;}
+.edit-campo.full{grid-column:1/-1;}
+.edit-campo label{font-size:12.5px;font-weight:800;color:var(--tinta-suave);letter-spacing:.4px;text-transform:uppercase;display:flex;align-items:center;gap:6px;}
+.edit-campo label .ajuda{background:var(--dourado);color:#fff;font-size:9.5px;padding:2px 7px;border-radius:999px;letter-spacing:.5px;font-weight:700;}
+.edit-campo input,.edit-campo select,.edit-campo textarea{font-family:inherit;font-size:14px;padding:12px 14px;border-radius:12px;border:2.5px solid rgba(200,16,46,.18);background:#fff;color:var(--tinta);outline:none;transition:.2s;}
+.edit-campo input:focus,.edit-campo select:focus,.edit-campo textarea:focus{border-color:var(--sakura);box-shadow:0 0 0 4px rgba(244,154,180,.25);}
+.edit-campo textarea{resize:vertical;min-height:95px;line-height:1.55;}
+.emoji-picker{display:flex;flex-wrap:wrap;gap:6px;padding:10px;background:#fff;border:2.5px solid rgba(200,16,46,.18);border-radius:12px;max-height:130px;overflow-y:auto;}
+.emoji-opcao{width:36px;height:36px;border-radius:8px;border:2px solid transparent;background:var(--papel);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.2s;font-family:inherit;}
+.emoji-opcao:hover{background:#F5E4C8;transform:scale(1.15);}
+.emoji-opcao.ativo{border-color:var(--vermelho);background:var(--sakura-claro);}
+.emoji-opcao.vazio{color:var(--tinta-suave);font-size:12px;font-weight:800;}
+.emoji-preview-box{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--papel);border-radius:12px;border:2px dashed rgba(217,165,33,.5);}
+.emoji-preview-icone{font-size:36px;width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(90,45,20,.15);}
+.emoji-preview-icone.vazio{font-size:13px;color:var(--tinta-suave);font-weight:800;background:#F5EFE3;}
+.emoji-preview-txt{font-size:12.5px;color:var(--tinta-suave);line-height:1.5;}
+
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .campo{display:flex;flex-direction:column;gap:6px;}
 .campo.full{grid-column:1/-1;}
@@ -247,6 +273,19 @@ ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
 .aviso.ok{background:#E8F5E2;border-left-color:var(--matcha);}
 .aviso.erro{background:#FFE6E6;border-left-color:var(--vermelho);}
 .aviso.info{background:#E6F0FF;border-left-color:#2E5C8A;}
+
+.dica-senha{
+  background:linear-gradient(135deg,#FFF3D6,#FFE9C7);
+  border-left:5px solid var(--dourado);
+  border-radius:11px;
+  padding:14px 18px;
+  margin-top:6px;
+}
+.dica-senha-titulo{font-size:11.5px;font-weight:800;color:#7A5000;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.dica-senha-texto{font-size:14.5px;font-weight:600;color:var(--tinta);font-style:italic;line-height:1.55;}
+
+.shake{animation:shake .4s cubic-bezier(.36,.07,.19,.97);}
+@keyframes shake{10%,90%{transform:translateX(-4px);}20%,80%{transform:translateX(6px);}30%,50%,70%{transform:translateX(-8px);}40%,60%{transform:translateX(8px);}}
 
 .input-link-wrap{display:flex;gap:10px;align-items:stretch;}
 .input-link-wrap input{flex:1;}
@@ -269,14 +308,11 @@ ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
 .foto-preview{width:100%;max-height:200px;object-fit:cover;border-radius:12px;background:#000;display:block;}
 .foto-atual{font-size:12px;color:var(--tinta-suave);font-style:italic;text-align:center;}
 .video-hint{font-size:11.5px;color:var(--tinta-suave);font-style:italic;}
-.video-preview-box{
-  padding:14px;background:linear-gradient(135deg,#FFF3F0,#FFE6E6);
-  border-radius:12px;text-align:center;font-size:13px;font-weight:700;color:#7A0A1C;
-  border:2px dashed #E0432F;
-}
+.video-preview-box{padding:14px;background:linear-gradient(135deg,#FFF3F0,#FFE6E6);border-radius:12px;text-align:center;font-size:13px;font-weight:700;color:#7A0A1C;border:2px dashed #E0432F;}
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,140%);background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));color:#fff;padding:15px 30px;border-radius:999px;font-weight:800;font-size:14.5px;z-index:200;box-shadow:0 12px 34px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.34,1.5,.64,1);border:2.5px solid var(--dourado-claro);white-space:nowrap;max-width:90%;}
 #toast.show{transform:translate(-50%,0);}
+#toast.erro{background:linear-gradient(135deg,#7A0A1C,#C8102E);border-color:#FFC7C7;}
 
 .spinner{display:inline-block;width:18px;height:18px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -287,14 +323,17 @@ footer strong{color:var(--vermelho-esc);}
 @media(max-width:820px){
   .dia-card{grid-template-columns:1fr;}
   .dia-card .img{min-height:210px;}
-  .form-grid{grid-template-columns:1fr;}
+  .form-grid,.edit-grid{grid-template-columns:1fr;}
   .modal-corpo{padding:20px 17px 28px;}
   .fab{right:14px;bottom:14px;padding:14px 20px;font-size:14px;}
   .kpis{grid-template-columns:repeat(2,1fr);}
   .preview-grid{grid-template-columns:1fr;}
   .input-link-wrap{flex-direction:column;}
   .btn-buscar{justify-content:center;padding:14px;}
-  .hero-actions{flex-direction:column;gap:6px;}
+  .hero-actions{flex-direction:column;gap:6px;max-width:60%;}
+  .header-controles{align-items:stretch;width:100%;}
+  .card-top-actions{gap:4px;}
+  .btn-icon{width:30px;height:30px;font-size:13px;}
 }
 @media(max-width:480px){
   header{padding:26px 16px 22px;}
@@ -315,11 +354,13 @@ footer strong{color:var(--vermelho-esc);}
         <h1>Meu Livro de Receitas Fantásticas
           <span class="jp">おいしい レシピ</span>
         </h1>
-        <p class="sub">Receitas do mundo inteiro com vídeos, fotos e passo a passo. Adicione vídeos a qualquer receita a qualquer momento. 🌸</p>
+        <p class="sub">Receitas do mundo inteiro com vídeos, fotos e passo a passo. Edite com ✏️, exclua com 🗑️ (senha protegida). 🌸</p>
       </div>
-      <div class="toggle-emoji" id="toggleEmoji" title="Mostrar / esconder emojis dos cards">
-        <span id="toggleEmojiLabel">Esconder emojis</span>
-        <span class="switch"></span>
+      <div class="header-controles">
+        <div class="toggle-emoji" id="toggleEmoji" title="Mostrar / esconder todos os emojis dos cards de uma vez">
+          <span id="toggleEmojiLabel">Esconder emojis</span>
+          <span class="switch"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -345,11 +386,133 @@ footer strong{color:var(--vermelho-esc);}
 
 <footer>
   Feito com <strong>arroz, curry e amor</strong> 🌸 · Meu Livro de Receitas Fantásticas<br>
-  <span style="font-size:12px;opacity:.75">Clique em <strong>🎬</strong> em qualquer card ou receita para adicionar/trocar vídeos. Tudo fica salvo no navegador.</span>
+  <span style="font-size:12px;opacity:.75">✏️ editar · 📷 foto · 🎬 vídeo · 🗑️ excluir (senha) · tudo salvo no navegador.</span>
 </footer>
 
 <div class="overlay" id="overlayReceita" onclick="if(event.target===this)fecharReceita()">
   <div class="modal" id="modalReceita"></div>
+</div>
+
+<!-- MODAL EXCLUIR -->
+<div class="overlay" id="overlayExcluir" onclick="if(event.target===this)fecharExcluir()">
+  <div class="modal" id="modalExcluirBox" style="max-width:520px;">
+    <div class="modal-hero" style="height:150px;background:linear-gradient(135deg,#2B1B12,#7A0A1C,#C8102E);">
+      <button class="btn-fechar" onclick="fecharExcluir()">✕</button>
+      <div class="titulo-hero">
+        <h2>🗑️ Excluir Receita</h2>
+        <div class="pais" id="excluirReceitaNome">—</div>
+      </div>
+    </div>
+    <div class="modal-corpo">
+      <div class="aviso erro" style="margin-bottom:18px;">
+        ⚠️ <strong>Atenção:</strong> esta ação é <strong>permanente</strong> e não pode ser desfeita. A receita, fotos personalizadas, vídeos, edições e marcações de favorita/testada serão removidos.
+      </div>
+
+      <div class="campo" style="margin-bottom:14px;">
+        <label>🔒 Senha de exclusão</label>
+        <input type="password" id="excluirSenha" placeholder="Digite a senha..." autocomplete="off"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();confirmarExclusao();}">
+      </div>
+
+      <div class="dica-senha">
+        <div class="dica-senha-titulo">💡 Dica da senha</div>
+        <div class="dica-senha-texto">"o nome de meu amor e o sobrenome que falta nela"</div>
+      </div>
+
+      <div id="excluirErro" class="aviso erro" style="display:none;margin-bottom:0;margin-top:14px;"></div>
+
+      <div class="modal-acoes" style="margin-top:22px;margin-bottom:0;">
+        <button type="button" class="btn-acao" onclick="fecharExcluir()">Cancelar</button>
+        <button type="button" class="btn-acao perigo" id="btnConfirmarExclusao" onclick="confirmarExclusao()">🗑️ Confirmar exclusão</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="overlay" id="overlayEditar" onclick="if(event.target===this)fecharEditar()">
+  <div class="modal">
+    <div class="modal-hero" style="height:130px;background:linear-gradient(135deg,#D9A521,#F2CE6B);">
+      <button class="btn-fechar" onclick="fecharEditar()">✕</button>
+      <div class="titulo-hero">
+        <h2 style="color:#3d2a00;">✏️ Editar Receita</h2>
+        <div class="pais" style="color:#fff8e5;" id="editarReceitaNome">—</div>
+      </div>
+    </div>
+    <div class="modal-corpo">
+      <div class="aviso info">
+        💡 Altere o <strong>nome</strong>, <strong>emoji</strong> (ou deixe vazio para remover), tempo, porções e muito mais. Tudo salvo no navegador.
+      </div>
+      <form id="formEditar" onsubmit="salvarEdicao(event)">
+        <div class="edit-grid">
+          <div class="edit-campo full">
+            <label>🍽️ Nome da receita</label>
+            <input type="text" id="editNome" placeholder="Nome da receita" required>
+          </div>
+          <div class="edit-campo full">
+            <label>😀 Emoji <span class="ajuda">opcional</span></label>
+            <div class="emoji-preview-box" style="margin-bottom:10px;">
+              <div class="emoji-preview-icone" id="editEmojiPreview">🍽️</div>
+              <div class="emoji-preview-txt">
+                Emoji atual. Escolha abaixo ou clique em <strong>🚫 Sem emoji</strong> para remover.
+              </div>
+            </div>
+            <input type="text" id="editEmoji" placeholder="🍽️ (deixe vazio para remover)" maxlength="4">
+            <div class="emoji-picker" id="editEmojiPicker" style="margin-top:8px;"></div>
+          </div>
+          <div class="edit-campo">
+            <label>🌏 País / Cozinha</label>
+            <input type="text" id="editPais" list="listaPaisesEditar" required>
+            <datalist id="listaPaisesEditar"></datalist>
+          </div>
+          <div class="edit-campo">
+            <label>📊 Dificuldade</label>
+            <select id="editDificuldade">
+              <option>Fácil</option><option>Média</option>
+              <option>Difícil</option><option>Chef</option>
+            </select>
+          </div>
+          <div class="edit-campo">
+            <label>⏱️ Tempo (min)</label>
+            <input type="number" id="editTempo" min="1" value="30">
+          </div>
+          <div class="edit-campo">
+            <label>🍽️ Porções</label>
+            <input type="number" id="editPorcoes" min="1" value="4">
+          </div>
+          <div class="edit-campo full">
+            <label>🏷️ Categorias</label>
+            <div class="cats-check" id="editCats"></div>
+          </div>
+          <div class="edit-campo full">
+            <label>📝 Descrição curta</label>
+            <input type="text" id="editDesc" placeholder="Uma frase sobre a receita">
+          </div>
+          <div class="edit-campo full">
+            <label>🧂 Ingredientes (um por linha)</label>
+            <textarea id="editIng" placeholder="500g de feijão&#10;200g de bacon"></textarea>
+          </div>
+          <div class="edit-campo full">
+            <label>👨‍🍳 Modo de preparo (um passo por linha)</label>
+            <textarea id="editPassos" placeholder="Cozinhe o feijão&#10;Frite o bacon"></textarea>
+          </div>
+          <div class="edit-campo full">
+            <label>💡 Dicas (uma por linha)</label>
+            <textarea id="editDicas" placeholder="Sirva com arroz"></textarea>
+          </div>
+          <div class="edit-campo full">
+            <label>🌸 Explicação para iniciantes</label>
+            <textarea id="editIniciante" placeholder="Explicação simples da receita..."></textarea>
+          </div>
+        </div>
+        <div class="modal-acoes" style="margin-top:20px;margin-bottom:0;">
+          <button type="button" class="btn-acao perigo" onclick="excluirDoEditar()">🗑️ Excluir</button>
+          <button type="button" class="btn-acao" onclick="restaurarReceitaOriginal()" style="border-color:var(--dourado);color:#7A5000;">↺ Restaurar</button>
+          <button type="submit" class="btn-acao on">💾 Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <div class="overlay" id="overlayFoto" onclick="if(event.target===this)fecharFoto()">
@@ -392,7 +555,7 @@ footer strong{color:var(--vermelho-esc);}
     </div>
     <div class="modal-corpo">
       <div class="aviso info">
-        💡 Cole uma URL do <strong>YouTube</strong>, <strong>Vimeo</strong> ou link direto de vídeo (.mp4, .webm). Vou embutir automaticamente.
+        💡 Cole uma URL do <strong>YouTube</strong>, <strong>Vimeo</strong> ou link direto de vídeo (.mp4, .webm).
       </div>
       <div class="campo" style="margin-bottom:14px;">
         <label>🔗 URL do vídeo</label>
@@ -421,7 +584,7 @@ footer strong{color:var(--vermelho-esc);}
     </div>
     <div class="modal-corpo">
       <div class="aviso info">
-        💡 Cole o link, clique em <strong>Buscar</strong> e eu extraio nome, foto, ingredientes, passos, tempo e porções. Você confirma o <strong>país, dificuldade e categorias</strong>. Se o link for do YouTube, capturo o vídeo também.
+        💡 Cole o link, clique em <strong>Buscar</strong> e eu extraio nome, foto, ingredientes, passos, tempo e porções.
       </div>
       <form id="formReceita" onsubmit="salvarNovaReceita(event)">
         <div class="form-grid">
@@ -499,7 +662,6 @@ footer strong{color:var(--vermelho-esc);}
           <div class="campo full">
             <label>🎬 Vídeo da receita <span class="opc">OPCIONAL</span></label>
             <input type="url" id="fVideo" placeholder="YouTube, Vimeo ou .mp4">
-            <span class="video-hint">Preenchido automaticamente se o link for do YouTube</span>
           </div>
           <div class="campo full">
             <label>🧂 Ingredientes (um por linha) <span class="auto">AUTO</span></label>
@@ -536,6 +698,26 @@ const CATEGORIAS = {
   'refinadas':           { nome:'Comidas Refinadas',   emoji:'👨‍🍳', cor:'#2E5C8A' }
 };
 
+const EMOJIS_DISPONIVEIS = [
+  '🍽️','🍲','🍛','🍜','🍝','🍕','🍔','🌮','🌯','🥘','🥗','🥙','🥪','🍣','🍱','🍤','🍙','🍚','🍘','🍥',
+  '🥟','🥠','🥡','🍢','🍡','🍧','🍨','🍦','🥧','🧁','🍰','🎂','🍮','🍭','🍬','🍫','🍿','🍩','🍪','🌰',
+  '🥜','🍯','🥛','🍼','☕','🍵','🧉','🍶','🍾','🍷','🍸','🍹','🍺','🍻','🥂','🥃','🥤','🧃','🧊',
+  '🍗','🍖','🥩','🥓','🐟','🐠','🦐','🦑','🦞','🦀','🥚','🧀','🥖','🥐','🥨','🥯','🍞','🥞','🧇',
+  '🥔','🥕','🌽','🌶️','🥦','🥬','🥒','🍆','🍅','🧄','🧅','🍄','🥑','🍋','🍊','🍎','🍏','🍐','🍑',
+  '🍒','🍓','🥝','🍇','🍉','🍌','🍍','🥭','🥥','🍈','🫐','🌾','🌿','🍃','✨','🌸','🔥','⭐','❤️'
+];
+
+/* ============================================================
+   SENHA DE EXCLUSÃO
+   ------------------------------------------------------------
+   Para trocar a senha, altere o valor abaixo.
+   A comparação ignora maiúsculas/minúsculas e espaços extras.
+   ============================================================ */
+const SENHA_EXCLUSAO = 'ana colombiano';
+function validarSenhaExclusao(s){
+  return String(s||'').trim().toLowerCase() === SENHA_EXCLUSAO;
+}
+
 /* ==================== RECEITAS ==================== */
 const RECEITAS_BASE = [
 {id:'br1',nome:'Feijão Tropeiro',pais:'Brasil',bandeira:'🇧🇷',cats:['salgadas','complexas'],emoji:'🍲',tempo:60,porcoes:6,dificuldade:'Média',cor:['#8B4513','#D2691E'],img:'feijao,tropeiro,brazilian',desc:'O prato símbolo dos tropeiros de Minas Gerais.',ingredientes:['500g de feijão carioca cozido','300g de farinha de mandioca torrada','200g de bacon em cubinhos','200g de linguiça calabresa','150g de carne-seca dessalgada','1 cebola grande picada','3 dentes de alho picados','2 ovos','1 maço de couve fatiada','3 colheres de óleo','Sal, pimenta e cheiro-verde'],passos:['Dessalgue a carne-seca em água por 12h. Cozinhe na pressão 30min e desfie.','Cozinhe o feijão até ficar macio, mas inteiro. Escorra e guarde 1 xícara do caldo.','Frite o bacon até dourar.','Junte a calabresa e a carne-seca. Doure 5min.','Adicione cebola e alho. Refogue.','Quebre os ovos no centro e mexa rápido.','Acrescente o feijão e misture.','Junte a couve e mexa 2min.','Adicione a farinha aos poucos, regando com o caldo.','Ajuste o sal e finalize com cheiro-verde.'],dicas:['O ponto certo é úmido e soltinho.','A couve entra por último.','Sirva com ovo frito por cima.'],iniciante:'Pense no tropeiro como um "arroz de feijão com farofa". Cada carne é fritada separadamente e só no final tudo se encontra na panela.',video:'https://www.youtube.com/watch?v=Yw6u6YkTgQo'},
@@ -543,49 +725,41 @@ const RECEITAS_BASE = [
 {id:'br3',nome:'Pão de Queijo Mineiro',pais:'Brasil',bandeira:'🇧🇷',cats:['sobremesas-salgadas','praticas'],emoji:'🧀',tempo:45,porcoes:20,dificuldade:'Fácil',cor:['#F2CE6B','#D9A521'],img:'pao,de,queijo,cheese,bread',desc:'Bolinhas douradas, crocantes por fora e elásticas por dentro.',ingredientes:['500g de polvilho azedo','250ml de leite integral','100ml de óleo de girassol','2 ovos grandes','250g de queijo minas ralado','1 colher de sal'],passos:['Ferva o leite com o óleo e o sal.','Despeje sobre o polvilho. Mexa com colher de pau.','Deixe esfriar 10min.','Adicione os ovos um a um, sovando.','Junte o queijo e sove até ficar homogênea.','Faça bolinhas de 30g.','Coloque em assadeira untada.','Asse a 180°C por 25-30min.'],dicas:['Polvilho azedo dá o "puxa".','Se grudar, adicione polvilho.','Congele cru: asse direto.'],iniciante:'É uma massa escaldada: o líquido quente "cozinha" o polvilho e faz o pão crescer.',video:'https://www.youtube.com/watch?v=bNeYbw5Oo8Q'},
 {id:'br4',nome:'Brigadeiro Gourmet',pais:'Brasil',bandeira:'🇧🇷',cats:['doces','praticas'],emoji:'🍫',tempo:25,porcoes:20,dificuldade:'Fácil',cor:['#8B4513','#3E2723'],img:'brigadeiro,chocolate,truffle',desc:'O doce mais brasileiro com chocolate meio amargo.',ingredientes:['1 lata de leite condensado','4 colheres de cacau em pó 100%','1 colher de manteiga sem sal','1 pitada de sal','100g de chocolate meio amargo','Granulado belga'],passos:['Misture leite condensado, cacau, manteiga e sal na panela.','Cozinhe em fogo baixo mexendo por 12-15min.','Se quiser mais firme, adicione chocolate picado.','Despeje em prato untado e cubra com filme.','Esfrie 2h na geladeira.','Faça bolinhas de 15g.','Passe no granulado e coloque em forminhas.'],dicas:['Cacau em pó, não achocolatado.','A pitada de sal realça o chocolate.','Se ficar mole, volte ao fogo 2min.'],iniciante:'É só "mexer até dar ponto". O ponto é quando a espátula no fundo demora 2 segundos para fechar.',video:'https://www.youtube.com/watch?v=RPuaB5zBDcQ'},
 {id:'br5',nome:'Acarajé Baiano',pais:'Brasil',bandeira:'🇧🇷',cats:['salgadas','complexas'],emoji:'🫓',tempo:90,porcoes:8,dificuldade:'Difícil',cor:['#E0432F','#8B4513'],img:'acaraje,fritter,black,eyed,pea',desc:'Bolinho de feijão-fradinho frito no dendê.',ingredientes:['500g de feijão-fradinho seco','1 cebola','1 colher de sal','1 litro de azeite de dendê','200g de vatapá','150g de caruru','100g de camarão seco','1 tomate e 1 cebola','Pimenta malagueta'],passos:['Deixe o feijão de molho 4h. Esfregue para soltar a casca.','Descarte as cascas e lave até ficar branco.','Bata o feijão com cebola até formar pasta fofa.','Adicione sal e bata mais 3min.','Aqueça o dendê a 170°C.','Molde bolinhos e frite até dourar.','Escorra em papel.','Recheie com vatapá, caruru, camarão e salada.'],dicas:['A massa precisa ser batida bastante.','Se afundar no dendê, bata mais.','Dendê quente, nunca fumegando.'],iniciante:'O maior trabalho é descascar o feijão. Depois é só bater bem a massa e fritar.'},
-
 {id:'jp1',nome:'Ramen Tonkotsu',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','complexas'],emoji:'🍜',tempo:180,porcoes:4,dificuldade:'Difícil',cor:['#3E2723','#8B4513'],img:'ramen,tonkotsu,noodles',desc:'Caldo cremoso de ossos de porco com macarrão e ovo marinado.',ingredientes:['1,5kg de ossos de porco','500g de barriga de porco','4 porções de macarrão','4 ovos','100ml de shoyu','50ml de mirin','1 pedaço de kombu','4 dentes de alho e gengibre','4 cebolinhas','Óleo de gergelim'],passos:['Branqueie os ossos: ferva 10min, escorra e lave.','Cozinhe em água fervente 8-12h.','Marine os ovos: cozinhe 6min30, deixe 12h em shoyu+mirin.','Faça o chashu: enrole a barriga, cozinhe no caldo 2h.','Prepare o tare: reduza shoyu, mirin e aromáticos.','Cozinhe o macarrão al dente.','Monte: tare, caldo, macarrão.','Finalize com chashu, ovo, cebolinha.'],dicas:['O caldo precisa ferver forte.','Nunca adicione sal antes de provar o tare.','Ovo marinado 24h fica melhor.'],iniciante:'Ramen é uma receita de paciência. O caldo leva horas, mas você só deixa fervendo.',video:'https://www.youtube.com/watch?v=5a3YWKmrUKc'},
 {id:'jp2',nome:'Nigiri de Salmão',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','refinadas'],emoji:'🍣',tempo:60,porcoes:4,dificuldade:'Difícil',cor:['#F49AB4','#E0432F'],img:'sushi,nigiri,salmon',desc:'Arroz temperado moldado à mão com salmão fresco.',ingredientes:['400g de arroz japonês','60ml de vinagre de arroz','2 colheres de açúcar','1 colher de sal','400g de salmão grau sashimi','Wasabi','Shoyu','Gengibre em conserva'],passos:['Lave o arroz até a água sair clara. Cozinhe 1:1.','Misture vinagre, açúcar e sal. Despeje sobre o arroz quente.','Esfrie até temperatura ambiente.','Corte o salmão em fatias de 5cm x 2,5cm.','Com as mãos úmidas, molde bolinhos ovais de 18g.','Passe wasabi na fatia de salmão.','Coloque sobre o arroz e pressione.','Sirva imediatamente.'],dicas:['O arroz deve estar morno.','Mantenha as mãos úmidas.','Use peixe de fornecedor confiável.'],iniciante:'A parte mais difícil é o ponto do arroz. Depois é só modelar bolinhos ovais.'},
 {id:'jp3',nome:'Okonomiyaki',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','praticas'],emoji:'🥞',tempo:35,porcoes:2,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'okonomiyaki,japanese,pancake',desc:'A "pizza japonesa" de repolho e bacon.',ingredientes:['150g de farinha','120ml de água','2 ovos','300g de repolho','4 fatias de bacon','2 cebolinhas','Molho okonomiyaki','Maionese japonesa','Katsuobushi'],passos:['Misture farinha, água e ovos.','Adicione repolho e cebolinha.','Aqueça frigideira com óleo.','Despeje metade da massa em disco.','Coloque bacon por cima.','Cozinhe 5min, vire e cozinhe mais 5.','Repita com o restante.','Cubra com molho, maionese e katsuobushi.'],dicas:['Não mexa depois de colocar.','Quanto mais repolho, melhor.','O katsuobushi "dança".'],iniciante:'É uma panqueca salgada gigante. Misture tudo, jogue na frigideira e vire com um prato.',video:'https://www.youtube.com/watch?v=1kCuq0BcUfc'},
 {id:'jp4',nome:'Curry Japonês (Kare Raisu)',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','praticas'],emoji:'🍛',tempo:45,porcoes:4,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'japanese,curry,rice,kare',desc:'Curry espesso e adocicado sobre arroz.',ingredientes:['500g de carne em cubos','2 cebolas','2 cenouras','2 batatas','1 maçã ralada','1 colher de curry em pó','1 tablete de roux','800ml de água','2 colheres de óleo','Arroz branco'],passos:['Doure a carne. Reserve.','Doure a cebola.','Junte cenoura e batata.','Volte a carne, adicione curry e maçã.','Cubra com água e cozinhe 25min.','Desligue e adicione o roux.','Cozinhe 5min em fogo baixo.','Sirva sobre arroz.'],dicas:['Desligue antes do roux.','A maçã dá doçura.','Descanse 10min antes de servir.'],iniciante:'É um cozido simples: doure, cubra com água, cozinhe e engrosse com o tablete.'},
 {id:'jp5',nome:'Dorayaki',pais:'Japão',bandeira:'🇯🇵',cats:['doces','praticas'],emoji:'🥮',tempo:30,porcoes:6,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'dorayaki,japanese,pancake',desc:'Panquecas fofas recheadas com pasta de feijão azuki.',ingredientes:['2 ovos','80g de açúcar','1 colher de mel','120g de farinha','1 colher de fermento','2 colheres de água','250g de pasta de feijão azuki'],passos:['Bata ovos com açúcar até ficar claro.','Adicione o mel.','Peneire farinha e fermento.','Adicione água e misture.','Descanse 15min na geladeira.','Faça discos de 7cm em fogo baixo.','Cozinhe 2min, vire e cozinhe 1.','Junte dois discos com anko no meio.'],dicas:['Fogo baixo é essencial.','O descanso melhora a textura.','Molhe a frigideira antes de cada disco.'],iniciante:'São mini panquecas com recheio no meio. O segredo é fogo baixo.'},
-
 {id:'it1',nome:'Spaghetti alla Carbonara',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','praticas'],emoji:'🍝',tempo:25,porcoes:4,dificuldade:'Média',cor:['#F2CE6B','#D9A521'],img:'carbonara,pasta,spaghetti',desc:'Massa cremosa com guanciale, ovos e pecorino.',ingredientes:['400g de spaghetti','150g de guanciale','4 gemas + 1 ovo','100g de pecorino','50g de parmesão','Pimenta-do-reino','Sal'],passos:['Cozinhe o spaghetti al dente.','Frite o guanciale até ficar crocante.','Misture gemas, ovo, queijos e pimenta.','Escorra a massa, guardando 1 xícara de água.','Jogue a massa na panela do guanciale (fogo desligado).','Adicione a mistura de ovos mexendo rápido.','Vá adicionando água do cozimento.','Sirva com pecorino e pimenta.'],dicas:['Nunca use creme de leite.','Fogo desligado ao adicionar ovos.','A água do cozimento é o segredo.'],iniciante:'O perigo é o ovo cozinhar demais. Desligue o fogo antes de jogar os ovos.',video:'https://www.youtube.com/watch?v=qo_X0i6Glws'},
 {id:'it2',nome:'Risoto de Cogumelos',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','refinadas','complexas'],emoji:'🍚',tempo:45,porcoes:4,dificuldade:'Difícil',cor:['#8B4513','#6B5849'],img:'risotto,mushroom,italian',desc:'Arroz arbório cremoso com caldo, vinho e cogumelos.',ingredientes:['320g de arroz arbório','300g de cogumelos','1,2L de caldo quente','150ml de vinho branco','1 cebola','60g de manteiga gelada','80g de parmesão','2 colheres de azeite','Sal e pimenta'],passos:['Aqueça o caldo e mantenha quente.','Refogue a cebola no azeite.','Adicione cogumelos e doure. Reserve alguns.','Junte o arroz e refogue 2min.','Adicione vinho e deixe evaporar.','Adicione 1 concha de caldo. Repita por 18min.','Prove — al dente.','Desligue e adicione manteiga e parmesão. Mexa forte.','Tampe e descanse 2min.'],dicas:['Caldo aos poucos, sempre quente.','Mexa constantemente.','A mantecatura final é o segredo.'],iniciante:'Risoto é questão de ritmo: concha de caldo, mexe, seca, concha de novo.'},
 {id:'it3',nome:'Pizza Margherita',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','complexas'],emoji:'🍕',tempo:120,porcoes:4,dificuldade:'Média',cor:['#C8102E','#6B9E4F'],img:'pizza,margherita,italian',desc:'Massa fina, tomate San Marzano, muçarela e basílico.',ingredientes:['500g de farinha tipo 00','325ml de água morna','10g de sal','3g de fermento','400g de tomate San Marzano','250g de muçarela de búfala','Basílico','Azeite'],passos:['Misture farinha, fermento e água. Descanse 20min.','Adicione sal e sove 10min.','Deixe fermentar 2h.','Divida em 4 bolas. Descanse 30min.','Amasse o tomate com as mãos.','Abra cada bola com as mãos.','Espalhe molho, muçarela e azeite.','Asse a 250-280°C por 7-9min.','Adicione basílico depois.'],dicas:['Forno bem quente.','Não use rolo.','Basílico só depois de assar.'],iniciante:'É pão com molho e queijo. Deixe a massa crescer bem.',video:'https://www.youtube.com/watch?v=1-SJGQ2HLp8'},
 {id:'it4',nome:'Tiramisù',pais:'Itália',bandeira:'🇮🇹',cats:['doces','complexas'],emoji:'🍰',tempo:40,porcoes:8,dificuldade:'Média',cor:['#8B4513','#F2CE6B'],img:'tiramisu,italian,dessert',desc:'Camadas de biscoito no café, mascarpone e cacau.',ingredientes:['500g de mascarpone','4 ovos','120g de açúcar','300ml de café espresso','300g de savoiardi','Cacau em pó','1 colher de licor Marsala'],passos:['Bata gemas com açúcar.','Adicione mascarpone em colheradas.','Bata claras em neve.','Incorpore delicadamente.','Misture café com licor.','Molde os biscoitos e forre o refratário.','Cubra com metade do creme. Repita.','Geladeira 6-12h.','Polvilhe cacau antes de servir.'],dicas:['Molhar rápido.','O descanso de 12h é essencial.','Cacau só no final.'],iniciante:'É montagem em camadas: biscoito molhado, creme, biscoito, creme.'},
 {id:'it5',nome:'Lasanha à Bolonhesa',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','complexas'],emoji:'🥘',tempo:150,porcoes:8,dificuldade:'Média',cor:['#C8102E','#D9A521'],img:'lasagna,italian,bolognese',desc:'Camadas de massa, ragu cozido por horas e molho branco.',ingredientes:['500g de massa para lasanha','500g de carne moída','300g de carne de porco','1 cebola, 1 cenoura, 1 salsão','800g de tomate pelado','200ml de vinho tinto','600ml de leite','80g de manteiga','80g de farinha','300g de parmesão'],passos:['Refogue cebola, cenoura e salsão.','Adicione carnes e doure.','Junte vinho e deixe evaporar.','Adicione tomate e cozinhe 2h.','Molho branco: manteiga, farinha, leite.','Monte: bolonhesa, massa, branco, parmesão. 4x.','Termine com branco e parmesão.','Asse a 180°C por 35min.','Descanse 15min antes de cortar.'],dicas:['O ragu de 2h é essencial.','Descanse antes de cortar.','Se usar massa seca, pré-cozinhe.'],iniciante:'É montagem em camadas, como um bolo salgado.'},
-
 {id:'mx1',nome:'Tacos al Pastor',pais:'México',bandeira:'🇲🇽',cats:['salgadas','complexas'],emoji:'🌮',tempo:90,porcoes:6,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'tacos,al,pastor,mexican',desc:'Carne de porco marinada em achiote e chiles com abacaxi.',ingredientes:['1kg de pernil em fatias','100g de pasta de achiote','3 chiles guajillo','2 chiles ancho','100ml de vinagre','4 dentes de alho','1 colher de orégano','1 abacaxi','Tortillas','Coentro, cebola e limão'],passos:['Hidrate os chiles 20min.','Bata chiles, achiote, vinagre, alho e orégano.','Marine as fatias 4-12h.','Grelhe em frigideira bem quente.','Grelhe o abacaxi e corte.','Pique a carne.','Aqueça as tortillas.','Monte: carne, abacaxi, cebola, coentro, limão.'],dicas:['Marinada de 12h muda o sabor.','Abacaxi grelhado é obrigatório.','Aqueça as tortillas na hora.'],iniciante:'É carne marinada e grelhada. Faça a marinada no dia anterior.',video:'https://www.youtube.com/watch?v=Q9XpVJqCg6U'},
 {id:'mx2',nome:'Guacamole Autêntico',pais:'México',bandeira:'🇲🇽',cats:['sobremesas-salgadas','praticas'],emoji:'🥑',tempo:15,porcoes:4,dificuldade:'Fácil',cor:['#6B9E4F','#3F6B2C'],img:'guacamole,avocado,mexican',desc:'Abacate amassado com limão, cebola, tomate e coentro.',ingredientes:['3 abacates maduros','Suco de 2 limões','1 tomate','1/2 cebola roxa','Coentro','1 jalapeño','Sal'],passos:['Corte os abacates em tigela.','Amasse com garfo, deixando pedaços.','Adicione limão.','Junte cebola, tomate, coentro e pimenta.','Misture e ajuste o sal.','Sirva com chips.'],dicas:['Abacate maduro cede.','Não bata no liquidificador.','Deixe o caroço se for guardar.'],iniciante:'É só amassar abacate e misturar.'},
 {id:'mx3',nome:'Pozole Rojo',pais:'México',bandeira:'🇲🇽',cats:['salgadas','complexas'],emoji:'🍲',tempo:120,porcoes:8,dificuldade:'Média',cor:['#C8102E','#E0432F'],img:'pozole,mexican,soup',desc:'Sopa de milho hominy com porco e caldo de chiles.',ingredientes:['1kg de milho hominy','1kg de carne de porco','5 chiles guajillo','3 chiles ancho','1 cebola, 6 dentes de alho','1 colher de orégano','Repolho, rabanete, cebola, limão','Tostadas'],passos:['Cozinhe o milho com alho por 1,5h.','Cozinhe o porco com cebola e alho 1h.','Hidrate os chiles.','Bata chiles com água e orégano.','Peneire no caldo do porco.','Junte o milho e a carne.','Cozinhe 30min.','Sirva com acompanhamentos.'],dicas:['Peneirar o molho.','Acompanhamentos frescos são obrigatórios.','Pode ser feito antes.'],iniciante:'É uma sopa em duas etapas: cozinha milho, cozinha carne, junta com molho.'},
 {id:'mx4',nome:'Churros com Chocolate',pais:'México',bandeira:'🇲🇽',cats:['doces'],emoji:'🍩',tempo:40,porcoes:6,dificuldade:'Média',cor:['#8B4513','#D9A521'],img:'churros,chocolate,mexican',desc:'Massa frita com açúcar e canela, com chocolate quente.',ingredientes:['250ml de água','150g de farinha','1 colher de manteiga','1 pitada de sal','1 colher de açúcar','Óleo','Açúcar e canela','200g de chocolate + 100ml de creme'],passos:['Ferva água com manteiga, sal e açúcar.','Adicione farinha e mexa até formar bola.','Esfrie 10min.','Coloque em saco com bico estrela.','Aqueça óleo a 180°C.','Modele direto no óleo.','Frite até dourar.','Passe no açúcar com canela.','Derreta chocolate com creme.'],dicas:['A massa deve virar bola.','Óleo a 180°C.','Sirva imediatamente.'],iniciante:'É uma massa cozida e depois frita.'},
 {id:'mx5',nome:'Enchiladas Verdes',pais:'México',bandeira:'🇲🇽',cats:['salgadas'],emoji:'🌯',tempo:50,porcoes:4,dificuldade:'Média',cor:['#6B9E4F','#D9A521'],img:'enchiladas,verdes,mexican',desc:'Tortillas com frango banhadas em molho verde gratinado.',ingredientes:['12 tortillas','500g de frango desfiado','800g de tomatillos','2 chiles serrano','1/2 cebola','2 dentes de alho','Coentro','200g de queijo fresco','200ml de creme'],passos:['Cozinhe tomatillos, chiles, cebola e alho 10min.','Bata com coentro e sal.','Cozinhe o molho 5min.','Passe cada tortilla no óleo quente.','Recheie com frango e enrole.','Coloque em refratário.','Cubra com molho e creme.','Polvilhe queijo e asse a 200°C por 15min.'],dicas:['Passar a tortilla no óleo evita rache.','Se não achar tomatillo, use tomate verde.','Sirva com cebola roxa e coentro.'],iniciante:'É um rolinho de tortilla com molho por cima.'},
-
 {id:'in1',nome:'Butter Chicken',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas','complexas'],emoji:'🍗',tempo:80,porcoes:4,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'butter,chicken,indian,curry',desc:'Frango marinado em iogurte com molho cremoso de tomate.',ingredientes:['800g de frango','200g de iogurte','1 colher de garam masala','1 colher de cúrcuma','1 colher de caiena','600g de tomate pelado','100g de castanha de caju','100g de manteiga','200ml de creme de leite','1 cebola, 4 dentes de alho, gengibre'],passos:['Marine o frango 4h.','Grelhe ou asse. Reserve.','Deixe castanhas de molho e bata.','Refogue cebola, alho e gengibre na manteiga.','Adicione tomate e cozinhe 20min.','Bata e passe por peneira.','Volte à panela com pasta de castanhas. 10min.','Junte frango e creme. 10min.','Finalize com manteiga e coentro.'],dicas:['Peneirar o molho faz diferença.','Marinada longa deixa macio.','Sirva com arroz basmati e naan.'],iniciante:'Marinar e grelhar o frango, e fazer molho cremoso de tomate.',video:'https://www.youtube.com/watch?v=a03U45jFxOI'},
 {id:'in2',nome:'Biryani de Frango',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas','complexas','refinadas'],emoji:'🍛',tempo:120,porcoes:6,dificuldade:'Difícil',cor:['#D9A521','#E0432F'],img:'biryani,chicken,indian,rice',desc:'Arroz basmati em camadas com frango e açafrão.',ingredientes:['600g de basmati','1kg de frango','300g de iogurte','3 cebolas','1 colher de pasta de gengibre-alho','2 colheres de garam masala','1 colher de cúrcuma','1 pitada de açafrão em leite','100g de ghee','Coentro e hortelã'],passos:['Frite as cebolas até dourar. Reserve.','Marine o frango 1h.','Cozinhe o frango tampado 25min.','Deixe o arroz de molho 30min.','Cozinhe o arroz 5min. Escorra.','Monte: frango, arroz.','Espalhe birista, ervas, açafrão e ghee.','Tampe com pano. Fogo mínimo 25min.','Descanse 10min.'],dicas:['Arroz 70% cozido antes das camadas.','Pano na tampa sela o vapor.','Não misture antes de servir.'],iniciante:'É um "arroz de forno" indiano feito na panela.'},
 {id:'in3',nome:'Samosa de Batata',pais:'Índia',bandeira:'🇮🇳',cats:['sobremesas-salgadas'],emoji:'🥟',tempo:70,porcoes:12,dificuldade:'Média',cor:['#D9A521','#8B4513'],img:'samosa,indian,snack',desc:'Triângulos crocantes recheados com batata e especiarias.',ingredientes:['250g de farinha','4 colheres de óleo','100ml de água morna','1 colher de sal','4 batatas cozidas','100g de ervilha','1 colher de cominho','1 colher de garam masala','1 colher de gengibre'],passos:['Misture farinha, sal e óleo.','Adicione água e sove. Descanse 30min.','Amasse as batatas com ervilha e especiarias.','Abra discos e corte ao meio.','Forme um cone e sele a lateral.','Recheie e sele a borda.','Frite em óleo a 160°C.','Sirva com chutney.'],dicas:['Fritar em óleo não muito quente.','Sele as bordas com água.','Pode assar a 200°C por 25min.'],iniciante:'É um pastelzinho triangular.'},
 {id:'in4',nome:'Dal Makhani',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas'],emoji:'🥣',tempo:90,porcoes:6,dificuldade:'Média',cor:['#8B4513','#3E2723'],img:'dal,makhani,indian,lentils',desc:'Lentilhas negras com manteiga e creme.',ingredientes:['250g de lentilha preta','100g de feijão rajma','1 cebola','3 dentes de alho','1 pedaço de gengibre','400g de tomate pelado','100g de manteiga','100ml de creme','1 colher de garam masala','1 colher de cominho'],passos:['Deixe de molho 8h.','Cozinhe na pressão com sal 30min.','Refogue a cebola na manteiga.','Adicione alho e gengibre.','Junte tomate e cozinhe 15min.','Adicione as lentilhas com água.','Cozinhe 30min em fogo baixo.','Finalize com creme, manteiga e temperos.'],dicas:['Quanto mais tempo, mais cremoso.','Amasse algumas lentilhas.','Sirva com naan.'],iniciante:'É um feijão com lentilha cozido e refogado.'},
 {id:'in5',nome:'Gulab Jamun',pais:'Índia',bandeira:'🇮🇳',cats:['doces'],emoji:'🍮',tempo:60,porcoes:15,dificuldade:'Média',cor:['#8B4513','#D9A521'],img:'gulab,jamun,indian,dessert',desc:'Bolinhas de leite fritas em calda com cardamomo.',ingredientes:['200g de leite em pó','60g de farinha','1/4 colher de bicarbonato','2 colheres de ghee','80ml de leite morno','500g de açúcar','500ml de água','4 vagens de cardamomo','1 colher de água de rosas'],passos:['Misture leite em pó, farinha e bicarbonato.','Adicione ghee e misture.','Adicione leite até formar massa.','Faça bolinhas lisas.','Prepare a calda: ferva açúcar, água e cardamomo 10min. Adicione água de rosas.','Frite as bolinhas a 150°C.','Escorra e coloque na calda.','Deixe 2h antes de servir.'],dicas:['Óleo em temperatura baixa é crucial.','Se rachar, adicione leite.','Mais tempo na calda = mais macio.'],iniciante:'São bolinhas de massa de leite fritas e na calda.'},
-
 {id:'cn1',nome:'Frango Xadrez',pais:'China',bandeira:'🇨🇳',cats:['salgadas','praticas'],emoji:'🥡',tempo:30,porcoes:4,dificuldade:'Fácil',cor:['#E0432F','#D9A521'],img:'kung,pao,chicken,chinese',desc:'Frango com amendoim, pimentão e molho agridoce.',ingredientes:['500g de frango em cubos','1 pimentão vermelho e 1 verde','1 cebola','100g de amendoim','3 colheres de shoyu','1 colher de vinagre','1 colher de açúcar','1 colher de amido','1 colher de pimenta','2 dentes de alho e gengibre','Óleo de gergelim'],passos:['Marine o frango com shoyu e amido 15min.','Misture shoyu, vinagre, açúcar e água.','Aqueça bem a wok.','Doure o frango 3min. Reserve.','Refogue alho, gengibre e pimenta.','Adicione pimentões e cebola 2min.','Volte o frango com o molho.','Junte amendoim e óleo de gergelim.'],dicas:['Wok bem quente.','Não cozinhe demais os legumes.','Amendoim no final.'],iniciante:'É fritar rápido em fogo alto.',video:'https://www.youtube.com/watch?v=0iW7FbyR0m8'},
 {id:'cn2',nome:'Yakisoba',pais:'China',bandeira:'🇨🇳',cats:['salgadas','praticas'],emoji:'🍜',tempo:30,porcoes:4,dificuldade:'Fácil',cor:['#8B4513','#D9A521'],img:'yakisoba,noodles,chinese',desc:'Macarrão salteado com carne e legumes.',ingredientes:['400g de macarrão','300g de carne em tiras','1 cenoura','1 pimentão vermelho e 1 verde','200g de repolho','1 cebola','100g de brócolis','4 colheres de shoyu','2 colheres de molho de ostras','1 colher de açúcar','Gengibre'],passos:['Cozinhe o macarrão.','Aqueça a wok.','Doure a carne. Reserve.','Refogue gengibre, cebola e cenoura.','Adicione repolho, brócolis e pimentões.','Volte a carne e adicione o macarrão.','Misture shoyu, molho de ostras e açúcar.','Salteie 3min e finalize.'],dicas:['Legumes crocantes.','Fogo máximo.','Pode usar camarão.'],iniciante:'É macarrão frito com legumes.'},
 {id:'cn3',nome:'Har Gow (Dim Sum)',pais:'China',bandeira:'🇨🇳',cats:['sobremesas-salgadas','complexas','refinadas'],emoji:'🥟',tempo:90,porcoes:20,dificuldade:'Difícil',cor:['#F49AB4','#FCD9E3'],img:'dim,sum,har,gow,dumpling',desc:'Dumpling translúcido com camarão e bambu.',ingredientes:['150g de farinha','50g de amido','180ml de água fervente','300g de camarão','80g de broto de bambu','1 colher de açúcar','1 colher de sal','1 colher de shoyu','1 colher de óleo de gergelim','1 colher de amido'],passos:['Misture as farinhas e despeje água fervente.','Sove a massa quente. Cubra.','Pique o camarão e misture com temperos.','Geladeira 30min.','Abra a massa e corte discos de 8cm.','Coloque recheio e faça dobras.','Coloque em cesto forrado.','Cozinhe no vapor 6-7min.'],dicas:['Água fervendo de verdade.','Trabalhe com massa coberta.','Não cozinhe demais no vapor.'],iniciante:'A massa é escaldada com água fervente. Nas primeiras dobras vai ficar feio.'},
 {id:'cn4',nome:'Pato de Pequim',pais:'China',bandeira:'🇨🇳',cats:['salgadas','refinadas','complexas'],emoji:'🦆',tempo:300,porcoes:6,dificuldade:'Chef',cor:['#8B4513','#C8102E'],img:'peking,duck,chinese,roast',desc:'Pato com pele crocante, servido com panquecas e hoisin.',ingredientes:['1 pato de 2,5kg','2 colheres de mel','2 colheres de vinagre','2 colheres de shoyu','1 colher de cinco-especiarias','Gengibre','4 cebolinhas','Panquecas chinesas','Molho hoisin','Pepino'],passos:['Lave e seque o pato muito bem.','Misture mel, vinagre e shoyu. Pincele.','Recheie com gengibre e cebolinha.','Pendure para secar 6h.','Asse a 180°C por 1h.','Aumente para 220°C por 20min.','Descanse 15min.','Corte em fatias finas.','Sirva com panquecas, hoisin, pepino e cebolinha.'],dicas:['Secar a pele é o segredo.','O descanso mantém suculento.','Use secador em ar frio.'],iniciante:'É um assado em duas temperaturas. Reserve um dia inteiro.'},
 {id:'cn5',nome:'Jian Dui (Bolinho de Gergelim)',pais:'China',bandeira:'🇨🇳',cats:['doces'],emoji:'🍡',tempo:60,porcoes:15,dificuldade:'Média',cor:['#D9A521','#8B4513'],img:'sesame,balls,chinese,dessert',desc:'Bolinhas de arroz glutinoso com pasta de feijão.',ingredientes:['250g de farinha de arroz glutinoso','180ml de água morna','60g de açúcar','200g de pasta de feijão azuki','150g de gergelim','Óleo para fritar'],passos:['Misture farinha, açúcar e água.','Divida em porções de 25g.','Coloque pasta e feche em esfera.','Passe na água e no gergelim.','Aqueça óleo a 140°C.','Frite lentamente 8min.','Quando subirem, aumente para 170°C.','Frite mais 3min.'],dicas:['Fritar devagar é essencial.','Molhar antes do gergelim.','Coma morno.'],iniciante:'É uma massa de arroz glutinoso recheada e frita devagar.'},
-
 {id:'fr1',nome:'Boeuf Bourguignon',pais:'França',bandeira:'🇫🇷',cats:['salgadas','complexas','refinadas'],emoji:'🥘',tempo:180,porcoes:6,dificuldade:'Difícil',cor:['#7A0A1C','#8B4513'],img:'boeuf,bourguignon,french,beef',desc:'Carne bovina cozida lentamente em vinho tinto.',ingredientes:['1,2kg de carne bovina','200g de bacon','1 garrafa de vinho tinto','2 cenouras','2 cebolas','3 dentes de alho','2 colheres de farinha','500ml de caldo','300g de cogumelos','Cebolinhas pérola','Tomilho e louro'],passos:['Seque e doure a carne em lotes. Reserve.','Frite o bacon.','Refogue cenoura, cebola e alho.','Volte a carne e polvilhe farinha.','Adicione vinho e caldo. Junte tomilho e louro.','Cozinhe tampado 2,5h em fogo baixo.','Salteie cogumelos e cebolinhas na manteiga.','Adicione ao cozido nos últimos 15min.'],dicas:['Vinho de qualidade faz diferença.','Doure em lotes.','Melhor no dia seguinte.'],iniciante:'É um cozido de carne no vinho. Deixe cozinhando por horas.',video:'https://www.youtube.com/watch?v=9c0q0l7_kFE'},
 {id:'fr2',nome:'Coq au Vin',pais:'França',bandeira:'🇫🇷',cats:['salgadas','complexas'],emoji:'🍗',tempo:120,porcoes:4,dificuldade:'Média',cor:['#7A0A1C','#D9A521'],img:'coq,au,vin,french,chicken',desc:'Frango cozido no vinho tinto com bacon e cogumelos.',ingredientes:['1 frango em pedaços','150g de bacon','750ml de vinho tinto','250ml de caldo','300g de cogumelos','200g de cebolinhas','2 colheres de farinha','2 dentes de alho','Tomilho e louro','Manteiga'],passos:['Marine o frango no vinho com ervas 4h.','Escorra e seque. Reserve o vinho.','Doure o frango na manteiga. Reserve.','Frite o bacon e as cebolinhas.','Polvilhe farinha e cozinhe 2min.','Adicione vinho e caldo.','Volte o frango e cozinhe 1h.','Salteie cogumelos e adicione ao final.'],dicas:['Secar antes de dourar.','Marine de um dia para outro.','Sirva com pão.'],iniciante:'É um frango cozido no vinho.'},
 {id:'fr3',nome:'Ratatouille',pais:'França',bandeira:'🇫🇷',cats:['salgadas','praticas'],emoji:'🍆',tempo:70,porcoes:6,dificuldade:'Fácil',cor:['#6B9E4F','#E0432F'],img:'ratatouille,french,vegetables',desc:'Legumes do sul da França com ervas de Provence.',ingredientes:['1 berinjela em cubos','2 abobrinhas em rodelas','2 pimentões em cubos','4 tomates','1 cebola','3 dentes de alho','Azeite','Ervas de Provence','Sal e pimenta'],passos:['Corte todos os legumes.','Refogue cebola e alho no azeite.','Adicione berinjela e doure.','Junte pimentões 5min.','Adicione tomates e ervas.','Cozinhe em fogo baixo 40min.','Ajuste o sal.','Sirva morno ou frio.'],dicas:['Cada legume tem seu ponto.','Azeite generoso.','Melhor no dia seguinte.'],iniciante:'É um refogado de legumes.'},
 {id:'fr4',nome:'Crème Brûlée',pais:'França',bandeira:'🇫🇷',cats:['doces','refinadas'],emoji:'🍮',tempo:60,porcoes:6,dificuldade:'Média',cor:['#F2CE6B','#8B4513'],img:'creme,brulee,french,dessert',desc:'Creme de baunilha com casquinha crocante de açúcar.',ingredientes:['500ml de creme de leite','5 gemas','80g de açúcar','1 fava de baunilha','Açúcar para caramelizar'],passos:['Aqueça o creme com baunilha sem ferver.','Bata gemas com açúcar.','Adicione creme às gemas mexendo.','Passe por peneira.','Distribua em ramequins.','Asse em banho-maria a 150°C por 35min.','Esfrie e gele 4h.','Polvilhe açúcar e caramelize com maçarico.'],dicas:['Não deixe ferver.','Banho-maria é essencial.','Caramelize só na hora.'],iniciante:'É um creme assado em banho-maria.',video:'https://www.youtube.com/watch?v=uUbPTVjR-Jo'},
 {id:'fr5',nome:'Croissant',pais:'França',bandeira:'🇫🇷',cats:['sobremesas-salgadas','complexas','refinadas'],emoji:'🥐',tempo:720,porcoes:12,dificuldade:'Chef',cor:['#D9A521','#F2CE6B'],img:'croissant,french,pastry',desc:'Massa folhada laminada com manteiga, dourada e crocante.',ingredientes:['500g de farinha','10g de sal','60g de açúcar','20g de fermento','280ml de leite','250g de manteiga','1 ovo'],passos:['Misture farinha, sal, açúcar, fermento e leite. Sove.','Descanse 12h na geladeira.','Achate a manteiga em quadrado.','Coloque no centro da massa. Dobre.','Faça 3 dobras simples, com 30min entre cada.','Abra em retângulo e corte triângulos.','Enrole formando o croissant.','Deixe crescer 2h.','Pincele com ovo e asse a 200°C por 18min.'],dicas:['Manteiga e massa na mesma consistência.','Não deixe a manteiga esquentar.','Descanse entre as dobras.'],iniciante:'É um projeto de fim de semana.'},
-
 {id:'th1',nome:'Pad Thai',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','praticas'],emoji:'🍜',tempo:30,porcoes:4,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'pad,thai,thailand,noodles',desc:'Macarrão de arroz com camarão, ovo e molho agridoce.',ingredientes:['250g de macarrão de arroz','300g de camarão','2 ovos','100g de tofu','3 colheres de molho de peixe','3 colheres de tamarindo','2 colheres de açúcar de palma','100g de broto de feijão','3 cebolinhas','Amendoim','Limão'],passos:['Deixe o macarrão de molho 20min.','Misture molho de peixe, tamarindo e açúcar.','Doure o tofu. Reserve.','Salteie o camarão. Reserve.','Quebre os ovos e mexa rápido.','Adicione macarrão e molho.','Salteie 3min.','Junte camarão, tofu, broto e cebolinha.','Sirva com amendoim, limão e pimenta.'],dicas:['Prepare tudo antes.','Molho de tamarindo é essencial.','Não cozinhe demais o macarrão.'],iniciante:'É macarrão salteado em fogo alto.',video:'https://www.youtube.com/watch?v=nt9JyuGXblc'},
 {id:'th2',nome:'Tom Yum Goong',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','complexas'],emoji:'🍲',tempo:40,porcoes:4,dificuldade:'Média',cor:['#E0432F','#6B9E4F'],img:'tom,yum,thai,soup',desc:'Sopa picante com camarão, capim-limão e galanga.',ingredientes:['500g de camarão','1,5L de caldo','3 talos de capim-limão','5 fatias de galanga','6 folhas de limão kaffir','200g de cogumelos','3 colheres de molho de peixe','Suco de 3 limões','2 pimentas','Coentro'],passos:['Ferva o caldo com capim-limão, galanga e folhas 10min.','Adicione cogumelos.','Junte camarões 3min.','Desligue o fogo.','Adicione molho de peixe, limão e pimenta.','Ajuste o equilíbrio.','Sirva com coentro.'],dicas:['Nunca ferva depois do limão.','Aromáticos são para infusão.','Ajuste no final.'],iniciante:'É uma sopa aromática.'},
 {id:'th3',nome:'Green Curry',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','complexas'],emoji:'🍛',tempo:45,porcoes:4,dificuldade:'Média',cor:['#6B9E4F','#3F6B2C'],img:'green,curry,thai',desc:'Curry verde tailandês com leite de coco e frango.',ingredientes:['500g de frango','400ml de leite de coco','3 colheres de pasta de curry verde','100g de berinjela tailandesa','2 colheres de molho de peixe','1 colher de açúcar de palma','Manjericão tailandês','Folhas de limão kaffir','Pimenta'],passos:['Refogue a pasta no creme de coco 3min.','Adicione o frango e doure.','Junte o restante do leite de coco.','Adicione a berinjela 10min.','Tempere com molho de peixe e açúcar.','Ajuste o equilíbrio.','Finalize com manjericão e pimenta.','Sirva com arroz jasmim.'],dicas:['Refogar a pasta libera aromas.','Não deixe ferver forte.','Manjericão só no final.'],iniciante:'É um curry: refoga a pasta e adiciona leite de coco.'},
 {id:'th4',nome:'Mango Sticky Rice',pais:'Tailândia',bandeira:'🇹🇭',cats:['doces'],emoji:'🥭',tempo:60,porcoes:4,dificuldade:'Fácil',cor:['#F2CE6B','#6B9E4F'],img:'mango,sticky,rice,thai',desc:'Arroz glutinoso doce com leite de coco e manga.',ingredientes:['300g de arroz glutinoso','400ml de leite de coco','100g de açúcar','1 colher de sal','2 mangas maduras','Gergelim torrado'],passos:['Deixe o arroz de molho 4h.','Cozinhe no vapor 20min.','Aqueça leite de coco com açúcar e sal.','Despeje sobre o arroz e misture.','Deixe absorver 20min.','Corte a manga.','Sirva o arroz com a manga.','Polvilhe gergelim.'],dicas:['Arroz glutinoso, não comum.','Não deixe o leite ferver.','Sirva morno.'],iniciante:'É arroz doce com leite de coco e manga.'},
 {id:'th5',nome:'Som Tum',pais:'Tailândia',bandeira:'🇹🇭',cats:['sobremesas-salgadas','praticas'],emoji:'🥗',tempo:20,porcoes:4,dificuldade:'Fácil',cor:['#6B9E4F','#E0432F'],img:'som,tum,papaya,thai,salad',desc:'Salada picante de papaya verde com amendoim.',ingredientes:['1 papaya verde em tiras','100g de tomate cereja','50g de vagem','3 colheres de molho de peixe','3 colheres de suco de limão','2 colheres de açúcar de palma','2 dentes de alho','2 pimentas','Amendoim'],passos:['Pile o alho e a pimenta.','Adicione açúcar, molho de peixe e limão.','Junte vagem e tomate, amassando.','Adicione a papaya e misture.','Amasse delicadamente.','Prove e ajuste.','Sirva com amendoim.'],dicas:['Papaya bem verde.','O pilão é tradicional.','Ajuste o equilíbrio.'],iniciante:'É uma salada de papaya verde.'},
-
 {id:'kr1',nome:'Bibimbap',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','complexas'],emoji:'🍚',tempo:60,porcoes:4,dificuldade:'Média',cor:['#C8102E','#6B9E4F'],img:'bibimbap,korean,rice',desc:'Arroz com legumes coloridos, carne, ovo e gochujang.',ingredientes:['4 porções de arroz','300g de carne bovina','1 abobrinha','1 cenoura','100g de espinafre','100g de broto de feijão','4 ovos','Gochujang','Shoyu, alho e óleo de gergelim','Gergelim torrado'],passos:['Marine a carne.','Salteie cada legume separadamente.','Salteie a carne.','Frite os ovos com gema mole.','Coloque arroz em tigelas.','Disponha legumes e carne em setores.','Coloque o ovo no centro.','Sirva com gochujang.','Misture antes de comer.'],dicas:['Salteie cada legume separado.','Gema mole é essencial.','Misture na hora.'],iniciante:'É arroz com legumes e carne por cima.',video:'https://www.youtube.com/watch?v=6PvTbXvfmfo'},
 {id:'kr2',nome:'Kimchi',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['sobremesas-salgadas','complexas'],emoji:'🥬',tempo:120,porcoes:10,dificuldade:'Média',cor:['#C8102E','#E0432F'],img:'kimchi,korean,fermented',desc:'Acelga fermentada com pimenta, alho e gengibre.',ingredientes:['1 acelga napa grande','100g de sal grosso','3 colheres de pimenta em flocos','4 dentes de alho','1 pedaço de gengibre','3 colheres de molho de peixe','1 colher de açúcar','3 cebolinhas','1 cenoura ralada'],passos:['Corte a acelga em pedaços.','Salgue e deixe 2h.','Enxágue 3x e escorra.','Misture pimenta, alho, gengibre, molho de peixe e açúcar.','Junte cebolinha e cenoura.','Misture com a acelga (com luvas).','Coloque em pote pressionando bem.','Fermente 2-3 dias fora da geladeira.','Guarde na geladeira.'],dicas:['Use luvas.','Pressione bem.','Quanto mais tempo, mais azedo.'],iniciante:'É acelga fermentada com pasta de pimenta.'},
 {id:'kr3',nome:'Bulgogi',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','praticas'],emoji:'🥩',tempo:40,porcoes:4,dificuldade:'Fácil',cor:['#8B4513','#C8102E'],img:'bulgogi,korean,beef',desc:'Carne bovina marinada em shoyu, pera, alho e gergelim.',ingredientes:['500g de carne fatiada fina','1/2 pera ralada','4 colheres de shoyu','2 colheres de açúcar','2 colheres de óleo de gergelim','4 dentes de alho','1 colher de gergelim','1 cebola','Cebolinha','Pimenta'],passos:['Misture pera, shoyu, açúcar, gergelim, alho e pimenta.','Marine a carne 30min.','Aqueça frigideira bem quente.','Doure a carne em lotes.','Adicione a cebola.','Finalize com cebolinha e gergelim.','Sirva com arroz e alface.'],dicas:['A pera amacia a carne.','Não cozinhe demais.','Sirva com alface.'],iniciante:'É carne marinada e grelhada rápido.'},
@@ -596,13 +770,16 @@ const RECEITAS_BASE = [
 /* ==================== ESTADO E PERSISTÊNCIA ==================== */
 const LS = {
   fav:'mrf_favoritas', testadas:'mrf_testadas', custom:'mrf_custom',
-  fotos:'mrf_fotos', videos:'mrf_videos', emojis:'mrf_mostrar_emojis'
+  fotos:'mrf_fotos', videos:'mrf_videos', emojis:'mrf_mostrar_emojis',
+  edits:'mrf_edits', excluidas:'mrf_excluidas'
 };
 let favoritas = JSON.parse(localStorage.getItem(LS.fav) || '[]');
 let testadas  = JSON.parse(localStorage.getItem(LS.testadas) || '[]');
 let customReceitas = JSON.parse(localStorage.getItem(LS.custom) || '[]');
 let fotosCustom = JSON.parse(localStorage.getItem(LS.fotos) || '{}');
 let videosCustom = JSON.parse(localStorage.getItem(LS.videos) || '{}');
+let editsCustom = JSON.parse(localStorage.getItem(LS.edits) || '{}');
+let excluidas = JSON.parse(localStorage.getItem(LS.excluidas) || '[]');
 let mostrarEmojis = localStorage.getItem(LS.emojis) !== 'off';
 let estado = { modo:'todas', categoria:null, pais:null, busca:'' };
 
@@ -612,9 +789,23 @@ function salvar(){
   localStorage.setItem(LS.custom, JSON.stringify(customReceitas));
   localStorage.setItem(LS.fotos, JSON.stringify(fotosCustom));
   localStorage.setItem(LS.videos, JSON.stringify(videosCustom));
+  localStorage.setItem(LS.edits, JSON.stringify(editsCustom));
+  localStorage.setItem(LS.excluidas, JSON.stringify(excluidas));
   localStorage.setItem(LS.emojis, mostrarEmojis ? 'on' : 'off');
 }
-function todasReceitas(){ return [...RECEITAS_BASE, ...customReceitas]; }
+
+/* Filtra excluídas e aplica edições */
+function todasReceitas(){
+  return [...RECEITAS_BASE, ...customReceitas]
+    .filter(r => !excluidas.includes(r.id))
+    .map(r => editsCustom[r.id] ? { ...r, ...editsCustom[r.id] } : r);
+}
+function getReceita(id){
+  if(excluidas.includes(id)) return null;
+  const base = [...RECEITAS_BASE, ...customReceitas].find(x=>x.id===id);
+  if(!base) return null;
+  return editsCustom[id] ? { ...base, ...editsCustom[id] } : base;
+}
 
 /* ==================== FOTO E VÍDEO ==================== */
 function getFoto(r){
@@ -626,29 +817,17 @@ function getVideo(r){
   if(videosCustom[r.id] !== undefined) return videosCustom[r.id];
   return r.video || '';
 }
-
-/* ============================================================
-   CORREÇÃO DO ERRO 153 DO YOUTUBE (GitHub Pages)
-   ------------------------------------------------------------
-   Adicionado referrerpolicy="strict-origin-when-cross-origin"
-   nos iframes do YouTube e Vimeo. Isso faz o navegador enviar
-   a origem (ex: https://usuario.github.io) ao player, evitando
-   o bloqueio "Erro 153 - Assistir no YouTube".
-   ============================================================ */
 function embedVideo(url){
   if(!url) return null;
   url = url.trim();
-  // YouTube (watch, embed, shorts, youtu.be)
   const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
   if(yt){
     return `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${yt[1]}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`;
   }
-  // Vimeo
   const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if(vm){
     return `<div class="video-wrap"><iframe src="https://player.vimeo.com/video/${vm[1]}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
   }
-  // Arquivo direto
   if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)){
     return `<div class="video-wrap"><video src="${escapar(url)}" controls></video></div>`;
   }
@@ -657,11 +836,13 @@ function embedVideo(url){
 function ehYouTube(url){ return /youtube\.com|youtu\.be/.test(url||''); }
 
 /* ==================== UTILITÁRIOS ==================== */
-function toast(msg){
+function toast(msg, tipo){
   const t = document.getElementById('toast');
   t.textContent = msg;
+  t.classList.remove('erro');
+  if(tipo==='erro') t.classList.add('erro');
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2400);
+  setTimeout(()=>t.classList.remove('show'), 2600);
 }
 function imgURL(query, size=600){
   const q = encodeURIComponent((query||'food').replace(/,/g,' '));
@@ -682,7 +863,79 @@ function alternarEmojis(){
   mostrarEmojis = !mostrarEmojis;
   salvar();
   aplicarPreferenciaEmojis();
-  toast(mostrarEmojis ? '😀 Emojis visíveis' : '🚫 Emojis escondidos');
+  toast(mostrarEmojis ? '😀 Emojis visíveis em todos os cards' : '🚫 Emojis escondidos em todos os cards');
+}
+
+/* ==================== EXCLUSÃO ==================== */
+let excluirReceitaIdAtual = null;
+
+function abrirExcluir(id){
+  const r = getReceita(id);
+  if(!r) return;
+  excluirReceitaIdAtual = id;
+  document.getElementById('excluirReceitaNome').textContent = (r.emoji ? r.emoji + ' ' : '') + r.nome;
+  document.getElementById('excluirSenha').value = '';
+  document.getElementById('excluirErro').style.display = 'none';
+  document.getElementById('overlayExcluir').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>document.getElementById('excluirSenha').focus(), 200);
+}
+
+function confirmarExclusao(){
+  const senha = document.getElementById('excluirSenha').value;
+  const erroEl = document.getElementById('excluirErro');
+  const box = document.getElementById('modalExcluirBox');
+
+  if(!validarSenhaExclusao(senha)){
+    erroEl.style.display = 'block';
+    erroEl.innerHTML = '❌ Senha incorreta. Verifique a dica e tente novamente.';
+    box.classList.remove('shake');
+    void box.offsetWidth;
+    box.classList.add('shake');
+    document.getElementById('excluirSenha').select();
+    return;
+  }
+
+  // Senha correta: excluir
+  const id = excluirReceitaIdAtual;
+  if(!id) return;
+
+  const ehNativa = RECEITAS_BASE.some(x=>x.id === id);
+  if(ehNativa){
+    if(!excluidas.includes(id)) excluidas.push(id);
+  } else {
+    const idx = customReceitas.findIndex(x=>x.id === id);
+    if(idx >= 0) customReceitas.splice(idx, 1);
+  }
+
+  // Limpeza dos dados relacionados
+  favoritas = favoritas.filter(x => x !== id);
+  testadas  = testadas.filter(x => x !== id);
+  delete fotosCustom[id];
+  delete videosCustom[id];
+  delete editsCustom[id];
+
+  salvar();
+  fecharExcluir();
+  fecharReceita();
+  fecharEditar();
+  render();
+  toast('🗑️ Receita excluída com sucesso!');
+}
+
+function fecharExcluir(){
+  document.getElementById('overlayExcluir').classList.remove('aberto');
+  document.body.style.overflow = '';
+  excluirReceitaIdAtual = null;
+  const box = document.getElementById('modalExcluirBox');
+  if(box) box.classList.remove('shake');
+}
+
+function excluirDoEditar(){
+  if(!editandoReceitaIdAtual) return;
+  const id = editandoReceitaIdAtual;
+  fecharEditar();
+  abrirExcluir(id);
 }
 
 /* ==================== AUTO-DETECÇÃO ==================== */
@@ -954,7 +1207,7 @@ function renderKPIs(){
   const kpis = [
     {ic:'📖', val:total, lbl:'Total', cor:'#C8102E', modo:'todas', acao:()=>{estado={modo:'todas',categoria:null,pais:null,busca:''};document.getElementById('busca').value='';render();}},
     {ic:'🎬', val:contarComVideo(), lbl:'Com Vídeo', cor:'#E0432F', modo:'videos', acao:()=>{estado={modo:'videos',categoria:null,pais:null,busca:''};render();}},
-    {ic:'➕', val:contarSemVideo(), lbl:'Sem Vídeo (adicionar)', cor:'#D9A521', modo:'sem-video', acao:()=>{estado={modo:'sem-video',categoria:null,pais:null,busca:''};render();}},
+    {ic:'➕', val:contarSemVideo(), lbl:'Sem Vídeo', cor:'#D9A521', modo:'sem-video', acao:()=>{estado={modo:'sem-video',categoria:null,pais:null,busca:''};render();}},
     {ic:'❤️', val:favoritas.length, lbl:'Favoritas', cor:'#F49AB4', modo:'favoritas', acao:()=>{estado={modo:'favoritas',categoria:null,pais:null,busca:''};render();}},
     {ic:'✅', val:testadas.length, lbl:'Testadas', cor:'#6B9E4F', modo:'testadas', acao:()=>{estado={modo:'testadas',categoria:null,pais:null,busca:''};render();}},
     {ic:'🌏', val:contarPaises(), lbl:'Países', cor:'#D9A521', acao:()=>{document.getElementById('chipsPais').scrollIntoView({behavior:'smooth'});}},
@@ -978,18 +1231,24 @@ function renderKPIs(){
 /* ==================== RECEITA DO DIA ==================== */
 function receitaDoDia(){
   const todas = todasReceitas();
+  if(todas.length === 0) return null;
   const hoje = new Date();
   const seed = hoje.getFullYear()*10000 + (hoje.getMonth()+1)*100 + hoje.getDate();
   return todas[seed % todas.length];
 }
 function renderReceitaDia(){
   const r = receitaDoDia();
+  if(!r){
+    document.getElementById('receitaDia').innerHTML = '<div class="vazio"><span class="ic">🍽️</span><h3>Nenhuma receita disponível</h3></div>';
+    return;
+  }
   const temVideo = !!getVideo(r);
+  const emojiHTML = r.emoji ? `<span class="emoji-fallback">${r.emoji}</span>` : '';
   document.getElementById('receitaDia').innerHTML = `
     <div class="dia-card" data-dia="${r.id}">
       <div class="img">
         <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
-        <span class="emoji-fallback">${r.emoji}</span>
+        ${emojiHTML}
         ${temVideo ? '<span class="badge-video">🎬 Vídeo</span>' : ''}
       </div>
       <div class="info">
@@ -1001,7 +1260,6 @@ function renderReceitaDia(){
           <span class="meta-pill">⏱ ${r.tempo} min</span>
           <span class="meta-pill">🍽 ${r.porcoes} porções</span>
           <span class="meta-pill">📊 ${r.dificuldade}</span>
-          ${temVideo ? '<span class="meta-pill" style="background:#FFE6E6;border-color:#E0432F;">🎬 Tem vídeo</span>' : ''}
         </div>
       </div>
     </div>`;
@@ -1074,7 +1332,7 @@ function renderGrid(){
   if(estado.modo==='favoritas') titulo.textContent = '❤️ Receitas Favoritas';
   else if(estado.modo==='testadas') titulo.textContent = '✅ Receitas Testadas';
   else if(estado.modo==='videos') titulo.textContent = '🎬 Receitas com Vídeo';
-  else if(estado.modo==='sem-video') titulo.textContent = '➕ Receitas sem Vídeo (clique para adicionar)';
+  else if(estado.modo==='sem-video') titulo.textContent = '➕ Receitas sem Vídeo';
   else if(estado.modo==='categoria' && estado.categoria) titulo.textContent = `${CATEGORIAS[estado.categoria].emoji} ${CATEGORIAS[estado.categoria].nome}`;
   else if(estado.modo==='pais' && estado.pais) titulo.textContent = `🌏 Cozinha ${estado.pais}`;
   else if(estado.busca) titulo.textContent = `🔍 Resultados para "${estado.busca}"`;
@@ -1089,16 +1347,19 @@ function renderGrid(){
     const fav = favoritas.includes(r.id);
     const feita = testadas.includes(r.id);
     const video = getVideo(r);
+    const emojiHTML = r.emoji ? `<span class="emoji-fallback">${r.emoji}</span>` : '';
     return `
     <div class="card" data-id="${r.id}">
       <div class="card-img">
         <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
-        <span class="emoji-fallback">${r.emoji}</span>
+        ${emojiHTML}
         <span class="badge-pais">${r.bandeira} ${escapar(r.pais)}</span>
         ${video ? '<span class="badge-video">🎬 Vídeo</span>' : ''}
         <div class="card-top-actions">
+          <button class="btn-icon" data-editar="${r.id}" title="Editar">✏️</button>
           <button class="btn-icon" data-foto="${r.id}" title="Trocar foto">📷</button>
           <button class="btn-icon ${fav?'on':''}" data-fav="${r.id}" title="Favoritar">${fav?'❤️':'🤍'}</button>
+          <button class="btn-icon excluir" data-excluir="${r.id}" title="Excluir (senha)">🗑️</button>
         </div>
       </div>
       <div class="card-body">
@@ -1126,7 +1387,7 @@ function renderGrid(){
 
   grid.querySelectorAll('.card').forEach(card=>{
     card.onclick = e=>{
-      if(e.target.closest('[data-fav]') || e.target.closest('[data-feito]') || e.target.closest('[data-foto]') || e.target.closest('[data-video]')) return;
+      if(e.target.closest('[data-fav]') || e.target.closest('[data-feito]') || e.target.closest('[data-foto]') || e.target.closest('[data-video]') || e.target.closest('[data-editar]') || e.target.closest('[data-excluir]')) return;
       abrirReceita(card.dataset.id);
     };
   });
@@ -1146,6 +1407,12 @@ function renderGrid(){
   grid.querySelectorAll('[data-video]').forEach(btn=>{
     btn.onclick = e=>{ e.stopPropagation(); abrirVideo(btn.dataset.video); };
   });
+  grid.querySelectorAll('[data-editar]').forEach(btn=>{
+    btn.onclick = e=>{ e.stopPropagation(); abrirEditar(btn.dataset.editar); };
+  });
+  grid.querySelectorAll('[data-excluir]').forEach(btn=>{
+    btn.onclick = e=>{ e.stopPropagation(); abrirExcluir(btn.dataset.excluir); };
+  });
   grid.querySelectorAll('[data-feito]').forEach(m=>{
     m.onclick = e=>{
       e.stopPropagation();
@@ -1160,13 +1427,14 @@ function renderGrid(){
 
 /* ==================== MODAL RECEITA ==================== */
 function abrirReceita(id){
-  const r = todasReceitas().find(x=>x.id===id);
+  const r = getReceita(id);
   if(!r) return;
   const fav = favoritas.includes(r.id);
   const feita = testadas.includes(r.id);
   const linkReceita = r.link ? `<div class="bloco link"><h3>🔗 Link original</h3><a href="${escapar(r.link)}" target="_blank" rel="noopener">${escapar(r.link)}</a></div>` : '';
   const videoURL = getVideo(r);
   const videoEmbed = embedVideo(videoURL);
+  const emojiHero = r.emoji ? `${r.emoji} ` : '';
 
   const blocoVideo = videoEmbed
     ? `<div class="bloco video">
@@ -1194,12 +1462,14 @@ function abrirReceita(id){
       <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
       <div class="sombra"></div>
       <div class="hero-actions">
+        <button class="btn-hero editar" onclick="abrirEditar('${r.id}')">✏️ Editar</button>
         <button class="btn-hero" onclick="abrirFoto('${r.id}')">📷 Foto</button>
-        <button class="btn-hero ${videoURL?'video':''}" onclick="abrirVideo('${r.id}')">🎬 ${videoURL?'Trocar vídeo':'Adicionar vídeo'}</button>
+        <button class="btn-hero ${videoURL?'video':''}" onclick="abrirVideo('${r.id}')">🎬 ${videoURL?'Trocar vídeo':'Vídeo'}</button>
+        <button class="btn-hero excluir" onclick="abrirExcluir('${r.id}')">🗑️ Excluir</button>
       </div>
       <button class="btn-fechar" onclick="fecharReceita()">✕</button>
       <div class="titulo-hero">
-        <h2>${r.emoji} ${escapar(r.nome)}</h2>
+        <h2>${emojiHero}${escapar(r.nome)}</h2>
         <div class="pais">${r.bandeira} ${escapar(r.pais)}</div>
       </div>
     </div>
@@ -1266,15 +1536,154 @@ function fecharReceita(){
   document.body.style.overflow = '';
 }
 
+/* ==================== MODAL EDITAR ==================== */
+let editandoReceitaIdAtual = null;
+
+function abrirEditar(id){
+  const r = getReceita(id);
+  if(!r) return;
+  editandoReceitaIdAtual = id;
+  document.getElementById('editarReceitaNome').textContent = (r.emoji ? r.emoji + ' ' : '') + r.nome;
+
+  document.getElementById('editNome').value = r.nome;
+  document.getElementById('editEmoji').value = r.emoji || '';
+  document.getElementById('editPais').value = r.pais;
+  document.getElementById('editDificuldade').value = r.dificuldade;
+  document.getElementById('editTempo').value = r.tempo;
+  document.getElementById('editPorcoes').value = r.porcoes;
+  document.getElementById('editDesc').value = r.desc || '';
+  document.getElementById('editIng').value = (r.ingredientes || []).join('\n');
+  document.getElementById('editPassos').value = (r.passos || []).join('\n');
+  document.getElementById('editDicas').value = (r.dicas || []).join('\n');
+  document.getElementById('editIniciante').value = r.iniciante || '';
+
+  const paises = [...new Set(todasReceitas().map(x=>x.pais))].sort();
+  document.getElementById('listaPaisesEditar').innerHTML = paises.map(p=>`<option value="${escapar(p)}">`).join('');
+
+  document.getElementById('editCats').innerHTML = Object.entries(CATEGORIAS).map(([k,v])=>`
+    <label><input type="checkbox" value="${k}" ${r.cats.includes(k)?'checked':''}><span>${v.emoji} ${v.nome}</span></label>
+  `).join('');
+
+  renderEmojiPicker(r.emoji || '');
+  atualizarPreviewEmoji();
+
+  document.getElementById('overlayEditar').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderEmojiPicker(emojiAtual){
+  const picker = document.getElementById('editEmojiPicker');
+  const semEmoji = `<button type="button" class="emoji-opcao vazio ${!emojiAtual?'ativo':''}" data-emoji="" title="Sem emoji">🚫</button>`;
+  const opcoes = EMOJIS_DISPONIVEIS.map(e =>
+    `<button type="button" class="emoji-opcao ${e===emojiAtual?'ativo':''}" data-emoji="${e}">${e}</button>`
+  ).join('');
+  picker.innerHTML = semEmoji + opcoes;
+
+  picker.querySelectorAll('[data-emoji]').forEach(btn=>{
+    btn.onclick = ()=>{
+      const emoji = btn.dataset.emoji;
+      document.getElementById('editEmoji').value = emoji;
+      picker.querySelectorAll('.emoji-opcao').forEach(b=>b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      atualizarPreviewEmoji();
+    };
+  });
+}
+
+function atualizarPreviewEmoji(){
+  const emoji = document.getElementById('editEmoji').value.trim();
+  const preview = document.getElementById('editEmojiPreview');
+  if(emoji){
+    preview.textContent = emoji;
+    preview.classList.remove('vazio');
+  } else {
+    preview.textContent = 'Sem emoji';
+    preview.classList.add('vazio');
+  }
+}
+
+function salvarEdicao(e){
+  e.preventDefault();
+  if(!editandoReceitaIdAtual) return;
+
+  const nome = document.getElementById('editNome').value.trim();
+  if(!nome){ toast('⚠️ O nome não pode ficar vazio'); return; }
+
+  const emoji = document.getElementById('editEmoji').value.trim();
+  const pais = document.getElementById('editPais').value.trim();
+  const dificuldade = document.getElementById('editDificuldade').value;
+  const tempo = parseInt(document.getElementById('editTempo').value) || 30;
+  const porcoes = parseInt(document.getElementById('editPorcoes').value) || 4;
+  const cats = [...document.querySelectorAll('#editCats input:checked')].map(i=>i.value);
+  const desc = document.getElementById('editDesc').value.trim();
+  const ingredientes = document.getElementById('editIng').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const passos = document.getElementById('editPassos').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const dicas = document.getElementById('editDicas').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const iniciante = document.getElementById('editIniciante').value.trim();
+
+  if(!cats.length){ toast('⚠️ Escolha pelo menos uma categoria'); return; }
+  if(!ingredientes.length || !passos.length){ toast('⚠️ Preencha ingredientes e passos'); return; }
+
+  const mapaBandeiras = {
+    'Brasil':'🇧🇷','Japão':'🇯🇵','Itália':'🇮🇹','México':'🇲🇽','Índia':'🇮🇳','China':'🇨🇳',
+    'França':'🇫🇷','Tailândia':'🇹🇭','Coreia do Sul':'🇰🇷','EUA':'🇺🇸','Espanha':'🇪🇸',
+    'Portugal':'🇵🇹','Alemanha':'🇩🇪','Grécia':'🇬🇷','Argentina':'🇦🇷','Peru':'🇵🇪','Vietnã':'🇻🇳'
+  };
+  const bandeira = mapaBandeiras[pais] || '🌏';
+
+  const ehNativa = RECEITAS_BASE.some(x=>x.id === editandoReceitaIdAtual);
+  if(ehNativa){
+    editsCustom[editandoReceitaIdAtual] = {
+      nome, emoji, pais, bandeira, dificuldade, tempo, porcoes,
+      cats, desc, ingredientes, passos, dicas, iniciante
+    };
+  } else {
+    const idx = customReceitas.findIndex(x=>x.id === editandoReceitaIdAtual);
+    if(idx >= 0){
+      customReceitas[idx] = {
+        ...customReceitas[idx],
+        nome, emoji, pais, bandeira, dificuldade, tempo, porcoes,
+        cats, desc, ingredientes, passos, dicas, iniciante
+      };
+    }
+  }
+
+  salvar();
+  fecharEditar();
+  render();
+  toast('✏️ Receita atualizada!');
+}
+
+function restaurarReceitaOriginal(){
+  if(!editandoReceitaIdAtual) return;
+  if(!confirm('Deseja restaurar todos os campos ao estado original? Suas alterações serão perdidas.')) return;
+
+  if(editsCustom[editandoReceitaIdAtual]){
+    delete editsCustom[editandoReceitaIdAtual];
+    salvar();
+    fecharEditar();
+    render();
+    toast('↺ Receita restaurada ao original');
+  } else {
+    toast('ℹ️ Esta receita já está no estado original');
+  }
+}
+
+function fecharEditar(){
+  document.getElementById('overlayEditar').classList.remove('aberto');
+  document.body.style.overflow = '';
+  editandoReceitaIdAtual = null;
+}
+
 /* ==================== MODAL FOTO ==================== */
 let fotoReceitaIdAtual = null;
 let fotoBuffer = null;
 function abrirFoto(id){
-  const r = todasReceitas().find(x=>x.id===id);
+  const r = getReceita(id);
   if(!r) return;
   fotoReceitaIdAtual = id;
   fotoBuffer = null;
-  document.getElementById('fotoReceitaNome').textContent = r.emoji + ' ' + r.nome;
+  document.getElementById('fotoReceitaNome').textContent = (r.emoji ? r.emoji + ' ' : '') + r.nome;
   const preview = document.getElementById('fotoPreview');
   const urlInput = document.getElementById('fotoURL');
   const status = document.getElementById('fotoStatus');
@@ -1342,10 +1751,10 @@ function fecharFoto(){
 /* ==================== MODAL VÍDEO ==================== */
 let videoReceitaIdAtual = null;
 function abrirVideo(id){
-  const r = todasReceitas().find(x=>x.id===id);
+  const r = getReceita(id);
   if(!r) return;
   videoReceitaIdAtual = id;
-  document.getElementById('videoReceitaNome').textContent = r.emoji + ' ' + r.nome;
+  document.getElementById('videoReceitaNome').textContent = (r.emoji ? r.emoji + ' ' : '') + r.nome;
   const urlAtual = getVideo(r);
   document.getElementById('videoURL').value = urlAtual || '';
   document.getElementById('overlayVideo').classList.add('aberto');
@@ -1374,14 +1783,8 @@ function atualizarPreviewVideo(){
 function salvarVideo(){
   if(!videoReceitaIdAtual) return;
   const url = document.getElementById('videoURL').value.trim();
-  if(!url){
-    toast('⚠️ Cole uma URL de vídeo');
-    return;
-  }
-  if(!embedVideo(url) && !ehYouTube(url)){
-    toast('⚠️ Formato não reconhecido.');
-    return;
-  }
+  if(!url){ toast('⚠️ Cole uma URL de vídeo'); return; }
+  if(!embedVideo(url) && !ehYouTube(url)){ toast('⚠️ Formato não reconhecido.'); return; }
   videosCustom[videoReceitaIdAtual] = url;
   salvar();
   fecharVideo();
@@ -1500,6 +1903,7 @@ function criarSakura(){
 
 /* ==================== INIT ==================== */
 document.getElementById('toggleEmoji').onclick = alternarEmojis;
+document.getElementById('editEmoji').addEventListener('input', atualizarPreviewEmoji);
 aplicarPreferenciaEmojis();
 criarSakura();
 render();
