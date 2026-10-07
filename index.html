@@ -126,7 +126,6 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .mini-tag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--papel);color:var(--tinta-suave);border:1.5px solid rgba(217,165,33,.35);}
 .card-meta{display:flex;gap:12px;font-size:12px;font-weight:700;color:var(--tinta-suave);margin-top:auto;}
 
-/* NOVO: linha de ações no card (video + feito) */
 .card-acoes{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
 .marcador{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--tinta-suave);padding:8px 11px;border-radius:12px;background:var(--papel);transition:.2s;border:2px solid transparent;}
 .marcador:hover{background:#F5E4C8;}
@@ -193,7 +192,6 @@ main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-i
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 .video-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000;}
 
-/* NOVO: caixa "adicionar vídeo" dentro do modal */
 .video-vazio{
   display:flex;flex-direction:column;align-items:center;gap:14px;
   padding:26px 20px;background:linear-gradient(135deg,#FFF3F0,#FFE6E6);
@@ -628,14 +626,32 @@ function getVideo(r){
   if(videosCustom[r.id] !== undefined) return videosCustom[r.id];
   return r.video || '';
 }
+
+/* ============================================================
+   CORREÇÃO DO ERRO 153 DO YOUTUBE (GitHub Pages)
+   ------------------------------------------------------------
+   Adicionado referrerpolicy="strict-origin-when-cross-origin"
+   nos iframes do YouTube e Vimeo. Isso faz o navegador enviar
+   a origem (ex: https://usuario.github.io) ao player, evitando
+   o bloqueio "Erro 153 - Assistir no YouTube".
+   ============================================================ */
 function embedVideo(url){
   if(!url) return null;
   url = url.trim();
+  // YouTube (watch, embed, shorts, youtu.be)
   const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-  if(yt) return `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${yt[1]}" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`;
+  if(yt){
+    return `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${yt[1]}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`;
+  }
+  // Vimeo
   const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-  if(vm) return `<div class="video-wrap"><iframe src="https://player.vimeo.com/video/${vm[1]}" allowfullscreen></iframe></div>`;
-  if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) return `<div class="video-wrap"><video src="${escapar(url)}" controls></video></div>`;
+  if(vm){
+    return `<div class="video-wrap"><iframe src="https://player.vimeo.com/video/${vm[1]}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+  }
+  // Arquivo direto
+  if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)){
+    return `<div class="video-wrap"><video src="${escapar(url)}" controls></video></div>`;
+  }
   return null;
 }
 function ehYouTube(url){ return /youtube\.com|youtu\.be/.test(url||''); }
@@ -1058,7 +1074,7 @@ function renderGrid(){
   if(estado.modo==='favoritas') titulo.textContent = '❤️ Receitas Favoritas';
   else if(estado.modo==='testadas') titulo.textContent = '✅ Receitas Testadas';
   else if(estado.modo==='videos') titulo.textContent = '🎬 Receitas com Vídeo';
-  else if(estado.modo==='sem-video') titulo.textContent = '➕ Receitas sem Vídeo (clique em 🎬 ou no botão para adicionar)';
+  else if(estado.modo==='sem-video') titulo.textContent = '➕ Receitas sem Vídeo (clique para adicionar)';
   else if(estado.modo==='categoria' && estado.categoria) titulo.textContent = `${CATEGORIAS[estado.categoria].emoji} ${CATEGORIAS[estado.categoria].nome}`;
   else if(estado.modo==='pais' && estado.pais) titulo.textContent = `🌏 Cozinha ${estado.pais}`;
   else if(estado.busca) titulo.textContent = `🔍 Resultados para "${estado.busca}"`;
@@ -1152,7 +1168,6 @@ function abrirReceita(id){
   const videoURL = getVideo(r);
   const videoEmbed = embedVideo(videoURL);
 
-  // Bloco de vídeo: com player OU com CTA para adicionar
   const blocoVideo = videoEmbed
     ? `<div class="bloco video">
         <h3>🎬 Vídeo da receita</h3>
