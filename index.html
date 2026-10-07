@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Livro de Receitas Fantásticas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vermelho:#C8102E; --vermelho-esc:#7A0A1C;
+  --dourado:#D9A521; --dourado-claro:#F2CE6B;
+  --creme:#FFF7EC; --papel:#FBEEDA;
+  --matcha:#6B9E4F; --matcha-esc:#3F6B2C;
+  --sakura:#F49AB4; --sakura-claro:#FCD9E3;
+  --tinta:#2B1B12; --tinta-suave:#6B5849;
+  --sombra:0 6px 22px rgba(90,45,20,.14);
+  --sombra-forte:0 14px 40px rgba(90,45,20,.28);
+  --raio:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Zen Maru Gothic',system-ui,sans-serif; color:var(--tinta);
+  background-color:var(--creme);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(244,154,180,.22), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(107,158,79,.16), transparent 40%),
+    radial-gradient(circle at 50% 95%, rgba(217,165,33,.18), transparent 45%),
+    repeating-linear-gradient(45deg, rgba(200,16,46,.025) 0 2px, transparent 2px 12px);
+  min-height:100vh; overflow-x:hidden;
+}
+#sakura{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.petala{position:absolute;top:-40px;font-size:18px;opacity:.75;animation:cair linear infinite;}
+@keyframes cair{0%{transform:translateY(-40px) rotate(0deg);opacity:0;}10%{opacity:.8;}100%{transform:translateY(105vh) rotate(540deg) translateX(90px);opacity:0;}}
+
+header{
+  position:relative;z-index:2;
+  background:linear-gradient(135deg,var(--vermelho-esc) 0%,var(--vermelho) 45%,#E0432F 100%);
+  color:#fff;padding:38px 24px 30px;
+  border-bottom:6px solid var(--dourado);box-shadow:var(--sombra-forte);overflow:hidden;
+}
+header::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 26px);
+  pointer-events:none;
+}
+.header-inner{max-width:1280px;margin:0 auto;position:relative;}
+.selo{display:inline-block;background:rgba(255,255,255,.15);border:2px solid var(--dourado-claro);color:var(--dourado-claro);font-size:12px;letter-spacing:3px;font-weight:700;padding:5px 16px;border-radius:999px;margin-bottom:14px;text-transform:uppercase;}
+h1{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.1;text-shadow:0 3px 0 rgba(0,0,0,.25), 0 0 26px rgba(217,165,33,.45);letter-spacing:.5px;}
+h1 .jp{display:block;font-size:.42em;font-weight:600;color:var(--dourado-claro);letter-spacing:6px;margin-top:6px;opacity:.9;}
+header p.sub{margin-top:12px;font-size:15px;opacity:.92;max-width:660px;line-height:1.6;}
+.busca-wrap{max-width:1280px;margin:22px auto 0;position:relative;}
+#busca{width:100%;padding:16px 20px 16px 54px;border-radius:999px;border:3px solid var(--dourado);font-family:inherit;font-size:15px;font-weight:500;background:var(--creme);color:var(--tinta);box-shadow:0 8px 24px rgba(0,0,0,.22);outline:none;transition:.25s;}
+#busca:focus{border-color:var(--sakura);box-shadow:0 0 0 5px rgba(244,154,180,.35),0 8px 24px rgba(0,0,0,.25);}
+.busca-ico{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:19px;}
+
+main{max-width:1280px;margin:0 auto;padding:30px 20px 90px;position:relative;z-index:2;}
+.secao-titulo{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:800;display:flex;align-items:center;gap:12px;margin:0 0 16px;color:var(--vermelho-esc);}
+.secao-titulo::after{content:"";flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--dourado),transparent);}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:36px;}
+.kpi{background:#fff;border-radius:var(--raio);padding:18px 16px;cursor:pointer;border:3px solid transparent;box-shadow:var(--sombra);transition:transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s, border-color .22s;position:relative;overflow:hidden;user-select:none;}
+.kpi::after{content:"";position:absolute;right:-26px;top:-26px;width:76px;height:76px;border-radius:50%;background:var(--kpi-cor,rgba(217,165,33,.14));opacity:.4;}
+.kpi:hover{transform:translateY(-6px) scale(1.03);box-shadow:var(--sombra-forte);}
+.kpi.ativo{border-color:var(--kpi-cor,var(--dourado));box-shadow:var(--sombra-forte);}
+.kpi .ic{font-size:26px;display:block;margin-bottom:6px;}
+.kpi .val{font-family:'Shippori Mincho',serif;font-size:32px;font-weight:800;line-height:1;color:var(--vermelho-esc);}
+.kpi .lbl{font-size:12.5px;font-weight:700;color:var(--tinta-suave);margin-top:6px;letter-spacing:.4px;}
+
+.dia-card{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:#fff;border-radius:26px;overflow:hidden;box-shadow:var(--sombra-forte);margin-bottom:40px;border:4px solid var(--dourado);cursor:pointer;transition:transform .3s;position:relative;}
+.dia-card:hover{transform:translateY(-5px);}
+.dia-card .img{position:relative;min-height:300px;display:flex;align-items:center;justify-content:center;font-size:96px;overflow:hidden;background:linear-gradient(135deg,#FBEEDA,#F5E4C8);}
+.dia-card .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.dia-card .info{padding:30px 32px;display:flex;flex-direction:column;justify-content:center;}
+.tag-dia{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;background:linear-gradient(135deg,var(--dourado),var(--sakura));color:#fff;font-weight:800;font-size:11.5px;letter-spacing:2.5px;padding:7px 16px;border-radius:999px;margin-bottom:14px;text-transform:uppercase;box-shadow:0 4px 12px rgba(217,165,33,.4);}
+.dia-card h2{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.2vw,34px);color:var(--vermelho-esc);line-height:1.15;margin-bottom:8px;}
+.dia-card .pais{font-size:14px;font-weight:700;color:var(--matcha-esc);margin-bottom:12px;}
+.dia-card .desc{font-size:14.5px;line-height:1.65;color:var(--tinta-suave);margin-bottom:18px;}
+.dia-card .meta{display:flex;flex-wrap:wrap;gap:10px;}
+.meta-pill{background:var(--papel);border:2px solid rgba(217,165,33,.4);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--tinta);}
+
+.bloco-filtros{margin-bottom:22px;}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px;}
+.chip{background:#fff;border:2.5px solid rgba(200,16,46,.18);border-radius:999px;padding:9px 18px;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--tinta);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px;box-shadow:0 2px 8px rgba(90,45,20,.07);}
+.chip:hover{transform:translateY(-3px);border-color:var(--sakura);box-shadow:0 6px 16px rgba(90,45,20,.15);}
+.chip.ativo{background:linear-gradient(135deg,var(--vermelho),#E0432F);color:#fff;border-color:var(--dourado);box-shadow:0 6px 18px rgba(200,16,46,.4);}
+.chip .cnt{background:rgba(0,0,0,.12);border-radius:999px;padding:1px 8px;font-size:11.5px;}
+.chip.ativo .cnt{background:rgba(255,255,255,.28);}
+.chip.pais.ativo{background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));}
+.chip.pais{border-color:rgba(107,158,79,.3);}
+.chip.pais:hover{border-color:var(--matcha);}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px;}
+.card{background:#fff;border-radius:var(--raio);overflow:hidden;cursor:pointer;box-shadow:var(--sombra);transition:transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s;display:flex;flex-direction:column;border:3px solid transparent;position:relative;animation:entrar .45s ease both;}
+@keyframes entrar{from{opacity:0;transform:translateY(22px) scale(.96);}to{opacity:1;transform:none;}}
+.card:hover{transform:translateY(-9px) scale(1.02);box-shadow:var(--sombra-forte);border-color:var(--dourado);}
+.card-img{position:relative;height:165px;display:flex;align-items:center;justify-content:center;font-size:58px;overflow:hidden;background:linear-gradient(135deg,#FBEEDA,#F5E4C8);}
+.card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.card:hover .card-img img{transform:scale(1.09);}
+.card-img .emoji-fallback{position:relative;z-index:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.28));}
+.badge-pais{position:absolute;top:10px;left:10px;z-index:3;background:rgba(43,27,18,.82);color:#fff;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.25);}
+.card-top-actions{position:absolute;top:9px;right:9px;z-index:3;display:flex;gap:6px;}
+.btn-icon{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.92);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.22s;box-shadow:0 3px 10px rgba(0,0,0,.22);}
+.btn-icon:hover{transform:scale(1.18) rotate(-8deg);}
+.btn-icon.on{background:var(--sakura);}
+.card-body{padding:14px 15px 16px;display:flex;flex-direction:column;flex:1;}
+.card-body h3{font-family:'Shippori Mincho',serif;font-size:16.5px;font-weight:800;color:var(--tinta);line-height:1.28;margin-bottom:8px;}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
+.mini-tag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--papel);color:var(--tinta-suave);border:1.5px solid rgba(217,165,33,.35);}
+.card-meta{display:flex;gap:12px;font-size:12px;font-weight:700;color:var(--tinta-suave);margin-top:auto;}
+.marcador{margin-top:12px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--tinta-suave);padding:8px 11px;border-radius:12px;background:var(--papel);transition:.2s;border:2px solid transparent;}
+.marcador:hover{background:#F5E4C8;}
+.marcador.on{background:linear-gradient(135deg,#E8F5E2,#D3EBC8);color:var(--matcha-esc);border-color:var(--matcha);}
+.marcador .box{width:19px;height:19px;border-radius:6px;border:2.5px solid rgba(107,158,79,.5);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:.2s;flex-shrink:0;}
+.marcador.on .box{background:var(--matcha);border-color:var(--matcha-esc);}
+.vazio{text-align:center;padding:70px 20px;color:var(--tinta-suave);grid-column:1/-1;}
+.vazio .ic{font-size:62px;display:block;margin-bottom:14px;opacity:.55;}
+.vazio h3{font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:8px;color:var(--tinta);}
+
+.fab{position:fixed;right:26px;bottom:26px;z-index:60;background:linear-gradient(135deg,var(--vermelho),#E0432F);color:#fff;border:3px solid var(--dourado);border-radius:999px;padding:16px 26px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(200,16,46,.45);transition:.25s;display:flex;align-items:center;gap:9px;}
+.fab:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 16px 40px rgba(200,16,46,.6);}
+
+.overlay{position:fixed;inset:0;background:rgba(43,27,18,.72);backdrop-filter:blur(7px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:26px 16px;overflow-y:auto;}
+.overlay.aberto{display:flex;animation:fade .28s ease;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.modal{background:var(--creme);border-radius:26px;max-width:820px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);border:5px solid var(--dourado);animation:subir .38s cubic-bezier(.34,1.4,.64,1);margin:auto;}
+@keyframes subir{from{opacity:0;transform:translateY(45px) scale(.96);}to{opacity:1;transform:none;}}
+.modal-hero{position:relative;height:230px;display:flex;align-items:center;justify-content:center;font-size:82px;overflow:hidden;background:linear-gradient(135deg,#7A0A1C,#C8102E);}
+.modal-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.modal-hero .sombra{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(43,27,18,.88));z-index:1;}
+.modal-hero .titulo-hero{position:absolute;bottom:0;left:0;right:0;padding:22px 26px;z-index:2;color:#fff;}
+.modal-hero .titulo-hero h2{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.6vw,32px);line-height:1.15;text-shadow:0 3px 12px rgba(0,0,0,.6);}
+.modal-hero .titulo-hero .pais{font-size:14px;font-weight:700;color:var(--dourado-claro);margin-top:5px;}
+.btn-fechar{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.94);cursor:pointer;font-size:20px;font-weight:800;color:var(--vermelho-esc);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:.2s;}
+.btn-fechar:hover{transform:rotate(90deg) scale(1.1);}
+.btn-foto{position:absolute;top:14px;left:14px;z-index:5;padding:0 16px;height:42px;border-radius:999px;border:none;background:rgba(255,255,255,.94);cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--vermelho-esc);display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:.2s;}
+.btn-foto:hover{transform:translateY(-2px) scale(1.04);background:#fff;}
+.modal-corpo{padding:26px 28px 34px;}
+.modal-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+.modal-acoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
+.btn-acao{flex:1;min-width:140px;padding:13px 18px;border-radius:14px;border:2.5px solid var(--vermelho);background:#fff;color:var(--vermelho-esc);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:.22s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-acao:hover{background:var(--sakura-claro);transform:translateY(-2px);}
+.btn-acao.on{background:linear-gradient(135deg,var(--vermelho),#E0432F);color:#fff;border-color:var(--dourado);}
+.btn-acao.feito{border-color:var(--matcha);color:var(--matcha-esc);}
+.btn-acao.feito.on{background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));color:#fff;border-color:var(--matcha);}
+
+.bloco{background:#fff;border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:0 3px 14px rgba(90,45,20,.08);border-left:6px solid var(--dourado);}
+.bloco h3{font-family:'Shippori Mincho',serif;font-size:18px;color:var(--vermelho-esc);margin-bottom:14px;display:flex;align-items:center;gap:9px;}
+.bloco.dicas{border-left-color:var(--matcha);}
+.bloco.dicas h3{color:var(--matcha-esc);}
+.bloco.iniciante{border-left-color:var(--sakura);background:linear-gradient(135deg,#FFF6F9,#FFF);}
+.bloco.iniciante h3{color:#B33F63;}
+.bloco.link{border-left-color:#2E5C8A;}
+.bloco.link h3{color:#2E5C8A;}
+.bloco.link a{color:#2E5C8A;font-weight:700;word-break:break-all;}
+
+ul.ing{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;}
+ul.ing li{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:11px;background:var(--papel);font-size:14px;line-height:1.45;cursor:pointer;transition:.2s;border:2px solid transparent;}
+ul.ing li:hover{background:#F5E4C8;}
+ul.ing li.marcado{background:#E8F5E2;text-decoration:line-through;color:var(--tinta-suave);border-color:rgba(107,158,79,.35);}
+ul.ing li .pt{color:var(--dourado);font-weight:900;flex-shrink:0;}
+
+ol.preparo{list-style:none;counter-reset:passo;}
+ol.preparo li{counter-increment:passo;display:flex;gap:14px;padding:13px 14px;border-radius:13px;font-size:14.5px;line-height:1.62;cursor:pointer;transition:.2s;margin-bottom:7px;border:2px solid transparent;}
+ol.preparo li:hover{background:var(--papel);}
+ol.preparo li::before{content:counter(passo);flex-shrink:0;width:31px;height:31px;border-radius:50%;background:linear-gradient(135deg,var(--vermelho),#E0432F);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;box-shadow:0 3px 9px rgba(200,16,46,.35);}
+ol.preparo li.marcado{background:#E8F5E2;color:var(--tinta-suave);}
+ol.preparo li.marcado::before{background:var(--matcha);}
+
+ul.dicas-lista{list-style:none;display:flex;flex-direction:column;gap:9px;}
+ul.dicas-lista li{display:flex;gap:10px;font-size:14.3px;line-height:1.6;}
+ul.dicas-lista li span{color:var(--matcha);font-weight:900;flex-shrink:0;}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.campo{display:flex;flex-direction:column;gap:6px;}
+.campo.full{grid-column:1/-1;}
+.campo label{font-size:12.5px;font-weight:800;color:var(--tinta-suave);letter-spacing:.4px;text-transform:uppercase;display:flex;align-items:center;gap:6px;}
+.campo label .obg{background:var(--vermelho);color:#fff;font-size:9.5px;padding:2px 7px;border-radius:999px;letter-spacing:.5px;}
+.campo label .auto{background:var(--matcha);color:#fff;font-size:9.5px;padding:2px 7px;border-radius:999px;letter-spacing:.5px;}
+.campo input,.campo select,.campo textarea{font-family:inherit;font-size:14px;padding:12px 14px;border-radius:12px;border:2.5px solid rgba(200,16,46,.18);background:#fff;color:var(--tinta);outline:none;transition:.2s;}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--sakura);box-shadow:0 0 0 4px rgba(244,154,180,.25);}
+.campo textarea{resize:vertical;min-height:95px;line-height:1.55;}
+.campo input:disabled,.campo select:disabled,.campo textarea:disabled{background:#F5EFE3;color:var(--tinta-suave);cursor:not-allowed;}
+.cats-check{display:flex;flex-wrap:wrap;gap:8px;}
+.cats-check label{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#fff;border:2.5px solid rgba(200,16,46,.18);cursor:pointer;font-size:13px;font-weight:700;transition:.2s;text-transform:none;letter-spacing:0;}
+.cats-check label:hover{border-color:var(--sakura);}
+.cats-check input{display:none;}
+.cats-check label:has(input:checked){background:var(--sakura-claro);border-color:var(--sakura);}
+.aviso{background:#FFF3D6;border-left:5px solid var(--dourado);padding:12px 16px;border-radius:11px;font-size:13.3px;line-height:1.6;margin-bottom:18px;}
+.aviso.ok{background:#E8F5E2;border-left-color:var(--matcha);}
+.aviso.erro{background:#FFE6E6;border-left-color:var(--vermelho);}
+.aviso.info{background:#E6F0FF;border-left-color:#2E5C8A;}
+
+.input-link-wrap{display:flex;gap:10px;align-items:stretch;}
+.input-link-wrap input{flex:1;}
+.btn-buscar{padding:0 22px;border-radius:12px;border:2.5px solid var(--dourado);background:linear-gradient(135deg,var(--dourado),var(--dourado-claro));color:#fff;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:7px;}
+.btn-buscar:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 18px rgba(217,165,33,.4);}
+.btn-buscar:disabled{opacity:.6;cursor:wait;}
+
+.preview-bloco{background:#fff;border:2.5px dashed rgba(107,158,79,.5);border-radius:16px;padding:18px;margin-bottom:18px;}
+.preview-bloco h4{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--matcha-esc);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.preview-item{background:var(--papel);border-radius:10px;padding:9px 13px;}
+.preview-item .k{font-size:10.5px;font-weight:800;color:var(--tinta-suave);letter-spacing:.5px;text-transform:uppercase;}
+.preview-item .v{font-size:13.5px;font-weight:700;color:var(--tinta);margin-top:3px;}
+.preview-foto{width:100%;height:120px;border-radius:12px;object-fit:cover;background:var(--papel);margin-bottom:12px;}
+
+.upload-area{display:flex;flex-direction:column;gap:10px;background:var(--papel);border:2.5px dashed rgba(217,165,33,.5);border-radius:14px;padding:16px;text-align:center;}
+.upload-area input[type="file"]{display:none;}
+.btn-upload{padding:12px 20px;border-radius:12px;border:2.5px solid var(--dourado);background:#fff;color:var(--tinta);font-family:inherit;font-size:13.5px;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;align-self:center;}
+.btn-upload:hover{background:var(--dourado-claro);transform:translateY(-2px);}
+.foto-preview{width:100%;max-height:200px;object-fit:cover;border-radius:12px;background:#000;display:block;}
+.foto-atual{font-size:12px;color:var(--tinta-suave);font-style:italic;text-align:center;}
+
+#toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,140%);background:linear-gradient(135deg,var(--matcha-esc),var(--matcha));color:#fff;padding:15px 30px;border-radius:999px;font-weight:800;font-size:14.5px;z-index:200;box-shadow:0 12px 34px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.34,1.5,.64,1);border:2.5px solid var(--dourado-claro);white-space:nowrap;}
+#toast.show{transform:translate(-50%,0);}
+
+.spinner{display:inline-block;width:18px;height:18px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+footer{text-align:center;padding:34px 20px;color:var(--tinta-suave);font-size:13px;border-top:3px dashed rgba(217,165,33,.45);margin-top:40px;position:relative;z-index:2;}
+footer strong{color:var(--vermelho-esc);}
+
+@media(max-width:820px){
+  .dia-card{grid-template-columns:1fr;}
+  .dia-card .img{min-height:210px;}
+  .form-grid{grid-template-columns:1fr;}
+  .modal-corpo{padding:20px 17px 28px;}
+  .fab{right:14px;bottom:14px;padding:14px 20px;font-size:14px;}
+  .kpis{grid-template-columns:repeat(2,1fr);}
+  .preview-grid{grid-template-columns:1fr;}
+  .input-link-wrap{flex-direction:column;}
+  .btn-buscar{justify-content:center;padding:14px;}
+}
+@media(max-width:480px){
+  header{padding:26px 16px 22px;}
+  .grid{grid-template-columns:1fr;}
+  ul.ing{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="sakura"></div>
+
+<header>
+  <div class="header-inner">
+    <span class="selo">✿ 料理の本 ✿</span>
+    <h1>Meu Livro de Receitas Fantásticas
+      <span class="jp">おいしい レシピ</span>
+    </h1>
+    <p class="sub">Um caderno de cozinha vivo com receitas do mundo inteiro. Cole um link e a receita se preenche sozinha. 🌸</p>
+  </div>
+  <div class="busca-wrap">
+    <span class="busca-ico">🔍</span>
+    <input id="busca" type="text" placeholder="Buscar receita, ingrediente ou país...">
+  </div>
+</header>
+
+<main>
+  <section class="kpis" id="kpis"></section>
+  <div class="secao-titulo">🌸 Receita do Dia</div>
+  <div id="receitaDia"></div>
+  <div class="secao-titulo">🍥 Categorias</div>
+  <div class="bloco-filtros"><div class="chips" id="chipsCategoria"></div></div>
+  <div class="secao-titulo">🌏 Cozinhas do Mundo</div>
+  <div class="bloco-filtros"><div class="chips" id="chipsPais"></div></div>
+  <div class="secao-titulo" id="tituloGrid">📖 Todas as Receitas</div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<button class="fab" onclick="abrirFormulario()">➕ Adicionar Receita</button>
+
+<footer>
+  Feito com <strong>arroz, curry e amor</strong> 🌸 · Meu Livro de Receitas Fantásticas<br>
+  <span style="font-size:12px;opacity:.75">Clique nos KPIs, categorias e países para filtrar. Favoritas, receitas testadas e fotos ficam salvas no navegador.</span>
+</footer>
+
+<!-- MODAL RECEITA -->
+<div class="overlay" id="overlayReceita" onclick="if(event.target===this)fecharReceita()">
+  <div class="modal" id="modalReceita"></div>
+</div>
+
+<!-- MODAL FOTO -->
+<div class="overlay" id="overlayFoto" onclick="if(event.target===this)fecharFoto()">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-hero" style="height:120px;">
+      <button class="btn-fechar" onclick="fecharFoto()">✕</button>
+      <div class="titulo-hero">
+        <h2>📷 Trocar Foto</h2>
+        <div class="pais" id="fotoReceitaNome">—</div>
+      </div>
+    </div>
+    <div class="modal-corpo">
+      <img id="fotoPreview" class="foto-preview" style="margin-bottom:16px;display:none;" alt="Prévia">
+      <div class="campo" style="margin-bottom:14px;">
+        <label>🔗 URL da imagem</label>
+        <input type="url" id="fotoURL" placeholder="https://exemplo.com/foto.jpg">
+      </div>
+      <div class="upload-area">
+        <span style="font-size:13px;font-weight:700;color:var(--tinta-suave);">— ou envie um arquivo do seu computador —</span>
+        <label for="fotoArquivo" class="btn-upload">📁 Escolher imagem</label>
+        <input type="file" id="fotoArquivo" accept="image/*">
+        <span class="foto-atual" id="fotoStatus"></span>
+      </div>
+      <div class="modal-acoes" style="margin-top:20px;margin-bottom:0;">
+        <button type="button" class="btn-acao" onclick="removerFotoAtual()">🗑️ Remover foto</button>
+        <button type="button" class="btn-acao on" onclick="salvarFoto()">💾 Salvar foto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ADICIONAR -->
+<div class="overlay" id="overlayForm" onclick="if(event.target===this)fecharFormulario()">
+  <div class="modal">
+    <div class="modal-hero" style="height:130px;">
+      <button class="btn-fechar" onclick="fecharFormulario()">✕</button>
+      <div class="titulo-hero">
+        <h2>🔗 Adicionar Receita por Link</h2>
+        <div class="pais">Cole o link e eu preencho quase tudo ✨</div>
+      </div>
+    </div>
+    <div class="modal-corpo">
+      <div class="aviso info">
+        💡 <strong>Como funciona:</strong> cole o link de uma receita, clique em <strong>Buscar</strong> e eu extraio automaticamente nome, foto, ingredientes, passos, tempo e porções. Você só precisa <strong>confirmar o país, a dificuldade e as categorias</strong>.
+      </div>
+      <form id="formReceita" onsubmit="salvarNovaReceita(event)">
+        <div class="form-grid">
+          <div class="campo full">
+            <label>🔗 Link da receita <span class="obg">OBRIGATÓRIO</span></label>
+            <div class="input-link-wrap">
+              <input type="url" id="fLink" placeholder="https://site.com/receita..." required>
+              <button type="button" class="btn-buscar" id="btnBuscar" onclick="buscarDadosLink()">
+                <span id="btnBuscarTxt">🔍 Buscar</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="campo full" id="statusBusca"></div>
+
+          <div class="campo full" id="previewWrap" style="display:none;">
+            <div class="preview-bloco">
+              <h4>✨ Dados extraídos do link</h4>
+              <img id="prevFoto" class="preview-foto" style="display:none;" alt="Prévia">
+              <div class="preview-grid">
+                <div class="preview-item"><div class="k">Nome</div><div class="v" id="prevNome">—</div></div>
+                <div class="preview-item"><div class="k">Tempo</div><div class="v" id="prevTempo">—</div></div>
+                <div class="preview-item"><div class="k">Porções</div><div class="v" id="prevPorcoes">—</div></div>
+                <div class="preview-item"><div class="k">Ingredientes</div><div class="v" id="prevIngs">—</div></div>
+                <div class="preview-item"><div class="k">Passos</div><div class="v" id="prevPassos">—</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="campo full">
+            <label>🍽️ Nome da receita <span class="auto">AUTO</span></label>
+            <input type="text" id="fNome" placeholder="Preenchido ao buscar o link" required>
+          </div>
+
+          <div class="campo">
+            <label>🌏 País / Cozinha <span class="obg">VOCÊ ESCOLHE</span></label>
+            <input type="text" id="fPais" list="listaPaises" placeholder="Ex: Brasil" required>
+            <datalist id="listaPaises"></datalist>
+          </div>
+          <div class="campo">
+            <label>📊 Dificuldade <span class="obg">VOCÊ ESCOLHE</span></label>
+            <select id="fDificuldade">
+              <option>Fácil</option><option selected>Média</option>
+              <option>Difícil</option><option>Chef</option>
+            </select>
+          </div>
+
+          <div class="campo full">
+            <label>🏷️ Categorias <span class="obg">VOCÊ ESCOLHE</span></label>
+            <div class="cats-check" id="fCats"></div>
+          </div>
+
+          <div class="campo">
+            <label>😀 Emoji <span class="auto">AUTO</span></label>
+            <input type="text" id="fEmoji" placeholder="🍲" maxlength="4" value="🍽️">
+          </div>
+          <div class="campo">
+            <label>⏱️ Tempo (min) <span class="auto">AUTO</span></label>
+            <input type="number" id="fTempo" value="30" min="1">
+          </div>
+          <div class="campo">
+            <label>🍽️ Porções <span class="auto">AUTO</span></label>
+            <input type="number" id="fPorcoes" value="4" min="1">
+          </div>
+          <div class="campo">
+            <label>🎨 Cor do card</label>
+            <select id="fCor">
+              <option value="#C8102E,#E0432F">Vermelho Torii</option>
+              <option value="#6B9E4F,#3F6B2C">Verde Matcha</option>
+              <option value="#D9A521,#F2CE6B">Dourado Curry</option>
+              <option value="#F49AB4,#FCD9E3">Rosa Sakura</option>
+              <option value="#8B4513,#D2691E">Marrom Soja</option>
+              <option value="#2E5C8A,#5B9BD5">Azul Oceano</option>
+            </select>
+          </div>
+
+          <div class="campo full">
+            <label>🖼️ Foto da receita <span class="auto">AUTO</span></label>
+            <input type="url" id="fFoto" placeholder="Deixe em branco para usar a foto do link">
+          </div>
+
+          <div class="campo full">
+            <label>🧂 Ingredientes (um por linha) <span class="auto">AUTO</span></label>
+            <textarea id="fIng" placeholder="Preenchido ao buscar o link"></textarea>
+          </div>
+          <div class="campo full">
+            <label>👨‍🍳 Modo de preparo (um passo por linha) <span class="auto">AUTO</span></label>
+            <textarea id="fPassos" placeholder="Preenchido ao buscar o link"></textarea>
+          </div>
+          <div class="campo full">
+            <label>💡 Dicas (opcional)</label>
+            <textarea id="fDicas" placeholder="Dicas adicionais..."></textarea>
+          </div>
+        </div>
+        <div class="modal-acoes" style="margin-top:20px;margin-bottom:0;">
+          <button type="button" class="btn-acao" onclick="fecharFormulario()">Cancelar</button>
+          <button type="submit" class="btn-acao on">✨ Criar Cartão</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ==================== CATEGORIAS ==================== */
+const CATEGORIAS = {
+  'salgadas':            { nome:'Comidas Salgadas',    emoji:'🍛', cor:'#C8102E' },
+  'sobremesas-salgadas': { nome:'Sobremesas Salgadas', emoji:'🥨', cor:'#D9A521' },
+  'doces':               { nome:'Doces & Sobremesas',  emoji:'🍰', cor:'#F49AB4' },
+  'praticas':            { nome:'Comidas Práticas',    emoji:'⚡', cor:'#6B9E4F' },
+  'complexas':           { nome:'Comidas Complexas',   emoji:'🔥', cor:'#8B4513' },
+  'refinadas':           { nome:'Comidas Refinadas',   emoji:'👨‍🍳', cor:'#2E5C8A' }
+};
+
+/* ==================== BANCO DE RECEITAS ==================== */
+const RECEITAS_BASE = [
+{id:'br1',nome:'Feijão Tropeiro',pais:'Brasil',bandeira:'🇧🇷',cats:['salgadas','complexas'],emoji:'🍲',tempo:60,porcoes:6,dificuldade:'Média',cor:['#8B4513','#D2691E'],img:'feijao,tropeiro,brazilian',desc:'O prato símbolo dos tropeiros de Minas Gerais.',ingredientes:['500g de feijão carioca cozido','300g de farinha de mandioca torrada','200g de bacon em cubinhos','200g de linguiça calabresa','150g de carne-seca dessalgada','1 cebola grande picada','3 dentes de alho picados','2 ovos','1 maço de couve fatiada','3 colheres de óleo','Sal, pimenta e cheiro-verde'],passos:['Dessalgue a carne-seca em água por 12h. Cozinhe na pressão 30min e desfie.','Cozinhe o feijão até ficar macio, mas inteiro. Escorra e guarde 1 xícara do caldo.','Frite o bacon até dourar.','Junte a calabresa e a carne-seca. Doure 5min.','Adicione cebola e alho. Refogue.','Quebre os ovos no centro e mexa rápido.','Acrescente o feijão e misture.','Junte a couve e mexa 2min.','Adicione a farinha aos poucos, regando com o caldo.','Ajuste o sal e finalize com cheiro-verde.'],dicas:['O ponto certo é úmido e soltinho.','A couve entra por último.','Sirva com ovo frito por cima.'],iniciante:'Pense no tropeiro como um "arroz de feijão com farofa". Cada carne é fritada separadamente e só no final tudo se encontra na panela.'},
+{id:'br2',nome:'Moqueca Baiana',pais:'Brasil',bandeira:'🇧🇷',cats:['salgadas','complexas'],emoji:'🐟',tempo:50,porcoes:4,dificuldade:'Média',cor:['#D9A521','#E0432F'],img:'moqueca,fish,stew',desc:'Peixe no leite de coco e azeite de dendê.',ingredientes:['800g de filé de peixe branco','Suco de 2 limões','200ml de leite de coco','3 colheres de azeite de dendê','2 tomates em rodelas','1 pimentão vermelho e 1 amarelo','1 cebola grande','3 dentes de alho','1 maço de coentro','Sal e pimenta'],passos:['Tempere os filés com sal, pimenta, alho e limão. Descanse 20min.','Faça uma cama com metade dos legumes na panela.','Distribua os filés sobre a cama.','Cubra com o restante dos legumes.','Regue com leite de coco e metade do dendê.','Tampe e cozinhe 20min em fogo médio. Não mexa!','Quando o peixe estiver branco, regue com o dendê restante.','Finalize com coentro e sirva na panela.'],dicas:['Nunca mexa a moqueca com colher.','O dendê no final preserva o aroma.','Sirva com arroz e pirão.'],iniciante:'Moqueca é um "cozido no vapor" de peixe. Você monta camadas e deixa a panela tampada fazer o trabalho.'},
+{id:'br3',nome:'Pão de Queijo Mineiro',pais:'Brasil',bandeira:'🇧🇷',cats:['sobremesas-salgadas','praticas'],emoji:'🧀',tempo:45,porcoes:20,dificuldade:'Fácil',cor:['#F2CE6B','#D9A521'],img:'pao,de,queijo,cheese,bread',desc:'Bolinhas douradas, crocantes por fora e elásticas por dentro.',ingredientes:['500g de polvilho azedo','250ml de leite integral','100ml de óleo de girassol','2 ovos grandes','250g de queijo minas ralado','1 colher de sal'],passos:['Ferva o leite com o óleo e o sal.','Despeje sobre o polvilho. Mexa com colher de pau.','Deixe esfriar 10min.','Adicione os ovos um a um, sovando.','Junte o queijo e sove até ficar homogênea.','Faça bolinhas de 30g.','Coloque em assadeira untada.','Asse a 180°C por 25-30min.'],dicas:['Polvilho azedo dá o "puxa".','Se grudar, adicione polvilho.','Congele cru: asse direto.'],iniciante:'É uma massa escaldada: o líquido quente "cozinha" o polvilho e faz o pão crescer.'},
+{id:'br4',nome:'Brigadeiro Gourmet',pais:'Brasil',bandeira:'🇧🇷',cats:['doces','praticas'],emoji:'🍫',tempo:25,porcoes:20,dificuldade:'Fácil',cor:['#8B4513','#3E2723'],img:'brigadeiro,chocolate,truffle',desc:'O doce mais brasileiro com chocolate meio amargo.',ingredientes:['1 lata de leite condensado','4 colheres de cacau em pó 100%','1 colher de manteiga sem sal','1 pitada de sal','100g de chocolate meio amargo','Granulado belga'],passos:['Misture leite condensado, cacau, manteiga e sal na panela.','Cozinhe em fogo baixo mexendo por 12-15min.','Se quiser mais firme, adicione chocolate picado.','Despeje em prato untado e cubra com filme.','Esfrie 2h na geladeira.','Faça bolinhas de 15g.','Passe no granulado e coloque em forminhas.'],dicas:['Cacau em pó, não achocolatado.','A pitada de sal realça o chocolate.','Se ficar mole, volte ao fogo 2min.'],iniciante:'É só "mexer até dar ponto". O ponto é quando a espátula no fundo demora 2 segundos para fechar.'},
+{id:'br5',nome:'Acarajé Baiano',pais:'Brasil',bandeira:'🇧🇷',cats:['salgadas','complexas'],emoji:'🫓',tempo:90,porcoes:8,dificuldade:'Difícil',cor:['#E0432F','#8B4513'],img:'acaraje,fritter,black,eyed,pea',desc:'Bolinho de feijão-fradinho frito no dendê.',ingredientes:['500g de feijão-fradinho seco','1 cebola','1 colher de sal','1 litro de azeite de dendê','200g de vatapá','150g de caruru','100g de camarão seco','1 tomate e 1 cebola','Pimenta malagueta'],passos:['Deixe o feijão de molho 4h. Esfregue para soltar a casca.','Descarte as cascas e lave até ficar branco.','Bata o feijão com cebola até formar pasta fofa.','Adicione sal e bata mais 3min.','Aqueça o dendê a 170°C.','Molde bolinhos e frite até dourar.','Escorra em papel.','Recheie com vatapá, caruru, camarão e salada.'],dicas:['A massa precisa ser batida bastante.','Se afundar no dendê, bata mais.','Dendê quente, nunca fumegando.'],iniciante:'O maior trabalho é descascar o feijão. Depois é só bater bem a massa e fritar.'},
+
+{id:'jp1',nome:'Ramen Tonkotsu',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','complexas'],emoji:'🍜',tempo:180,porcoes:4,dificuldade:'Difícil',cor:['#3E2723','#8B4513'],img:'ramen,tonkotsu,noodles',desc:'Caldo cremoso de ossos de porco com macarrão e ovo marinado.',ingredientes:['1,5kg de ossos de porco','500g de barriga de porco','4 porções de macarrão','4 ovos','100ml de shoyu','50ml de mirin','1 pedaço de kombu','4 dentes de alho e gengibre','4 cebolinhas','Óleo de gergelim'],passos:['Branqueie os ossos: ferva 10min, escorra e lave.','Cozinhe em água fervente 8-12h.','Marine os ovos: cozinhe 6min30, deixe 12h em shoyu+mirin.','Faça o chashu: enrole a barriga, cozinhe no caldo 2h.','Prepare o tare: reduza shoyu, mirin e aromáticos.','Cozinhe o macarrão al dente.','Monte: tare, caldo, macarrão.','Finalize com chashu, ovo, cebolinha.'],dicas:['O caldo precisa ferver forte.','Nunca adicione sal antes de provar o tare.','Ovo marinado 24h fica melhor.'],iniciante:'Ramen é uma receita de paciência. O caldo leva horas, mas você só deixa fervendo.'},
+{id:'jp2',nome:'Nigiri de Salmão',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','refinadas'],emoji:'🍣',tempo:60,porcoes:4,dificuldade:'Difícil',cor:['#F49AB4','#E0432F'],img:'sushi,nigiri,salmon',desc:'Arroz temperado moldado à mão com salmão fresco.',ingredientes:['400g de arroz japonês','60ml de vinagre de arroz','2 colheres de açúcar','1 colher de sal','400g de salmão grau sashimi','Wasabi','Shoyu','Gengibre em conserva'],passos:['Lave o arroz até a água sair clara. Cozinhe 1:1.','Misture vinagre, açúcar e sal. Despeje sobre o arroz quente.','Esfrie até temperatura ambiente.','Corte o salmão em fatias de 5cm x 2,5cm.','Com as mãos úmidas, molde bolinhos ovais de 18g.','Passe wasabi na fatia de salmão.','Coloque sobre o arroz e pressione.','Sirva imediatamente.'],dicas:['O arroz deve estar morno.','Mantenha as mãos úmidas.','Use peixe de fornecedor confiável.'],iniciante:'A parte mais difícil é o ponto do arroz. Depois é só modelar bolinhos ovais.'},
+{id:'jp3',nome:'Okonomiyaki',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','praticas'],emoji:'🥞',tempo:35,porcoes:2,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'okonomiyaki,japanese,pancake',desc:'A "pizza japonesa" de repolho e bacon.',ingredientes:['150g de farinha','120ml de água','2 ovos','300g de repolho','4 fatias de bacon','2 cebolinhas','Molho okonomiyaki','Maionese japonesa','Katsuobushi'],passos:['Misture farinha, água e ovos.','Adicione repolho e cebolinha.','Aqueça frigideira com óleo.','Despeje metade da massa em disco.','Coloque bacon por cima.','Cozinhe 5min, vire e cozinhe mais 5.','Repita com o restante.','Cubra com molho, maionese e katsuobushi.'],dicas:['Não mexa depois de colocar.','Quanto mais repolho, melhor.','O katsuobushi "dança".'],iniciante:'É uma panqueca salgada gigante. Misture tudo, jogue na frigideira e vire com um prato.'},
+{id:'jp4',nome:'Curry Japonês (Kare Raisu)',pais:'Japão',bandeira:'🇯🇵',cats:['salgadas','praticas'],emoji:'🍛',tempo:45,porcoes:4,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'japanese,curry,rice,kare',desc:'Curry espesso e adocicado sobre arroz.',ingredientes:['500g de carne em cubos','2 cebolas','2 cenouras','2 batatas','1 maçã ralada','1 colher de curry em pó','1 tablete de roux','800ml de água','2 colheres de óleo','Arroz branco'],passos:['Doure a carne. Reserve.','Doure a cebola.','Junte cenoura e batata.','Volte a carne, adicione curry e maçã.','Cubra com água e cozinhe 25min.','Desligue e adicione o roux.','Cozinhe 5min em fogo baixo.','Sirva sobre arroz.'],dicas:['Desligue antes do roux.','A maçã dá doçura.','Descanse 10min antes de servir.'],iniciante:'É um cozido simples: doure, cubra com água, cozinhe e engrosse com o tablete.'},
+{id:'jp5',nome:'Dorayaki',pais:'Japão',bandeira:'🇯🇵',cats:['doces','praticas'],emoji:'🥮',tempo:30,porcoes:6,dificuldade:'Fácil',cor:['#D9A521','#8B4513'],img:'dorayaki,japanese,pancake',desc:'Panquecas fofas recheadas com pasta de feijão azuki.',ingredientes:['2 ovos','80g de açúcar','1 colher de mel','120g de farinha','1 colher de fermento','2 colheres de água','250g de pasta de feijão azuki'],passos:['Bata ovos com açúcar até ficar claro.','Adicione o mel.','Peneire farinha e fermento.','Adicione água e misture.','Descanse 15min na geladeira.','Faça discos de 7cm em fogo baixo.','Cozinhe 2min, vire e cozinhe 1.','Junte dois discos com anko no meio.'],dicas:['Fogo baixo é essencial.','O descanso melhora a textura.','Molhe a frigideira antes de cada disco.'],iniciante:'São mini panquecas com recheio no meio. O segredo é fogo baixo.'},
+
+{id:'it1',nome:'Spaghetti alla Carbonara',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','praticas'],emoji:'🍝',tempo:25,porcoes:4,dificuldade:'Média',cor:['#F2CE6B','#D9A521'],img:'carbonara,pasta,spaghetti',desc:'Massa cremosa com guanciale, ovos e pecorino.',ingredientes:['400g de spaghetti','150g de guanciale','4 gemas + 1 ovo','100g de pecorino','50g de parmesão','Pimenta-do-reino','Sal'],passos:['Cozinhe o spaghetti al dente.','Frite o guanciale até ficar crocante.','Misture gemas, ovo, queijos e pimenta.','Escorra a massa, guardando 1 xícara de água.','Jogue a massa na panela do guanciale (fogo desligado).','Adicione a mistura de ovos mexendo rápido.','Vá adicionando água do cozimento.','Sirva com pecorino e pimenta.'],dicas:['Nunca use creme de leite.','Fogo desligado ao adicionar ovos.','A água do cozimento é o segredo.'],iniciante:'O perigo é o ovo cozinhar demais. Desligue o fogo antes de jogar os ovos.'},
+{id:'it2',nome:'Risoto de Cogumelos',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','refinadas','complexas'],emoji:'🍚',tempo:45,porcoes:4,dificuldade:'Difícil',cor:['#8B4513','#6B5849'],img:'risotto,mushroom,italian',desc:'Arroz arbório cremoso com caldo, vinho e cogumelos.',ingredientes:['320g de arroz arbório','300g de cogumelos','1,2L de caldo quente','150ml de vinho branco','1 cebola','60g de manteiga gelada','80g de parmesão','2 colheres de azeite','Sal e pimenta'],passos:['Aqueça o caldo e mantenha quente.','Refogue a cebola no azeite.','Adicione cogumelos e doure. Reserve alguns.','Junte o arroz e refogue 2min.','Adicione vinho e deixe evaporar.','Adicione 1 concha de caldo. Repita por 18min.','Prove — al dente.','Desligue e adicione manteiga e parmesão. Mexa forte.','Tampe e descanse 2min.'],dicas:['Caldo aos poucos, sempre quente.','Mexa constantemente.','A mantecatura final é o segredo.'],iniciante:'Risoto é questão de ritmo: concha de caldo, mexe, seca, concha de novo.'},
+{id:'it3',nome:'Pizza Margherita',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','complexas'],emoji:'🍕',tempo:120,porcoes:4,dificuldade:'Média',cor:['#C8102E','#6B9E4F'],img:'pizza,margherita,italian',desc:'Massa fina, tomate San Marzano, muçarela e basílico.',ingredientes:['500g de farinha tipo 00','325ml de água morna','10g de sal','3g de fermento','400g de tomate San Marzano','250g de muçarela de búfala','Basílico','Azeite'],passos:['Misture farinha, fermento e água. Descanse 20min.','Adicione sal e sove 10min.','Deixe fermentar 2h.','Divida em 4 bolas. Descanse 30min.','Amasse o tomate com as mãos.','Abra cada bola com as mãos.','Espalhe molho, muçarela e azeite.','Asse a 250-280°C por 7-9min.','Adicione basílico depois.'],dicas:['Forno bem quente.','Não use rolo.','Basílico só depois de assar.'],iniciante:'É pão com molho e queijo. Deixe a massa crescer bem.'},
+{id:'it4',nome:'Tiramisù',pais:'Itália',bandeira:'🇮🇹',cats:['doces','complexas'],emoji:'🍰',tempo:40,porcoes:8,dificuldade:'Média',cor:['#8B4513','#F2CE6B'],img:'tiramisu,italian,dessert',desc:'Camadas de biscoito no café, mascarpone e cacau.',ingredientes:['500g de mascarpone','4 ovos','120g de açúcar','300ml de café espresso','300g de savoiardi','Cacau em pó','1 colher de licor Marsala'],passos:['Bata gemas com açúcar.','Adicione mascarpone em colheradas.','Bata claras em neve.','Incorpore delicadamente.','Misture café com licor.','Molde os biscoitos e forre o refratário.','Cubra com metade do creme. Repita.','Geladeira 6-12h.','Polvilhe cacau antes de servir.'],dicas:['Molhar rápido.','O descanso de 12h é essencial.','Cacau só no final.'],iniciante:'É montagem em camadas: biscoito molhado, creme, biscoito, creme.'},
+{id:'it5',nome:'Lasanha à Bolonhesa',pais:'Itália',bandeira:'🇮🇹',cats:['salgadas','complexas'],emoji:'🥘',tempo:150,porcoes:8,dificuldade:'Média',cor:['#C8102E','#D9A521'],img:'lasagna,italian,bolognese',desc:'Camadas de massa, ragu cozido por horas e molho branco.',ingredientes:['500g de massa para lasanha','500g de carne moída','300g de carne de porco','1 cebola, 1 cenoura, 1 salsão','800g de tomate pelado','200ml de vinho tinto','600ml de leite','80g de manteiga','80g de farinha','300g de parmesão'],passos:['Refogue cebola, cenoura e salsão.','Adicione carnes e doure.','Junte vinho e deixe evaporar.','Adicione tomate e cozinhe 2h.','Molho branco: manteiga, farinha, leite.','Monte: bolonhesa, massa, branco, parmesão. 4x.','Termine com branco e parmesão.','Asse a 180°C por 35min.','Descanse 15min antes de cortar.'],dicas:['O ragu de 2h é essencial.','Descanse antes de cortar.','Se usar massa seca, pré-cozinhe.'],iniciante:'É montagem em camadas, como um bolo salgado.'},
+
+{id:'mx1',nome:'Tacos al Pastor',pais:'México',bandeira:'🇲🇽',cats:['salgadas','complexas'],emoji:'🌮',tempo:90,porcoes:6,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'tacos,al,pastor,mexican',desc:'Carne de porco marinada em achiote e chiles com abacaxi.',ingredientes:['1kg de pernil em fatias','100g de pasta de achiote','3 chiles guajillo','2 chiles ancho','100ml de vinagre','4 dentes de alho','1 colher de orégano','1 abacaxi','Tortillas','Coentro, cebola e limão'],passos:['Hidrate os chiles 20min.','Bata chiles, achiote, vinagre, alho e orégano.','Marine as fatias 4-12h.','Grelhe em frigideira bem quente.','Grelhe o abacaxi e corte.','Pique a carne.','Aqueça as tortillas.','Monte: carne, abacaxi, cebola, coentro, limão.'],dicas:['Marinada de 12h muda o sabor.','Abacaxi grelhado é obrigatório.','Aqueça as tortillas na hora.'],iniciante:'É carne marinada e grelhada. Faça a marinada no dia anterior.'},
+{id:'mx2',nome:'Guacamole Autêntico',pais:'México',bandeira:'🇲🇽',cats:['sobremesas-salgadas','praticas'],emoji:'🥑',tempo:15,porcoes:4,dificuldade:'Fácil',cor:['#6B9E4F','#3F6B2C'],img:'guacamole,avocado,mexican',desc:'Abacate amassado com limão, cebola, tomate e coentro.',ingredientes:['3 abacates maduros','Suco de 2 limões','1 tomate','1/2 cebola roxa','Coentro','1 jalapeño','Sal'],passos:['Corte os abacates em tigela.','Amasse com garfo, deixando pedaços.','Adicione limão.','Junte cebola, tomate, coentro e pimenta.','Misture e ajuste o sal.','Sirva com chips.'],dicas:['Abacate maduro cede.','Não bata no liquidificador.','Deixe o caroço se for guardar.'],iniciante:'É só amassar abacate e misturar.'},
+{id:'mx3',nome:'Pozole Rojo',pais:'México',bandeira:'🇲🇽',cats:['salgadas','complexas'],emoji:'🍲',tempo:120,porcoes:8,dificuldade:'Média',cor:['#C8102E','#E0432F'],img:'pozole,mexican,soup',desc:'Sopa de milho hominy com porco e caldo de chiles.',ingredientes:['1kg de milho hominy','1kg de carne de porco','5 chiles guajillo','3 chiles ancho','1 cebola, 6 dentes de alho','1 colher de orégano','Repolho, rabanete, cebola, limão','Tostadas'],passos:['Cozinhe o milho com alho por 1,5h.','Cozinhe o porco com cebola e alho 1h.','Hidrate os chiles.','Bata chiles com água e orégano.','Peneire no caldo do porco.','Junte o milho e a carne.','Cozinhe 30min.','Sirva com acompanhamentos.'],dicas:['Peneirar o molho.','Acompanhamentos frescos são obrigatórios.','Pode ser feito antes.'],iniciante:'É uma sopa em duas etapas: cozinha milho, cozinha carne, junta com molho.'},
+{id:'mx4',nome:'Churros com Chocolate',pais:'México',bandeira:'🇲🇽',cats:['doces'],emoji:'🍩',tempo:40,porcoes:6,dificuldade:'Média',cor:['#8B4513','#D9A521'],img:'churros,chocolate,mexican',desc:'Massa frita com açúcar e canela, com chocolate quente.',ingredientes:['250ml de água','150g de farinha','1 colher de manteiga','1 pitada de sal','1 colher de açúcar','Óleo','Açúcar e canela','200g de chocolate + 100ml de creme'],passos:['Ferva água com manteiga, sal e açúcar.','Adicione farinha e mexa até formar bola.','Esfrie 10min.','Coloque em saco com bico estrela.','Aqueça óleo a 180°C.','Modele direto no óleo.','Frite até dourar.','Passe no açúcar com canela.','Derreta chocolate com creme.'],dicas:['A massa deve virar bola.','Óleo a 180°C.','Sirva imediatamente.'],iniciante:'É uma massa cozida e depois frita.'},
+{id:'mx5',nome:'Enchiladas Verdes',pais:'México',bandeira:'🇲🇽',cats:['salgadas'],emoji:'🌯',tempo:50,porcoes:4,dificuldade:'Média',cor:['#6B9E4F','#D9A521'],img:'enchiladas,verdes,mexican',desc:'Tortillas com frango banhadas em molho verde gratinado.',ingredientes:['12 tortillas','500g de frango desfiado','800g de tomatillos','2 chiles serrano','1/2 cebola','2 dentes de alho','Coentro','200g de queijo fresco','200ml de creme'],passos:['Cozinhe tomatillos, chiles, cebola e alho 10min.','Bata com coentro e sal.','Cozinhe o molho 5min.','Passe cada tortilla no óleo quente.','Recheie com frango e enrole.','Coloque em refratário.','Cubra com molho e creme.','Polvilhe queijo e asse a 200°C por 15min.'],dicas:['Passar a tortilla no óleo evita rache.','Se não achar tomatillo, use tomate verde.','Sirva com cebola roxa e coentro.'],iniciante:'É um rolinho de tortilla com molho por cima.'},
+
+{id:'in1',nome:'Butter Chicken',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas','complexas'],emoji:'🍗',tempo:80,porcoes:4,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'butter,chicken,indian,curry',desc:'Frango marinado em iogurte com molho cremoso de tomate.',ingredientes:['800g de frango','200g de iogurte','1 colher de garam masala','1 colher de cúrcuma','1 colher de caiena','600g de tomate pelado','100g de castanha de caju','100g de manteiga','200ml de creme de leite','1 cebola, 4 dentes de alho, gengibre'],passos:['Marine o frango 4h.','Grelhe ou asse. Reserve.','Deixe castanhas de molho e bata.','Refogue cebola, alho e gengibre na manteiga.','Adicione tomate e cozinhe 20min.','Bata e passe por peneira.','Volte à panela com pasta de castanhas. 10min.','Junte frango e creme. 10min.','Finalize com manteiga e coentro.'],dicas:['Peneirar o molho faz diferença.','Marinada longa deixa macio.','Sirva com arroz basmati e naan.'],iniciante:'Marinar e grelhar o frango, e fazer molho cremoso de tomate.'},
+{id:'in2',nome:'Biryani de Frango',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas','complexas','refinadas'],emoji:'🍛',tempo:120,porcoes:6,dificuldade:'Difícil',cor:['#D9A521','#E0432F'],img:'biryani,chicken,indian,rice',desc:'Arroz basmati em camadas com frango e açafrão.',ingredientes:['600g de basmati','1kg de frango','300g de iogurte','3 cebolas','1 colher de pasta de gengibre-alho','2 colheres de garam masala','1 colher de cúrcuma','1 pitada de açafrão em leite','100g de ghee','Coentro e hortelã'],passos:['Frite as cebolas até dourar. Reserve.','Marine o frango 1h.','Cozinhe o frango tampado 25min.','Deixe o arroz de molho 30min.','Cozinhe o arroz 5min. Escorra.','Monte: frango, arroz.','Espalhe birista, ervas, açafrão e ghee.','Tampe com pano. Fogo mínimo 25min.','Descanse 10min.'],dicas:['Arroz 70% cozido antes das camadas.','Pano na tampa sela o vapor.','Não misture antes de servir.'],iniciante:'É um "arroz de forno" indiano feito na panela.'},
+{id:'in3',nome:'Samosa de Batata',pais:'Índia',bandeira:'🇮🇳',cats:['sobremesas-salgadas'],emoji:'🥟',tempo:70,porcoes:12,dificuldade:'Média',cor:['#D9A521','#8B4513'],img:'samosa,indian,snack',desc:'Triângulos crocantes recheados com batata e especiarias.',ingredientes:['250g de farinha','4 colheres de óleo','100ml de água morna','1 colher de sal','4 batatas cozidas','100g de ervilha','1 colher de cominho','1 colher de garam masala','1 colher de gengibre'],passos:['Misture farinha, sal e óleo.','Adicione água e sove. Descanse 30min.','Amasse as batatas com ervilha e especiarias.','Abra discos e corte ao meio.','Forme um cone e sele a lateral.','Recheie e sele a borda.','Frite em óleo a 160°C.','Sirva com chutney.'],dicas:['Fritar em óleo não muito quente.','Sele as bordas com água.','Pode assar a 200°C por 25min.'],iniciante:'É um pastelzinho triangular.'},
+{id:'in4',nome:'Dal Makhani',pais:'Índia',bandeira:'🇮🇳',cats:['salgadas'],emoji:'🥣',tempo:90,porcoes:6,dificuldade:'Média',cor:['#8B4513','#3E2723'],img:'dal,makhani,indian,lentils',desc:'Lentilhas negras com manteiga e creme.',ingredientes:['250g de lentilha preta','100g de feijão rajma','1 cebola','3 dentes de alho','1 pedaço de gengibre','400g de tomate pelado','100g de manteiga','100ml de creme','1 colher de garam masala','1 colher de cominho'],passos:['Deixe de molho 8h.','Cozinhe na pressão com sal 30min.','Refogue a cebola na manteiga.','Adicione alho e gengibre.','Junte tomate e cozinhe 15min.','Adicione as lentilhas com água.','Cozinhe 30min em fogo baixo.','Finalize com creme, manteiga e temperos.'],dicas:['Quanto mais tempo, mais cremoso.','Amasse algumas lentilhas.','Sirva com naan.'],iniciante:'É um feijão com lentilha cozido e refogado.'},
+{id:'in5',nome:'Gulab Jamun',pais:'Índia',bandeira:'🇮🇳',cats:['doces'],emoji:'🍮',tempo:60,porcoes:15,dificuldade:'Média',cor:['#8B4513','#D9A521'],img:'gulab,jamun,indian,dessert',desc:'Bolinhas de leite fritas em calda com cardamomo.',ingredientes:['200g de leite em pó','60g de farinha','1/4 colher de bicarbonato','2 colheres de ghee','80ml de leite morno','500g de açúcar','500ml de água','4 vagens de cardamomo','1 colher de água de rosas'],passos:['Misture leite em pó, farinha e bicarbonato.','Adicione ghee e misture.','Adicione leite até formar massa.','Faça bolinhas lisas.','Prepare a calda: ferva açúcar, água e cardamomo 10min. Adicione água de rosas.','Frite as bolinhas a 150°C.','Escorra e coloque na calda.','Deixe 2h antes de servir.'],dicas:['Óleo em temperatura baixa é crucial.','Se rachar, adicione leite.','Mais tempo na calda = mais macio.'],iniciante:'São bolinhas de massa de leite fritas e na calda.'},
+
+{id:'cn1',nome:'Frango Xadrez',pais:'China',bandeira:'🇨🇳',cats:['salgadas','praticas'],emoji:'🥡',tempo:30,porcoes:4,dificuldade:'Fácil',cor:['#E0432F','#D9A521'],img:'kung,pao,chicken,chinese',desc:'Frango com amendoim, pimentão e molho agridoce.',ingredientes:['500g de frango em cubos','1 pimentão vermelho e 1 verde','1 cebola','100g de amendoim','3 colheres de shoyu','1 colher de vinagre','1 colher de açúcar','1 colher de amido','1 colher de pimenta','2 dentes de alho e gengibre','Óleo de gergelim'],passos:['Marine o frango com shoyu e amido 15min.','Misture shoyu, vinagre, açúcar e água.','Aqueça bem a wok.','Doure o frango 3min. Reserve.','Refogue alho, gengibre e pimenta.','Adicione pimentões e cebola 2min.','Volte o frango com o molho.','Junte amendoim e óleo de gergelim.'],dicas:['Wok bem quente.','Não cozinhe demais os legumes.','Amendoim no final.'],iniciante:'É fritar rápido em fogo alto.'},
+{id:'cn2',nome:'Yakisoba',pais:'China',bandeira:'🇨🇳',cats:['salgadas','praticas'],emoji:'🍜',tempo:30,porcoes:4,dificuldade:'Fácil',cor:['#8B4513','#D9A521'],img:'yakisoba,noodles,chinese',desc:'Macarrão salteado com carne e legumes.',ingredientes:['400g de macarrão','300g de carne em tiras','1 cenoura','1 pimentão vermelho e 1 verde','200g de repolho','1 cebola','100g de brócolis','4 colheres de shoyu','2 colheres de molho de ostras','1 colher de açúcar','Gengibre'],passos:['Cozinhe o macarrão.','Aqueça a wok.','Doure a carne. Reserve.','Refogue gengibre, cebola e cenoura.','Adicione repolho, brócolis e pimentões.','Volte a carne e adicione o macarrão.','Misture shoyu, molho de ostras e açúcar.','Salteie 3min e finalize.'],dicas:['Legumes crocantes.','Fogo máximo.','Pode usar camarão.'],iniciante:'É macarrão frito com legumes.'},
+{id:'cn3',nome:'Har Gow (Dim Sum)',pais:'China',bandeira:'🇨🇳',cats:['sobremesas-salgadas','complexas','refinadas'],emoji:'🥟',tempo:90,porcoes:20,dificuldade:'Difícil',cor:['#F49AB4','#FCD9E3'],img:'dim,sum,har,gow,dumpling',desc:'Dumpling translúcido com camarão e bambu.',ingredientes:['150g de farinha','50g de amido','180ml de água fervente','300g de camarão','80g de broto de bambu','1 colher de açúcar','1 colher de sal','1 colher de shoyu','1 colher de óleo de gergelim','1 colher de amido'],passos:['Misture as farinhas e despeje água fervente.','Sove a massa quente. Cubra.','Pique o camarão e misture com temperos.','Geladeira 30min.','Abra a massa e corte discos de 8cm.','Coloque recheio e faça dobras.','Coloque em cesto forrado.','Cozinhe no vapor 6-7min.'],dicas:['Água fervendo de verdade.','Trabalhe com massa coberta.','Não cozinhe demais no vapor.'],iniciante:'A massa é escaldada com água fervente. Nas primeiras dobras vai ficar feio.'},
+{id:'cn4',nome:'Pato de Pequim',pais:'China',bandeira:'🇨🇳',cats:['salgadas','refinadas','complexas'],emoji:'🦆',tempo:300,porcoes:6,dificuldade:'Chef',cor:['#8B4513','#C8102E'],img:'peking,duck,chinese,roast',desc:'Pato com pele crocante, servido com panquecas e hoisin.',ingredientes:['1 pato de 2,5kg','2 colheres de mel','2 colheres de vinagre','2 colheres de shoyu','1 colher de cinco-especiarias','Gengibre','4 cebolinhas','Panquecas chinesas','Molho hoisin','Pepino'],passos:['Lave e seque o pato muito bem.','Misture mel, vinagre e shoyu. Pincele.','Recheie com gengibre e cebolinha.','Pendure para secar 6h.','Asse a 180°C por 1h.','Aumente para 220°C por 20min.','Descanse 15min.','Corte em fatias finas.','Sirva com panquecas, hoisin, pepino e cebolinha.'],dicas:['Secar a pele é o segredo.','O descanso mantém suculento.','Use secador em ar frio.'],iniciante:'É um assado em duas temperaturas. Reserve um dia inteiro.'},
+{id:'cn5',nome:'Jian Dui (Bolinho de Gergelim)',pais:'China',bandeira:'🇨🇳',cats:['doces'],emoji:'🍡',tempo:60,porcoes:15,dificuldade:'Média',cor:['#D9A521','#8B4513'],img:'sesame,balls,chinese,dessert',desc:'Bolinhas de arroz glutinoso com pasta de feijão.',ingredientes:['250g de farinha de arroz glutinoso','180ml de água morna','60g de açúcar','200g de pasta de feijão azuki','150g de gergelim','Óleo para fritar'],passos:['Misture farinha, açúcar e água.','Divida em porções de 25g.','Coloque pasta e feche em esfera.','Passe na água e no gergelim.','Aqueça óleo a 140°C.','Frite lentamente 8min.','Quando subirem, aumente para 170°C.','Frite mais 3min.'],dicas:['Fritar devagar é essencial.','Molhar antes do gergelim.','Coma morno.'],iniciante:'É uma massa de arroz glutinoso recheada e frita devagar.'},
+
+{id:'fr1',nome:'Boeuf Bourguignon',pais:'França',bandeira:'🇫🇷',cats:['salgadas','complexas','refinadas'],emoji:'🥘',tempo:180,porcoes:6,dificuldade:'Difícil',cor:['#7A0A1C','#8B4513'],img:'boeuf,bourguignon,french,beef',desc:'Carne bovina cozida lentamente em vinho tinto.',ingredientes:['1,2kg de carne bovina','200g de bacon','1 garrafa de vinho tinto','2 cenouras','2 cebolas','3 dentes de alho','2 colheres de farinha','500ml de caldo','300g de cogumelos','Cebolinhas pérola','Tomilho e louro'],passos:['Seque e doure a carne em lotes. Reserve.','Frite o bacon.','Refogue cenoura, cebola e alho.','Volte a carne e polvilhe farinha.','Adicione vinho e caldo. Junte tomilho e louro.','Cozinhe tampado 2,5h em fogo baixo.','Salteie cogumelos e cebolinhas na manteiga.','Adicione ao cozido nos últimos 15min.'],dicas:['Vinho de qualidade faz diferença.','Doure em lotes.','Melhor no dia seguinte.'],iniciante:'É um cozido de carne no vinho. Deixe cozinhando por horas.'},
+{id:'fr2',nome:'Coq au Vin',pais:'França',bandeira:'🇫🇷',cats:['salgadas','complexas'],emoji:'🍗',tempo:120,porcoes:4,dificuldade:'Média',cor:['#7A0A1C','#D9A521'],img:'coq,au,vin,french,chicken',desc:'Frango cozido no vinho tinto com bacon e cogumelos.',ingredientes:['1 frango em pedaços','150g de bacon','750ml de vinho tinto','250ml de caldo','300g de cogumelos','200g de cebolinhas','2 colheres de farinha','2 dentes de alho','Tomilho e louro','Manteiga'],passos:['Marine o frango no vinho com ervas 4h.','Escorra e seque. Reserve o vinho.','Doure o frango na manteiga. Reserve.','Frite o bacon e as cebolinhas.','Polvilhe farinha e cozinhe 2min.','Adicione vinho e caldo.','Volte o frango e cozinhe 1h.','Salteie cogumelos e adicione ao final.'],dicas:['Secar antes de dourar.','Marine de um dia para outro.','Sirva com pão.'],iniciante:'É um frango cozido no vinho.'},
+{id:'fr3',nome:'Ratatouille',pais:'França',bandeira:'🇫🇷',cats:['salgadas','praticas'],emoji:'🍆',tempo:70,porcoes:6,dificuldade:'Fácil',cor:['#6B9E4F','#E0432F'],img:'ratatouille,french,vegetables',desc:'Legumes do sul da França com ervas de Provence.',ingredientes:['1 berinjela em cubos','2 abobrinhas em rodelas','2 pimentões em cubos','4 tomates','1 cebola','3 dentes de alho','Azeite','Ervas de Provence','Sal e pimenta'],passos:['Corte todos os legumes.','Refogue cebola e alho no azeite.','Adicione berinjela e doure.','Junte pimentões 5min.','Adicione tomates e ervas.','Cozinhe em fogo baixo 40min.','Ajuste o sal.','Sirva morno ou frio.'],dicas:['Cada legume tem seu ponto.','Azeite generoso.','Melhor no dia seguinte.'],iniciante:'É um refogado de legumes.'},
+{id:'fr4',nome:'Crème Brûlée',pais:'França',bandeira:'🇫🇷',cats:['doces','refinadas'],emoji:'🍮',tempo:60,porcoes:6,dificuldade:'Média',cor:['#F2CE6B','#8B4513'],img:'creme,brulee,french,dessert',desc:'Creme de baunilha com casquinha crocante de açúcar.',ingredientes:['500ml de creme de leite','5 gemas','80g de açúcar','1 fava de baunilha','Açúcar para caramelizar'],passos:['Aqueça o creme com baunilha sem ferver.','Bata gemas com açúcar.','Adicione creme às gemas mexendo.','Passe por peneira.','Distribua em ramequins.','Asse em banho-maria a 150°C por 35min.','Esfrie e gele 4h.','Polvilhe açúcar e caramelize com maçarico.'],dicas:['Não deixe ferver.','Banho-maria é essencial.','Caramelize só na hora.'],iniciante:'É um creme assado em banho-maria.'},
+{id:'fr5',nome:'Croissant',pais:'França',bandeira:'🇫🇷',cats:['sobremesas-salgadas','complexas','refinadas'],emoji:'🥐',tempo:720,porcoes:12,dificuldade:'Chef',cor:['#D9A521','#F2CE6B'],img:'croissant,french,pastry',desc:'Massa folhada laminada com manteiga, dourada e crocante.',ingredientes:['500g de farinha','10g de sal','60g de açúcar','20g de fermento','280ml de leite','250g de manteiga','1 ovo'],passos:['Misture farinha, sal, açúcar, fermento e leite. Sove.','Descanse 12h na geladeira.','Achate a manteiga em quadrado.','Coloque no centro da massa. Dobre.','Faça 3 dobras simples, com 30min entre cada.','Abra em retângulo e corte triângulos.','Enrole formando o croissant.','Deixe crescer 2h.','Pincele com ovo e asse a 200°C por 18min.'],dicas:['Manteiga e massa na mesma consistência.','Não deixe a manteiga esquentar.','Descanse entre as dobras.'],iniciante:'É um projeto de fim de semana.'},
+
+{id:'th1',nome:'Pad Thai',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','praticas'],emoji:'🍜',tempo:30,porcoes:4,dificuldade:'Média',cor:['#E0432F','#D9A521'],img:'pad,thai,thailand,noodles',desc:'Macarrão de arroz com camarão, ovo e molho agridoce.',ingredientes:['250g de macarrão de arroz','300g de camarão','2 ovos','100g de tofu','3 colheres de molho de peixe','3 colheres de tamarindo','2 colheres de açúcar de palma','100g de broto de feijão','3 cebolinhas','Amendoim','Limão'],passos:['Deixe o macarrão de molho 20min.','Misture molho de peixe, tamarindo e açúcar.','Doure o tofu. Reserve.','Salteie o camarão. Reserve.','Quebre os ovos e mexa rápido.','Adicione macarrão e molho.','Salteie 3min.','Junte camarão, tofu, broto e cebolinha.','Sirva com amendoim, limão e pimenta.'],dicas:['Prepare tudo antes.','Molho de tamarindo é essencial.','Não cozinhe demais o macarrão.'],iniciante:'É macarrão salteado em fogo alto.'},
+{id:'th2',nome:'Tom Yum Goong',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','complexas'],emoji:'🍲',tempo:40,porcoes:4,dificuldade:'Média',cor:['#E0432F','#6B9E4F'],img:'tom,yum,thai,soup',desc:'Sopa picante com camarão, capim-limão e galanga.',ingredientes:['500g de camarão','1,5L de caldo','3 talos de capim-limão','5 fatias de galanga','6 folhas de limão kaffir','200g de cogumelos','3 colheres de molho de peixe','Suco de 3 limões','2 pimentas','Coentro'],passos:['Ferva o caldo com capim-limão, galanga e folhas 10min.','Adicione cogumelos.','Junte camarões 3min.','Desligue o fogo.','Adicione molho de peixe, limão e pimenta.','Ajuste o equilíbrio.','Sirva com coentro.'],dicas:['Nunca ferva depois do limão.','Aromáticos são para infusão.','Ajuste no final.'],iniciante:'É uma sopa aromática.'},
+{id:'th3',nome:'Green Curry',pais:'Tailândia',bandeira:'🇹🇭',cats:['salgadas','complexas'],emoji:'🍛',tempo:45,porcoes:4,dificuldade:'Média',cor:['#6B9E4F','#3F6B2C'],img:'green,curry,thai',desc:'Curry verde tailandês com leite de coco e frango.',ingredientes:['500g de frango','400ml de leite de coco','3 colheres de pasta de curry verde','100g de berinjela tailandesa','2 colheres de molho de peixe','1 colher de açúcar de palma','Manjericão tailandês','Folhas de limão kaffir','Pimenta'],passos:['Refogue a pasta no creme de coco 3min.','Adicione o frango e doure.','Junte o restante do leite de coco.','Adicione a berinjela 10min.','Tempere com molho de peixe e açúcar.','Ajuste o equilíbrio.','Finalize com manjericão e pimenta.','Sirva com arroz jasmim.'],dicas:['Refogar a pasta libera aromas.','Não deixe ferver forte.','Manjericão só no final.'],iniciante:'É um curry: refoga a pasta e adiciona leite de coco.'},
+{id:'th4',nome:'Mango Sticky Rice',pais:'Tailândia',bandeira:'🇹🇭',cats:['doces'],emoji:'🥭',tempo:60,porcoes:4,dificuldade:'Fácil',cor:['#F2CE6B','#6B9E4F'],img:'mango,sticky,rice,thai',desc:'Arroz glutinoso doce com leite de coco e manga.',ingredientes:['300g de arroz glutinoso','400ml de leite de coco','100g de açúcar','1 colher de sal','2 mangas maduras','Gergelim torrado'],passos:['Deixe o arroz de molho 4h.','Cozinhe no vapor 20min.','Aqueça leite de coco com açúcar e sal.','Despeje sobre o arroz e misture.','Deixe absorver 20min.','Corte a manga.','Sirva o arroz com a manga.','Polvilhe gergelim.'],dicas:['Arroz glutinoso, não comum.','Não deixe o leite ferver.','Sirva morno.'],iniciante:'É arroz doce com leite de coco e manga.'},
+{id:'th5',nome:'Som Tum',pais:'Tailândia',bandeira:'🇹🇭',cats:['sobremesas-salgadas','praticas'],emoji:'🥗',tempo:20,porcoes:4,dificuldade:'Fácil',cor:['#6B9E4F','#E0432F'],img:'som,tum,papaya,thai,salad',desc:'Salada picante de papaya verde com amendoim.',ingredientes:['1 papaya verde em tiras','100g de tomate cereja','50g de vagem','3 colheres de molho de peixe','3 colheres de suco de limão','2 colheres de açúcar de palma','2 dentes de alho','2 pimentas','Amendoim'],passos:['Pile o alho e a pimenta.','Adicione açúcar, molho de peixe e limão.','Junte vagem e tomate, amassando.','Adicione a papaya e misture.','Amasse delicadamente.','Prove e ajuste.','Sirva com amendoim.'],dicas:['Papaya bem verde.','O pilão é tradicional.','Ajuste o equilíbrio.'],iniciante:'É uma salada de papaya verde.'},
+
+{id:'kr1',nome:'Bibimbap',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','complexas'],emoji:'🍚',tempo:60,porcoes:4,dificuldade:'Média',cor:['#C8102E','#6B9E4F'],img:'bibimbap,korean,rice',desc:'Arroz com legumes coloridos, carne, ovo e gochujang.',ingredientes:['4 porções de arroz','300g de carne bovina','1 abobrinha','1 cenoura','100g de espinafre','100g de broto de feijão','4 ovos','Gochujang','Shoyu, alho e óleo de gergelim','Gergelim torrado'],passos:['Marine a carne.','Salteie cada legume separadamente.','Salteie a carne.','Frite os ovos com gema mole.','Coloque arroz em tigelas.','Disponha legumes e carne em setores.','Coloque o ovo no centro.','Sirva com gochujang.','Misture antes de comer.'],dicas:['Salteie cada legume separado.','Gema mole é essencial.','Misture na hora.'],iniciante:'É arroz com legumes e carne por cima.'},
+{id:'kr2',nome:'Kimchi',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['sobremesas-salgadas','complexas'],emoji:'🥬',tempo:120,porcoes:10,dificuldade:'Média',cor:['#C8102E','#E0432F'],img:'kimchi,korean,fermented',desc:'Acelga fermentada com pimenta, alho e gengibre.',ingredientes:['1 acelga napa grande','100g de sal grosso','3 colheres de pimenta em flocos','4 dentes de alho','1 pedaço de gengibre','3 colheres de molho de peixe','1 colher de açúcar','3 cebolinhas','1 cenoura ralada'],passos:['Corte a acelga em pedaços.','Salgue e deixe 2h.','Enxágue 3x e escorra.','Misture pimenta, alho, gengibre, molho de peixe e açúcar.','Junte cebolinha e cenoura.','Misture com a acelga (com luvas).','Coloque em pote pressionando bem.','Fermente 2-3 dias fora da geladeira.','Guarde na geladeira.'],dicas:['Use luvas.','Pressione bem.','Quanto mais tempo, mais azedo.'],iniciante:'É acelga fermentada com pasta de pimenta.'},
+{id:'kr3',nome:'Bulgogi',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','praticas'],emoji:'🥩',tempo:40,porcoes:4,dificuldade:'Fácil',cor:['#8B4513','#C8102E'],img:'bulgogi,korean,beef',desc:'Carne bovina marinada em shoyu, pera, alho e gergelim.',ingredientes:['500g de carne fatiada fina','1/2 pera ralada','4 colheres de shoyu','2 colheres de açúcar','2 colheres de óleo de gergelim','4 dentes de alho','1 colher de gergelim','1 cebola','Cebolinha','Pimenta'],passos:['Misture pera, shoyu, açúcar, gergelim, alho e pimenta.','Marine a carne 30min.','Aqueça frigideira bem quente.','Doure a carne em lotes.','Adicione a cebola.','Finalize com cebolinha e gergelim.','Sirva com arroz e alface.'],dicas:['A pera amacia a carne.','Não cozinhe demais.','Sirva com alface.'],iniciante:'É carne marinada e grelhada rápido.'},
+{id:'kr4',nome:'Japchae',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','praticas'],emoji:'🍜',tempo:45,porcoes:4,dificuldade:'Fácil',cor:['#8B4513','#D9A521'],img:'japchae,korean,noodles',desc:'Macarrão de batata-doce com legumes, carne e gergelim.',ingredientes:['200g de macarrão de batata-doce','200g de carne em tiras','1 cenoura','1 pimentão','100g de espinafre','5 cogumelos shiitake','4 colheres de shoyu','2 colheres de açúcar','2 colheres de óleo de gergelim','2 dentes de alho','Gergelim'],passos:['Cozinhe o macarrão 6min. Escorra.','Marine a carne.','Salteie a carne. Reserve.','Salteie cada legume separado.','Misture macarrão com shoyu, açúcar e gergelim.','Junte carne e legumes.','Aqueça tudo junto 2min.','Sirva com gergelim.'],dicas:['Cada ingrediente é temperado separado.','O macarrão fica elástico.','Sirva morno.'],iniciante:'É macarrão coreano com legumes e carne.'},
+{id:'kr5',nome:'Tteokbokki',pais:'Coreia do Sul',bandeira:'🇰🇷',cats:['salgadas','praticas'],emoji:'🌶️',tempo:25,porcoes:4,dificuldade:'Fácil',cor:['#C8102E','#E0432F'],img:'tteokbokki,korean,rice,cake',desc:'Bolinhas de bolo de arroz em molho picante de gochujang.',ingredientes:['500g de tteok','100g de oden','4 colheres de gochujang','2 colheres de açúcar','2 colheres de shoyu','600ml de água','2 dentes de alho','1 colher de pimenta','Cebolinha'],passos:['Deixe o tteok de molho 10min.','Ferva água com gochujang, açúcar, shoyu, alho e pimenta.','Adicione tteok e oden.','Cozinhe 10min em fogo médio.','Mexa até o molho engrossar.','Finalize com cebolinha.','Sirva quente.'],dicas:['Molho espesso e brilhante.','Se duro, deixe de molho mais.','Adicione queijo por cima.'],iniciante:'É bolo de arroz cozido em molho picante.'}
+];
+
+/* ==================== ESTADO E PERSISTÊNCIA ==================== */
+const LS = {
+  fav:'mrf_favoritas',
+  testadas:'mrf_testadas',
+  custom:'mrf_custom',
+  fotos:'mrf_fotos'
+};
+let favoritas = JSON.parse(localStorage.getItem(LS.fav) || '[]');
+let testadas  = JSON.parse(localStorage.getItem(LS.testadas) || '[]');
+let customReceitas = JSON.parse(localStorage.getItem(LS.custom) || '[]');
+let fotosCustom = JSON.parse(localStorage.getItem(LS.fotos) || '{}'); // {recipeId: url ou dataURL}
+let estado = { modo:'todas', categoria:null, pais:null, busca:'' };
+
+function salvar(){
+  localStorage.setItem(LS.fav, JSON.stringify(favoritas));
+  localStorage.setItem(LS.testadas, JSON.stringify(testadas));
+  localStorage.setItem(LS.custom, JSON.stringify(customReceitas));
+  localStorage.setItem(LS.fotos, JSON.stringify(fotosCustom));
+}
+function todasReceitas(){ return [...RECEITAS_BASE, ...customReceitas]; }
+
+/* ==================== FOTO: OBTÉM URL ==================== */
+function getFoto(r){
+  if(fotosCustom[r.id]) return fotosCustom[r.id];
+  if(r.foto) return r.foto;
+  return imgURL(r.img, 700);
+}
+
+/* ==================== UTILITÁRIOS ==================== */
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2400);
+}
+function imgURL(query, size=600){
+  const q = encodeURIComponent((query||'food').replace(/,/g,' '));
+  return `https://source.unsplash.com/${size}x${Math.round(size*0.65)}/?${q}`;
+}
+function escapar(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ==================== AUTO-DETECÇÃO ==================== */
+function detectarPais(texto){
+  const t = (texto||'').toLowerCase();
+  const mapa = {
+    'Brasil': ['brasil','brazilian','feijoada','brigadeiro','tropeiro','moqueca','coxinha','pão de queijo','pao de queijo','acarajé','acaraje','vatapá','vatapa','farofa','caipirinha','pudim'],
+    'Japão': ['japão','japao','japanese','japonesa','ramen','sushi','nigiri','okonomiyaki','tempurá','tempura','miso','teriyaki','yakitori','katsu','onigiri'],
+    'Itália': ['itália','italia','italian','italiana','pasta','pizza','risotto','lasagna','tiramisù','tiramisu','carbonara','spaghetti','gnocchi','ravioli','focaccia'],
+    'México': ['méxico','mexico','mexican','mexicana','taco','guacamole','enchilada','burrito','quesadilla','pozole','nachos','fajita','tortilla'],
+    'Índia': ['índia','india','indian','indiana','curry indiano','masala','biryani','samosa','tandoori','naan','dal','paneer','tikka'],
+    'China': ['china','chinese','chinês','chines','chinesa','dim sum','wok','yakisoba','dumpling','peking','chow mein','mapo','szechuan'],
+    'França': ['frança','franca','french','francesa','croissant','baguette','ratatouille','bourguignon','crème','creme brulee','coq au vin','quiche','macaron'],
+    'Tailândia': ['tailândia','tailandia','thai','pad thai','tom yum','curry verde','green curry','mango sticky'],
+    'Coreia do Sul': ['coreia','korean','coreana','kimchi','bibimbap','bulgogi','tteokbokki','japchae','gochujang']
+  };
+  for(const [pais, kws] of Object.entries(mapa)){
+    for(const k of kws){ if(t.includes(k)) return pais; }
+  }
+  return null;
+}
+
+function detectarDificuldade(texto, tempo){
+  const t = (texto||'').toLowerCase();
+  if(t.includes('chef')||t.includes('estrela michelin')||t.includes('haute cuisine')||t.includes('gourmet refinad')) return 'Chef';
+  if(t.includes('difícil')||t.includes('dificil')||t.includes('hard')||t.includes('avançad')||t.includes('advanced')||tempo>120) return 'Difícil';
+  if(t.includes('fácil')||t.includes('facil')||t.includes('easy')||t.includes('rápid')||t.includes('rapid')||t.includes('quick')||tempo<30) return 'Fácil';
+  return 'Média';
+}
+
+function detectarCategorias(texto){
+  const t = (texto||'').toLowerCase();
+  const cats = [];
+  const isDoce = /doce|sobremesa|dessert|bolo|cake|torta|pie|cookie|biscoito|chocolate|brigadeiro|pudim|mousse|sorvete|gelato|truffle|caramelo|creme|pudding/.test(t);
+  const isSalgada = /salgad|salgado|entrada|aperitivo|petisco|snack|sobremesa salgada|salgadinho|pastel|empada|esfiha/.test(t);
+  const isPratica = /rápid|rapid|fácil|facil|quick|easy|30 minutos|20 minutos|15 minutos|express/.test(t);
+  const isComplexa = /complex|difícil|dificil|demorad|slow|marinada|fermentação|fermentacao/.test(t);
+  const isRefinada = /refinad|gourmet|chef|estrela|michelin|haute|nobre|trufa|caviar/.test(t);
+
+  if(isDoce) cats.push('doces');
+  if(isSalgada) cats.push('sobremesas-salgadas');
+  if(isPratica && !isDoce) cats.push('praticas');
+  if(isComplexa) cats.push('complexas');
+  if(isRefinada) cats.push('refinadas');
+  if(!cats.includes('doces') && !cats.includes('sobremesas-salgadas')) cats.push('salgadas');
+  if(cats.length===0) cats.push('salgadas');
+  return [...new Set(cats)];
+}
+
+function detectarEmoji(texto){
+  const t = (texto||'').toLowerCase();
+  const mapa = [
+    [/(pizza)/, '🍕'], [/(pasta|spaghetti|macarr|noodle|lámen|lamen|ramen|yakisoba|pad thai|japchae)/, '🍜'],
+    [/(sushi|sashimi|nigiri|maki)/, '🍣'], [/(curry|caril)/, '🍛'], [/(sopa|soup|caldo|ramen|pozole|tom yum)/, '🍲'],
+    [/(bolo|cake|torta)/, '🍰'], [/(cookie|biscoito)/, '🍪'], [/(chocolate|brigadeiro|trufa)/, '🍫'],
+    [/(sorvete|gelato|ice cream)/, '🍦'], [/(pudim|flan|creme brulee)/, '🍮'], [/(panqueca|pancake|crepe|dorayaki)/, '🥞'],
+    [/(taco|burrito|enchilada)/, '🌮'], [/(dumpling|gyoza|dim sum|har gow|samosa|pastel)/, '🥟'],
+    [/(salada|salad)/, '🥗'], [/(frango|chicken)/, '🍗'], [/(carne|beef|steak|boeuf|bulgogi|bife)/, '🥩'],
+    [/(peixe|fish|salmão|salmon)/, '🐟'], [/(camarão|shrimp|acarajé)/, '🦐'], [/(pão|bread|baguette|croissant)/, '🥐'],
+    [/(arroz|rice|risoto|risotto|biryani|bibimbap)/, '🍚'], [/(queijo|cheese)/, '🧀'], [/(ovo|egg)/, '🥚'],
+    [/(batata|potato)/, '🥔'], [/(tomate|tomato)/, '🍅'], [/(milho|corn)/, '🌽'], [/(abacate|avocado)/, '🥑'],
+    [/(morango|strawberry)/, '🍓'], [/(manga|mango)/, '🥭'], [/(limão|lemon)/, '🍋'], [/(pimenta|pepper|chili)/, '🌶️']
+  ];
+  for(const [re, emoji] of mapa){ if(re.test(t)) return emoji; }
+  return '🍽️';
+}
+
+/* ==================== PARSING DO LINK ==================== */
+function parseDuracaoISO(iso){
+  if(!iso) return null;
+  const m = String(iso).match(/P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?/);
+  if(!m) return null;
+  const d = parseInt(m[1]||0), h = parseInt(m[2]||0), min = parseInt(m[3]||0);
+  const total = d*1440 + h*60 + min;
+  return total > 0 ? total : null;
+}
+
+function extrairImagem(img){
+  if(!img) return null;
+  if(typeof img === 'string') return img;
+  if(Array.isArray(img)) return extrairImagem(img[0]);
+  if(typeof img === 'object' && img.url) return extrairImagem(img.url);
+  return null;
+}
+
+function extrairPassos(instr){
+  if(!instr) return [];
+  if(typeof instr === 'string') return [instr];
+  const passos = [];
+  const arr = Array.isArray(instr) ? instr : [instr];
+  for(const item of arr){
+    if(typeof item === 'string'){ passos.push(item); continue; }
+    const tipo = item['@type'];
+    if(tipo === 'HowToStep'){ if(item.text) passos.push(item.text); else if(item.name) passos.push(item.name); }
+    else if(tipo === 'HowToSection' && Array.isArray(item.itemListElement)){
+      for(const sub of item.itemListElement){
+        if(typeof sub === 'string') passos.push(sub);
+        else if(sub.text) passos.push(sub.text);
+        else if(sub.name) passos.push(sub.name);
+      }
+    }
+    else if(item.text) passos.push(item.text);
+    else if(item.name) passos.push(item.name);
+  }
+  return passos.map(s=>String(s).replace(/<[^>]*>/g,'').trim()).filter(Boolean);
+}
+
+function acharReceitaEmJSONLD(data){
+  if(!data) return null;
+  if(Array.isArray(data)){
+    for(const item of data){ const r = acharReceitaEmJSONLD(item); if(r) return r; }
+    return null;
+  }
+  if(typeof data !== 'object') return null;
+  const tipo = data['@type'];
+  const tipos = Array.isArray(tipo) ? tipo : [tipo];
+  if(tipos.includes('Recipe')) return data;
+  if(data['@graph']) return acharReceitaEmJSONLD(data['@graph']);
+  return null;
+}
+
+async function fetchComProxy(url){
+  const proxies = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`
+  ];
+  for(const p of proxies){
+    try{
+      const resp = await fetch(p, { headers:{ 'Accept':'text/html,application/json' } });
+      if(resp.ok){
+        const text = await resp.text();
+        if(text && text.length > 500) return text;
+      }
+    }catch(e){ console.warn('Proxy falhou:', p); }
+  }
+  return null;
+}
+
+async function extrairReceitaDoHTML(html, urlOriginal){
+  try{
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // 1) JSON-LD
+    const scripts = doc.querySelectorAll('script[type="application/ld+json"]');
+    for(const s of scripts){
+      try{
+        const data = JSON.parse(s.textContent);
+        const recipe = acharReceitaEmJSONLD(data);
+        if(recipe){
+          const nome = recipe.name || '';
+          const descricao = (recipe.description || '').replace(/<[^>]*>/g,'').slice(0,300);
+          const imagem = extrairImagem(recipe.image);
+          const ings = (recipe.recipeIngredient || recipe.ingredients || []).map(i=>String(i).trim()).filter(Boolean);
+          const passos = extrairPassos(recipe.recipeInstructions);
+          const tempo = parseDuracaoISO(recipe.totalTime || recipe.cookTime || recipe.prepTime);
+          const porcoes = recipe.recipeYield ? String(recipe.recipeYield).replace(/[^\d]/g,'').slice(0,3) : null;
+          const categoria = [recipe.recipeCategory, recipe.recipeCuisine, recipe.keywords].flat().filter(Boolean).join(' ');
+          return { nome, descricao, imagem, ingredientes:ings, passos, tempo, porcoes, categoria, url:urlOriginal };
+        }
+      }catch(e){}
+    }
+
+    // 2) Fallback: og:title, og:image, og:description
+    const ogTitle = doc.querySelector('meta[property="og:title"]')?.content || doc.querySelector('title')?.textContent || '';
+    const ogImg = doc.querySelector('meta[property="og:image"]')?.content || '';
+    const ogDesc = doc.querySelector('meta[property="og:description"]')?.content || '';
+    if(ogTitle){
+      return { nome: ogTitle.split('|')[0].split('-')[0].trim(), descricao: ogDesc, imagem: ogImg, ingredientes: [], passos: [], tempo: null, porcoes: null, categoria: ogTitle + ' ' + ogDesc, url: urlOriginal };
+    }
+    return null;
+  }catch(e){ return null; }
+}
+
+async function buscarDadosLink(){
+  const link = document.getElementById('fLink').value.trim();
+  if(!link){ toast('⚠️ Cole um link primeiro'); return; }
+
+  const btn = document.getElementById('btnBuscar');
+  const btnTxt = document.getElementById('btnBuscarTxt');
+  const statusEl = document.getElementById('statusBusca');
+  btn.disabled = true;
+  btnTxt.innerHTML = '<span class="spinner"></span> Buscando...';
+  statusEl.innerHTML = '<div class="aviso info">🔎 Extraindo dados do link, aguarde...</div>';
+
+  try{
+    const html = await fetchComProxy(link);
+    let dados = null;
+
+    if(html){
+      dados = await extrairReceitaDoHTML(html, link);
+    }
+
+    // Fallback: Microlink API (funciona quando os proxies falham)
+    if(!dados || !dados.nome){
+      try{
+        const ml = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(link)}`);
+        const json = await ml.json();
+        if(json.status === 'success'){
+          const d = json.data;
+          dados = {
+            nome: (d.title||'').split('|')[0].split('-')[0].trim(),
+            descricao: d.description || '',
+            imagem: d.image?.url || '',
+            ingredientes: [],
+            passos: [],
+            tempo: null,
+            porcoes: null,
+            categoria: (d.title||'') + ' ' + (d.description||''),
+            url: link
+          };
+        }
+      }catch(e){ console.warn('Microlink falhou'); }
+    }
+
+    if(!dados || !dados.nome){
+      statusEl.innerHTML = `<div class="aviso erro">❌ Não consegui extrair os dados automaticamente. O site pode ter bloqueado o acesso. Preencha manualmente abaixo — eu já detectei o país e as categorias do nome do link. <br><br>Dica: alguns sites não permitem acesso externo por segurança.</div>`;
+      // Ainda tenta detectar pelo link
+      const palpite = link.split('/').pop().replace(/[_-]/g,' ').replace(/\.[a-z]+$/,'');
+      document.getElementById('fNome').value = palpite.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+      autoDetectarCampos(link + ' ' + palpite);
+      btn.disabled = false;
+      btnTxt.textContent = '🔍 Buscar';
+      return;
+    }
+
+    // Preenche campos
+    if(dados.nome) document.getElementById('fNome').value = dados.nome;
+    if(dados.imagem) document.getElementById('fFoto').value = dados.imagem;
+    if(dados.ingredientes.length) document.getElementById('fIng').value = dados.ingredientes.join('\n');
+    if(dados.passos.length) document.getElementById('fPassos').value = dados.passos.join('\n');
+    if(dados.tempo) document.getElementById('fTempo').value = dados.tempo;
+    if(dados.porcoes) document.getElementById('fPorcoes').value = parseInt(dados.porcoes) || 4;
+
+    // Auto-detecta emoji
+    const emoji = detectarEmoji(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria);
+    document.getElementById('fEmoji').value = emoji;
+
+    // Auto-detecta país, dificuldade e categorias
+    autoDetectarCampos(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria + ' ' + link, dados.tempo);
+
+    // Preview
+    const prevWrap = document.getElementById('previewWrap');
+    prevWrap.style.display = 'block';
+    document.getElementById('prevNome').textContent = dados.nome || '—';
+    document.getElementById('prevTempo').textContent = dados.tempo ? dados.tempo + ' min' : '—';
+    document.getElementById('prevPorcoes').textContent = dados.porcoes ? dados.porcoes + ' porções' : '—';
+    document.getElementById('prevIngs').textContent = dados.ingredientes.length ? dados.ingredientes.length + ' itens' : 'não encontrados';
+    document.getElementById('prevPassos').textContent = dados.passos.length ? dados.passos.length + ' passos' : 'não encontrados';
+    if(dados.imagem){
+      const pf = document.getElementById('prevFoto');
+      pf.src = dados.imagem;
+      pf.style.display = 'block';
+      pf.onerror = ()=>{ pf.style.display='none'; };
+    }
+
+    const detectado = detectarPais(dados.nome + ' ' + dados.descricao + ' ' + dados.categoria + ' ' + link);
+    statusEl.innerHTML = `<div class="aviso ok">✅ Dados extraídos com sucesso! ${dados.ingredientes.length ? `Encontrei ${dados.ingredientes.length} ingredientes e ${dados.passos.length} passos.` : 'Não encontrei ingredientes/passos — o site bloqueou. Preencha manualmente abaixo.'}${detectado ? ` Detectei o país <strong>${detectado}</strong>.` : ' Confirme o país abaixo.'}</div>`;
+
+    toast('✨ Dados extraídos do link!');
+  }catch(err){
+    console.error(err);
+    statusEl.innerHTML = `<div class="aviso erro">❌ Erro ao buscar o link. Tente novamente ou preencha manualmente.</div>`;
+  }finally{
+    btn.disabled = false;
+    btnTxt.textContent = '🔍 Buscar';
+  }
+}
+
+function autoDetectarCampos(texto, tempo){
+  const pais = detectarPais(texto);
+  if(pais) document.getElementById('fPais').value = pais;
+
+  const dif = detectarDificuldade(texto, tempo);
+  document.getElementById('fDificuldade').value = dif;
+
+  const cats = detectarCategorias(texto);
+  document.querySelectorAll('#fCats input').forEach(inp=>{
+    inp.checked = cats.includes(inp.value);
+  });
+}
+
+/* ==================== KPIs ==================== */
+function contarPorCategoria(cat){ return todasReceitas().filter(r=>r.cats.includes(cat)).length; }
+function contarPaises(){ return new Set(todasReceitas().map(r=>r.pais)).size; }
+
+function renderKPIs(){
+  const total = todasReceitas().length;
+  const kpis = [
+    {ic:'📖', val:total, lbl:'Total de Receitas', cor:'#C8102E', acao:()=>{estado={modo:'todas',categoria:null,pais:null,busca:''};document.getElementById('busca').value='';render();}},
+    {ic:'❤️', val:favoritas.length, lbl:'Favoritas', cor:'#F49AB4', acao:()=>{estado={modo:'favoritas',categoria:null,pais:null,busca:''};render();}},
+    {ic:'✅', val:testadas.length, lbl:'Já Testadas', cor:'#6B9E4F', acao:()=>{estado={modo:'testadas',categoria:null,pais:null,busca:''};render();}},
+    {ic:'🌏', val:contarPaises(), lbl:'Países', cor:'#D9A521', acao:()=>{document.getElementById('chipsPais').scrollIntoView({behavior:'smooth'});}},
+    {ic:'🍛', val:contarPorCategoria('salgadas'), lbl:'Salgadas', cor:'#C8102E', acao:()=>{estado={modo:'categoria',categoria:'salgadas',pais:null,busca:''};render();}},
+    {ic:'🍰', val:contarPorCategoria('doces'), lbl:'Doces', cor:'#F49AB4', acao:()=>{estado={modo:'categoria',categoria:'doces',pais:null,busca:''};render();}},
+    {ic:'⚡', val:contarPorCategoria('praticas'), lbl:'Práticas', cor:'#6B9E4F', acao:()=>{estado={modo:'categoria',categoria:'praticas',pais:null,busca:''};render();}},
+    {ic:'🔥', val:contarPorCategoria('complexas'), lbl:'Complexas', cor:'#8B4513', acao:()=>{estado={modo:'categoria',categoria:'complexas',pais:null,busca:''};render();}},
+    {ic:'👨‍🍳', val:contarPorCategoria('refinadas'), lbl:'Refinadas', cor:'#2E5C8A', acao:()=>{estado={modo:'categoria',categoria:'refinadas',pais:null,busca:''};render();}}
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map((k,i)=>`
+    <div class="kpi" style="--kpi-cor:${k.cor}" data-kpi="${i}">
+      <span class="ic">${k.ic}</span>
+      <div class="val">${k.val}</div>
+      <div class="lbl">${k.lbl}</div>
+    </div>`).join('');
+  document.querySelectorAll('[data-kpi]').forEach(el=>{
+    el.onclick = ()=>{ kpis[+el.dataset.kpi].acao(); };
+  });
+}
+
+/* ==================== RECEITA DO DIA ==================== */
+function receitaDoDia(){
+  const todas = todasReceitas();
+  const hoje = new Date();
+  const seed = hoje.getFullYear()*10000 + (hoje.getMonth()+1)*100 + hoje.getDate();
+  return todas[seed % todas.length];
+}
+function renderReceitaDia(){
+  const r = receitaDoDia();
+  document.getElementById('receitaDia').innerHTML = `
+    <div class="dia-card" data-dia="${r.id}">
+      <div class="img">
+        <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
+        <span class="emoji-fallback">${r.emoji}</span>
+      </div>
+      <div class="info">
+        <span class="tag-dia">🌸 Receita do Dia</span>
+        <h2>${escapar(r.nome)}</h2>
+        <div class="pais">${r.bandeira} ${escapar(r.pais)}</div>
+        <p class="desc">${escapar(r.desc)}</p>
+        <div class="meta">
+          <span class="meta-pill">⏱ ${r.tempo} min</span>
+          <span class="meta-pill">🍽 ${r.porcoes} porções</span>
+          <span class="meta-pill">📊 ${r.dificuldade}</span>
+        </div>
+      </div>
+    </div>`;
+  document.querySelector('.dia-card').onclick = ()=>abrirReceita(r.id);
+}
+
+/* ==================== CHIPS ==================== */
+function renderChips(){
+  const catEl = document.getElementById('chipsCategoria');
+  catEl.innerHTML = Object.entries(CATEGORIAS).map(([k,v])=>`
+    <button class="chip ${estado.categoria===k?'ativo':''}" data-cat="${k}">
+      ${v.emoji} ${v.nome} <span class="cnt">${contarPorCategoria(k)}</span>
+    </button>`).join('');
+  catEl.querySelectorAll('[data-cat]').forEach(el=>{
+    el.onclick = ()=>{
+      const k = el.dataset.cat;
+      if(estado.categoria===k){ estado.categoria=null; estado.modo='todas'; }
+      else { estado.categoria=k; estado.modo='categoria'; estado.pais=null; }
+      render();
+    };
+  });
+
+  const paisEl = document.getElementById('chipsPais');
+  const mapa = {};
+  todasReceitas().forEach(r=>{
+    if(!mapa[r.pais]) mapa[r.pais] = {bandeira:r.bandeira, count:0};
+    mapa[r.pais].count++;
+  });
+  const ord = Object.entries(mapa).sort((a,b)=>a[0].localeCompare(b[0]));
+  paisEl.innerHTML = ord.map(([p,info])=>`
+    <button class="chip pais ${estado.pais===p?'ativo':''}" data-pais="${escapar(p)}">
+      ${info.bandeira} ${escapar(p)} <span class="cnt">${info.count}</span>
+    </button>`).join('');
+  paisEl.querySelectorAll('[data-pais]').forEach(el=>{
+    el.onclick = ()=>{
+      const p = el.dataset.pais;
+      if(estado.pais===p){ estado.pais=null; estado.modo='todas'; }
+      else { estado.pais=p; estado.modo='pais'; estado.categoria=null; }
+      render();
+    };
+  });
+}
+
+/* ==================== GRID ==================== */
+function filtrar(){
+  let lista = todasReceitas();
+  if(estado.modo==='favoritas') lista = lista.filter(r=>favoritas.includes(r.id));
+  else if(estado.modo==='testadas') lista = lista.filter(r=>testadas.includes(r.id));
+  else if(estado.modo==='categoria' && estado.categoria) lista = lista.filter(r=>r.cats.includes(estado.categoria));
+  else if(estado.modo==='pais' && estado.pais) lista = lista.filter(r=>r.pais===estado.pais);
+  if(estado.busca){
+    const b = estado.busca.toLowerCase();
+    lista = lista.filter(r=>
+      r.nome.toLowerCase().includes(b) ||
+      r.pais.toLowerCase().includes(b) ||
+      (r.desc||'').toLowerCase().includes(b) ||
+      r.ingredientes.some(i=>i.toLowerCase().includes(b))
+    );
+  }
+  return lista;
+}
+
+function renderGrid(){
+  const lista = filtrar();
+  const grid = document.getElementById('grid');
+  const titulo = document.getElementById('tituloGrid');
+
+  if(estado.modo==='favoritas') titulo.textContent = '❤️ Receitas Favoritas';
+  else if(estado.modo==='testadas') titulo.textContent = '✅ Receitas Testadas';
+  else if(estado.modo==='categoria' && estado.categoria) titulo.textContent = `${CATEGORIAS[estado.categoria].emoji} ${CATEGORIAS[estado.categoria].nome}`;
+  else if(estado.modo==='pais' && estado.pais) titulo.textContent = `🌏 Cozinha ${estado.pais}`;
+  else if(estado.busca) titulo.textContent = `🔍 Resultados para "${estado.busca}"`;
+  else titulo.textContent = '📖 Todas as Receitas';
+
+  if(lista.length===0){
+    grid.innerHTML = `<div class="vazio"><span class="ic">🍽️</span><h3>Nenhuma receita encontrada</h3><p>Tente outra categoria, país ou termo de busca.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = lista.map(r=>{
+    const fav = favoritas.includes(r.id);
+    const feita = testadas.includes(r.id);
+    const temFotoCustom = !!fotosCustom[r.id];
+    return `
+    <div class="card" data-id="${r.id}">
+      <div class="card-img">
+        <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
+        <span class="emoji-fallback">${r.emoji}</span>
+        <span class="badge-pais">${r.bandeira} ${escapar(r.pais)}</span>
+        <div class="card-top-actions">
+          <button class="btn-icon" data-foto="${r.id}" title="${temFotoCustom?'Trocar foto':'Alterar foto'}">📷</button>
+          <button class="btn-icon ${fav?'on':''}" data-fav="${r.id}" title="Favoritar">${fav?'❤️':'🤍'}</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>${escapar(r.nome)}</h3>
+        <div class="card-tags">
+          ${r.cats.slice(0,3).map(c=>`<span class="mini-tag">${CATEGORIAS[c].emoji} ${CATEGORIAS[c].nome.split(' ')[0]}</span>`).join('')}
+        </div>
+        <div class="card-meta">
+          <span>⏱ ${r.tempo}min</span>
+          <span>🍽 ${r.porcoes}</span>
+          <span>📊 ${r.dificuldade}</span>
+        </div>
+        <div class="marcador ${feita?'on':''}" data-feito="${r.id}">
+          <span class="box">${feita?'✓':''}</span>
+          <span>${feita?'Já testei esta!':'Marcar como testada'}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.card').forEach(card=>{
+    card.onclick = e=>{
+      if(e.target.closest('[data-fav]') || e.target.closest('[data-feito]') || e.target.closest('[data-foto]')) return;
+      abrirReceita(card.dataset.id);
+    };
+  });
+  grid.querySelectorAll('[data-fav]').forEach(btn=>{
+    btn.onclick = e=>{
+      e.stopPropagation();
+      const id = btn.dataset.fav;
+      const i = favoritas.indexOf(id);
+      if(i>=0){ favoritas.splice(i,1); toast('Removida das favoritas 💔'); }
+      else { favoritas.push(id); toast('Adicionada às favoritas ❤️'); }
+      salvar(); render();
+    };
+  });
+  grid.querySelectorAll('[data-foto]').forEach(btn=>{
+    btn.onclick = e=>{
+      e.stopPropagation();
+      abrirFoto(btn.dataset.foto);
+    };
+  });
+  grid.querySelectorAll('[data-feito]').forEach(m=>{
+    m.onclick = e=>{
+      e.stopPropagation();
+      const id = m.dataset.feito;
+      const i = testadas.indexOf(id);
+      if(i>=0){ testadas.splice(i,1); toast('Desmarcada'); }
+      else { testadas.push(id); toast('Receita marcada como testada! ✅'); }
+      salvar(); render();
+    };
+  });
+}
+
+/* ==================== MODAL RECEITA ==================== */
+function abrirReceita(id){
+  const r = todasReceitas().find(x=>x.id===id);
+  if(!r) return;
+  const fav = favoritas.includes(r.id);
+  const feita = testadas.includes(r.id);
+  const linkReceita = r.link ? `<div class="bloco link"><h3>🔗 Link original</h3><a href="${escapar(r.link)}" target="_blank" rel="noopener">${escapar(r.link)}</a></div>` : '';
+
+  document.getElementById('modalReceita').innerHTML = `
+    <div class="modal-hero">
+      <img src="${getFoto(r)}" alt="${escapar(r.nome)}" onerror="this.style.display='none'">
+      <div class="sombra"></div>
+      <button class="btn-foto" onclick="abrirFoto('${r.id}')">📷 Trocar foto</button>
+      <button class="btn-fechar" onclick="fecharReceita()">✕</button>
+      <div class="titulo-hero">
+        <h2>${r.emoji} ${escapar(r.nome)}</h2>
+        <div class="pais">${r.bandeira} ${escapar(r.pais)}</div>
+      </div>
+    </div>
+    <div class="modal-corpo">
+      <div class="modal-meta">
+        <span class="meta-pill">⏱ ${r.tempo} min</span>
+        <span class="meta-pill">🍽 ${r.porcoes} porções</span>
+        <span class="meta-pill">📊 ${r.dificuldade}</span>
+        ${r.cats.map(c=>`<span class="meta-pill">${CATEGORIAS[c].emoji} ${CATEGORIAS[c].nome}</span>`).join('')}
+      </div>
+
+      <div class="modal-acoes">
+        <button class="btn-acao ${fav?'on':''}" id="btnFavModal">${fav?'❤️ Favoritada':'🤍 Favoritar'}</button>
+        <button class="btn-acao feito ${feita?'on':''}" id="btnFeitoModal">${feita?'✅ Já testei':'☐ Marcar como testada'}</button>
+      </div>
+
+      <div class="bloco iniciante">
+        <h3>🌸 Explicação para iniciantes</h3>
+        <p>${escapar(r.iniciante || r.desc)}</p>
+      </div>
+
+      <div class="bloco">
+        <h3>🧂 Ingredientes (${r.ingredientes.length})</h3>
+        <ul class="ing">
+          ${r.ingredientes.map((ing,i)=>`<li data-ing="${i}"><span class="pt">•</span> ${escapar(ing)}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="bloco">
+        <h3>👨‍🍳 Modo de preparo (${r.passos.length} passos)</h3>
+        <ol class="preparo">
+          ${r.passos.map((p,i)=>`<li data-passo="${i}">${escapar(p)}</li>`).join('')}
+        </ol>
+      </div>
+
+      ${r.dicas && r.dicas.length ? `
+      <div class="bloco dicas">
+        <h3>💡 Dicas do Chef</h3>
+        <ul class="dicas-lista">
+          ${r.dicas.map(d=>`<li><span>✓</span> ${escapar(d)}</li>`).join('')}
+        </ul>
+      </div>` : ''}
+
+      ${linkReceita}
+    </div>`;
+
+  document.getElementById('overlayReceita').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('btnFavModal').onclick = ()=>{
+    const i = favoritas.indexOf(r.id);
+    if(i>=0) favoritas.splice(i,1); else favoritas.push(r.id);
+    salvar(); abrirReceita(r.id); render();
+  };
+  document.getElementById('btnFeitoModal').onclick = ()=>{
+    const i = testadas.indexOf(r.id);
+    if(i>=0) testadas.splice(i,1); else testadas.push(r.id);
+    salvar(); abrirReceita(r.id); render();
+  };
+  document.querySelectorAll('#modalReceita [data-ing]').forEach(el=>{
+    el.onclick = ()=>el.classList.toggle('marcado');
+  });
+  document.querySelectorAll('#modalReceita [data-passo]').forEach(el=>{
+    el.onclick = ()=>el.classList.toggle('marcado');
+  });
+}
+function fecharReceita(){
+  document.getElementById('overlayReceita').classList.remove('aberto');
+  document.body.style.overflow = '';
+}
+
+/* ==================== MODAL FOTO ==================== */
+let fotoReceitaIdAtual = null;
+let fotoBuffer = null; // dataURL temporário
+
+function abrirFoto(id){
+  const r = todasReceitas().find(x=>x.id===id);
+  if(!r) return;
+  fotoReceitaIdAtual = id;
+  fotoBuffer = null;
+
+  document.getElementById('fotoReceitaNome').textContent = r.emoji + ' ' + r.nome;
+
+  const preview = document.getElementById('fotoPreview');
+  const urlInput = document.getElementById('fotoURL');
+  const status = document.getElementById('fotoStatus');
+
+  const atual = getFoto(r);
+  preview.src = atual;
+  preview.style.display = 'block';
+  preview.onerror = ()=>{ preview.style.display='none'; };
+
+  if(fotosCustom[id]){
+    urlInput.value = fotosCustom[id].startsWith('data:') ? '' : fotosCustom[id];
+    status.textContent = fotosCustom[id].startsWith('data:') ? '📁 Foto personalizada (arquivo enviado)' : '🔗 Foto personalizada (URL)';
+  } else {
+    urlInput.value = r.foto || '';
+    status.textContent = 'Foto padrão';
+  }
+
+  document.getElementById('overlayFoto').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+
+  urlInput.oninput = ()=>{
+    const v = urlInput.value.trim();
+    if(v){
+      preview.src = v;
+      preview.style.display = 'block';
+      fotoBuffer = null;
+    }
+  };
+
+  document.getElementById('fotoArquivo').onchange = (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      fotoBuffer = ev.target.result;
+      preview.src = fotoBuffer;
+      preview.style.display = 'block';
+      urlInput.value = '';
+      status.textContent = '📁 Arquivo selecionado — clique em Salvar';
+    };
+    reader.readAsDataURL(file);
+  };
+}
+
+function salvarFoto(){
+  if(!fotoReceitaIdAtual) return;
+  let nova = fotoBuffer;
+  if(!nova){
+    const url = document.getElementById('fotoURL').value.trim();
+    if(url) nova = url;
+  }
+  if(!nova){ toast('⚠️ Escolha uma imagem ou cole uma URL'); return; }
+  fotosCustom[fotoReceitaIdAtual] = nova;
+  salvar();
+  fecharFoto();
+  render();
+  toast('📷 Foto atualizada!');
+}
+
+function removerFotoAtual(){
+  if(!fotoReceitaIdAtual) return;
+  delete fotosCustom[fotoReceitaIdAtual];
+  salvar();
+  fecharFoto();
+  render();
+  toast('🗑️ Foto restaurada ao padrão');
+}
+
+function fecharFoto(){
+  document.getElementById('overlayFoto').classList.remove('aberto');
+  document.body.style.overflow = '';
+  fotoReceitaIdAtual = null;
+  fotoBuffer = null;
+  document.getElementById('fotoArquivo').value = '';
+  document.getElementById('fotoURL').value = '';
+}
+
+/* ==================== FORMULÁRIO ==================== */
+function abrirFormulario(){
+  document.getElementById('fCats').innerHTML = Object.entries(CATEGORIAS).map(([k,v])=>`
+    <label><input type="checkbox" value="${k}"><span>${v.emoji} ${v.nome}</span></label>`).join('');
+  const paises = [...new Set(todasReceitas().map(r=>r.pais))].sort();
+  document.getElementById('listaPaises').innerHTML = paises.map(p=>`<option value="${escapar(p)}">`).join('');
+  document.getElementById('previewWrap').style.display = 'none';
+  document.getElementById('statusBusca').innerHTML = '';
+  document.getElementById('overlayForm').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+}
+function fecharFormulario(){
+  document.getElementById('overlayForm').classList.remove('aberto');
+  document.body.style.overflow = '';
+  document.getElementById('formReceita').reset();
+  document.getElementById('statusBusca').innerHTML = '';
+  document.getElementById('previewWrap').style.display = 'none';
+}
+
+function salvarNovaReceita(e){
+  e.preventDefault();
+  const nome = document.getElementById('fNome').value.trim();
+  const pais = document.getElementById('fPais').value.trim();
+  const link = document.getElementById('fLink').value.trim();
+  const emoji = document.getElementById('fEmoji').value.trim() || '🍽️';
+  const tempo = parseInt(document.getElementById('fTempo').value) || 30;
+  const porcoes = parseInt(document.getElementById('fPorcoes').value) || 4;
+  const dificuldade = document.getElementById('fDificuldade').value;
+  const cor = document.getElementById('fCor').value.split(',');
+  const fotoURL = document.getElementById('fFoto').value.trim();
+  const cats = [...document.querySelectorAll('#fCats input:checked')].map(i=>i.value);
+  const ingredientes = document.getElementById('fIng').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const passos = document.getElementById('fPassos').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const dicas = document.getElementById('fDicas').value.split('\n').map(s=>s.trim()).filter(Boolean);
+
+  if(!cats.length){ toast('⚠️ Escolha pelo menos uma categoria'); return; }
+  if(!ingredientes.length || !passos.length){ toast('⚠️ Preencha ingredientes e passos'); return; }
+
+  const mapaBandeiras = {
+    'Brasil':'🇧🇷','Japão':'🇯🇵','Itália':'🇮🇹','México':'🇲🇽','Índia':'🇮🇳','China':'🇨🇳',
+    'França':'🇫🇷','Tailândia':'🇹🇭','Coreia do Sul':'🇰🇷','EUA':'🇺🇸','Espanha':'🇪🇸',
+    'Portugal':'🇵🇹','Alemanha':'🇩🇪','Grécia':'🇬🇷','Argentina':'🇦🇷','Peru':'🇵🇪','Vietnã':'🇻🇳'
+  };
+  const bandeira = mapaBandeiras[pais] || '🌏';
+
+  const paisesExistentes = new Set(todasReceitas().map(r=>r.pais));
+  if(!paisesExistentes.has(pais)){
+    toast(`🌏 Novo país criado: ${pais}!`);
+  }
+
+  const nova = {
+    id: 'custom_' + Date.now(),
+    nome, pais, bandeira, cats, emoji, tempo, porcoes, dificuldade,
+    cor, img: nome.toLowerCase().replace(/\s+/g,' '),
+    desc: 'Receita adicionada por link.',
+    ingredientes, passos, dicas,
+    iniciante: 'Receita adicionada por você. Siga os passos com calma.',
+    link
+  };
+  if(fotoURL) nova.foto = fotoURL;
+  customReceitas.push(nova);
+  salvar();
+  fecharFormulario();
+  render();
+  toast('✨ Receita criada com sucesso!');
+}
+
+/* ==================== BUSCA ==================== */
+document.getElementById('busca').addEventListener('input', e=>{
+  estado.busca = e.target.value.trim();
+  renderGrid();
+});
+
+/* ==================== RENDER ==================== */
+function render(){
+  renderKPIs();
+  renderReceitaDia();
+  renderChips();
+  renderGrid();
+}
+
+/* ==================== SAKURA ==================== */
+function criarSakura(){
+  const el = document.getElementById('sakura');
+  const emojis = ['🌸','🌺','🌸','✿'];
+  for(let i=0;i<14;i++){
+    const p = document.createElement('div');
+    p.className = 'petala';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = Math.random()*100 + '%';
+    p.style.animationDuration = (8 + Math.random()*10) + 's';
+    p.style.animationDelay = (Math.random()*12) + 's';
+    p.style.fontSize = (12 + Math.random()*14) + 'px';
+    el.appendChild(p);
+  }
+}
+
+/* ==================== INIT ==================== */
+criarSakura();
+render();
+console.log('🌸 Livro de Receitas Fantásticas carregado!', todasReceitas().length, 'receitas');
+</script>
+</body>
+</html>
